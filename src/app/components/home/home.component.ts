@@ -15,10 +15,6 @@ export class HomeComponent {
   @Input()
   protected readonly menuItems = menuItems;
 
-  showNavBar() {
-    this.displayService.setShowElement(true);
-  }
-
   setActiveIndex(index: number) {
     this.displayService.setIndex(index);
   }

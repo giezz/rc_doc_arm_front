@@ -1,1 +1,19 @@
-<p>my-patients works!</p>
+<div class="lists-content">
+  <tui-tabs [(activeItemIndex)]="activeItemIndex">
+    <button tuiTab>
+      Пациенты
+    </button>
+    <button tuiTab>
+      Программы реабилитации
+    </button>
+  </tui-tabs>
+
+  <div *ngIf="activeItemIndex === 0">
+    <app-my-patients-list></app-my-patients-list>
+  </div>
+  <div *ngIf="activeItemIndex === 1">
+    <app-rehab-programs></app-rehab-programs>
+  </div>
+</div>
+
+

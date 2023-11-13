@@ -1,0 +1,10 @@
+.patient-search {
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input-search-patient {
+  width: 1079px;
+}

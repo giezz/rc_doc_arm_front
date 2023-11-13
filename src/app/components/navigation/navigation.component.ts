@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { menuItems} from "../../data/pages";
-import {Router} from "@angular/router";
+import {NavigationEnd, Router} from "@angular/router";
 import {NavigationService} from "../../services/navigation.service";
 
 @Component({
@@ -9,20 +9,20 @@ import {NavigationService} from "../../services/navigation.service";
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit{
-  activeItemIndex = 0;
-  isVisible = true;
+  activeItemIndex: number = 0;
+  isVisible: boolean = true;
   protected readonly menuItems = menuItems;
 
-  constructor(
-    private router: Router,
-    private navigationService: NavigationService
-  ) {}
+  constructor(private router: Router, private navigationService: NavigationService) {
+    router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        // Проверяем, является ли текущий маршрут главной страницей
+        this.isVisible = (event.url !== '/');
+      }
+    });
+  }
 
   ngOnInit(): void {
-    this.navigationService.showElement$.subscribe(value => {
-      this.isVisible = value;
-    });
-
     this.navigationService.activeIndex$.subscribe(value => {
       this.activeItemIndex = value;
     })

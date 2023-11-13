@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./my-patients.component.css']
 })
 export class MyPatientsComponent {
+  activeItemIndex: number = 0;
 
 }

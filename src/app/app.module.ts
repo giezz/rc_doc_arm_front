@@ -25,6 +25,8 @@ import {MyPatientsComponent} from './components/my-patients/my-patients.componen
 import { HeaderComponent } from './components/header/header.component';
 import {TuiTableModule} from "@taiga-ui/addon-table";
 import {TuiLetModule} from "@taiga-ui/cdk";
+import { RehabProgramsComponent } from './components/my-patients/rehab-programs/rehab-programs.component';
+import { MyPatientsListComponent } from './components/my-patients/my-patients-list/my-patients-list.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -48,7 +50,9 @@ const routes: Routes = [
     IcfComponent,
     AboutComponent,
     MyPatientsComponent,
-    HeaderComponent
+    HeaderComponent,
+    RehabProgramsComponent,
+    MyPatientsListComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
