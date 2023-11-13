@@ -1,0 +1,70 @@
+<div class="patient-search">
+  <form>
+    <tui-input
+      class="input-search-patient"
+      tuiTextfieldSize="m"
+      [tuiTextfieldCleaner]="true"
+      [tuiTextfieldLabelOutside]="true"
+    >
+      Введите ФИО
+      <input tuiTextfield/>
+    </tui-input>
+
+  </form>
+  <button
+    tuiButton
+    size="m"
+  >
+    Найти
+  </button>
+</div>
+
+<table
+  tuiTable
+  [columns]="columns"
+  size="m"
+>
+  <thead tuiThead>
+  <tr tuiThGroup>
+    <th tuiTh *tuiHead="'lastName'">
+      Фамилия
+    </th>
+    <th tuiTh *tuiHead="'firstName'">
+      Имя
+    </th>
+    <th tuiTh *tuiHead="'middleName'">
+      Отчество
+    </th>
+    <th tuiTh *tuiHead="'gender'">
+      Пол
+    </th>
+    <th tuiTh *tuiHead="'birthDate'">
+      Дата рождения
+    </th>
+    <th tuiTh *tuiHead="'deathDate'">
+      Дата смерти
+    </th>
+    <th tuiTh *tuiHead="'status'">
+      Статус
+    </th>
+  </tr>
+  </thead>
+  <tbody
+    *tuiLet="patients | tuiTableSort as sortedPatients"
+    tuiTbody
+    [data]="sortedPatients"
+  >
+  <tr
+    *ngFor="let patient of sortedPatients"
+    routerLink="/"
+    tuiTr
+  >
+    <td tuiTd *tuiCell="'status'">
+      <tui-badge status="info" size="m">{{patient.status}}</tui-badge>
+    </td>
+  </tr>
+
+  </tbody>
+</table>
+
+

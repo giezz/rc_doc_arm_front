@@ -1,0 +1,9 @@
+<tui-tabs [(activeItemIndex)]="activeItemIndex" class="nav" *ngIf="isVisible">
+  <button
+    tuiTab
+    *ngFor="let menuItem of menuItems"
+    (click)="goToPage(menuItem.link)"
+  >
+    {{menuItem.title}}
+  </button>
+</tui-tabs>

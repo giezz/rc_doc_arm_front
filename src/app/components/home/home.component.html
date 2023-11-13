@@ -1,0 +1,14 @@
+<div class="greeting">
+  <!--    <h2>Добро пожаловать {{accountName}}!</h2>-->
+  <h6>Для продолжения перейдите в необходимый раздел</h6>
+</div>
+<div class="menu-items">
+  <a *ngFor="let menuItem of menuItems; index as i" routerLink="{{menuItem.link}}" (click)="showNavBar(); setActiveIndex(i)">
+    <div class="menu-item">
+      <span>{{ menuItem.title }}</span>
+      <ul class="tui-list tui-list_small">
+        <li class="tui-list__item" *ngFor="let item of menuItem.description">{{ item }}</li>
+      </ul>
+    </div>
+  </a>
+</div>

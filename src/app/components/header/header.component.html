@@ -1,0 +1,14 @@
+<header class="page-header">
+  <div class="header-content">
+    <div>
+      <a routerLink="/" (click)="hideNavBar()">
+        {{title}}
+      </a>
+    </div>
+    <div class="account-info">
+      {{accountName}}
+      <img [src]="avatarUrl">
+      <button>Exit</button>
+    </div>
+  </div>
+</header>
