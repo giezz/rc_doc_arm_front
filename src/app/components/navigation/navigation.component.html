@@ -2,7 +2,8 @@
   <button
     tuiTab
     *ngFor="let menuItem of menuItems"
-    (click)="goToPage(menuItem.link)"
+    [routerLink]="menuItem.link"
+    routerLinkActive="active"
   >
     {{menuItem.title}}
   </button>
