@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {tuiIconSearchLarge} from "@taiga-ui/icons";
-import {IPatient} from "../../models/IPatient";
-import {patients} from "../../data/patients";
+import {IPatient} from "../../../models/IPatient";
+import {patients} from "../../../data/patients";
 
 @Component({
   selector: 'app-patients',

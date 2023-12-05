@@ -1,0 +1,32 @@
+<div class="body">
+  <div class="top-container">
+    <div class="organization-container">
+      <div class="organization-label">НАЗВАНИЕ ОРГАНИЗАЦИИ</div>
+      <img class="logo " [src]="logo_im" alt="Organization Logo">
+    </div>
+    <div class="login-container">
+      <tui-input class="w-full p-3">
+        Логин
+        <input
+          tuiTextfield
+          type="text"
+        />
+      </tui-input>
+      <tui-input class="w-full p-3">
+        Пароль
+        <input
+          tuiTextfield
+          type="password"
+        />
+      </tui-input>
+      <button
+        class="w-56"
+        appearance="custom"
+        tuiButton
+        routerLink="/rehabilitation"
+      >
+        Войти
+      </button>
+    </div>
+  </div>
+</div>

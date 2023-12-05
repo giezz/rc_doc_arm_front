@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import { menuItems} from "../../data/pages";
+import {menuItems} from "../../../data/pages";
 
 @Component({
   selector: 'app-home',
