@@ -1,12 +1,7 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {MainComponent} from "./main.component";
 import {HomeComponent} from "./home/home.component";
-import {PatientsComponent} from "./patients/patients.component";
-import {MyPatientsComponent} from "./my-patients/my-patients.component";
-import {ExercisesComponent} from "./exercises/exercises.component";
-import {IcfComponent} from "./icf/icf.component";
-import {AboutComponent} from "./about/about.component";
 
 const routes: Routes = [
   {
@@ -15,29 +10,16 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: HomeComponent
+        component: HomeComponent,
       },
       {
-        path: 'patients',
-        component: PatientsComponent
+        path: '',
+        loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)
       },
       {
-        path: 'my-patients',
-        component: MyPatientsComponent
-      },
-      {
-        path: 'exercises',
-        component: ExercisesComponent
-      },
-      {
-        path: 'icf',
-        component: IcfComponent
-      },
-      {
-        path: 'about',
-        component: AboutComponent
+        path: 'patient',
+        loadChildren: () => import('./patient/patient.module').then(m => m.PatientModule)
       }
-
     ]
   }
 ];
@@ -46,4 +28,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class MainRoutingModule { }
+export class MainRoutingModule {
+}

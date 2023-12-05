@@ -5,16 +5,17 @@ import {AuthComponent} from "./components/auth/auth.component";
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  {
     path: 'login',
     component: AuthComponent
   },
   {
-    path: '',
+    path: 'home',
     loadChildren: () => import('./components/main/main.module').then(m => m.MainModule)
-  },
-  {
-    path: 'patient',
-    loadChildren: () => import('./components/patient/patient.module').then(m => m.PatientModule)
   }
 ]
 

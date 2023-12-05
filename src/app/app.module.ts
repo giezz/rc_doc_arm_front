@@ -9,17 +9,13 @@ import {BrowserModule} from "@angular/platform-browser";
 import {MainModule} from "./components/main/main.module";
 import {AuthComponent} from "./components/auth/auth.component";
 import {TuiInputModule} from "@taiga-ui/kit";
-import { PatientComponent } from './components/patient/patient.component';
-import {HeaderComponent} from "./components/header/header.component";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    AuthComponent,
-    PatientComponent,
-    HeaderComponent
+    AuthComponent
   ],
   imports: [BrowserModule, AppRoutingModule, TuiRootModule, MainModule, TuiInputModule, TuiButtonModule],
   exports: [RouterModule],
