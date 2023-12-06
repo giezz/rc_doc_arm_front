@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, NgForm} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthService} from "../auth.service";
 import {AuthRequest} from "../auth-request";
@@ -39,11 +39,10 @@ export class AuthComponent implements OnInit{
     ).subscribe(
       data => {
         this.tokenStorage.setToken(data.token)
+        if (this.authService.isAuthenticated()) {
+          this.router.navigate(['/home']).then()
+        }
       }
     )
-
-    if (this.authService.isAuthenticated()) {
-      this.router.navigate(['/home']).then()
-    }
   }
 }
