@@ -1,0 +1,49 @@
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, NgForm} from "@angular/forms";
+import {Router} from "@angular/router";
+import {AuthService} from "../auth.service";
+import {AuthRequest} from "../auth-request";
+import {TokenStorageService} from "../token-storage.service";
+
+@Component({
+  selector: 'app-auth',
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.css']
+})
+export class AuthComponent implements OnInit{
+
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private tokenStorage: TokenStorageService
+  ) {
+  }
+
+  ngOnInit(): void {
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/home']).then()
+    }
+  }
+
+  loginForm = new FormGroup({
+    username: new FormControl(''),
+    password: new FormControl(''),
+  });
+
+  submit() {
+    this.authService.login(
+      new AuthRequest(
+        this.loginForm.value.username!,
+        this.loginForm.value.password!
+      )
+    ).subscribe(
+      data => {
+        this.tokenStorage.setToken(data.token)
+      }
+    )
+
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/home']).then()
+    }
+  }
+}
