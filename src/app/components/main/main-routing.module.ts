@@ -2,11 +2,14 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {MainComponent} from "./main.component";
 import {HomeComponent} from "./home/home.component";
+import {canActivate} from "../auth/auth.guard";
 
 const routes: Routes = [
   {
     path: '',
     component: MainComponent,
+    canActivate: [canActivate],
+    canActivateChild: [canActivate],
     children: [
       {
         path: '',
