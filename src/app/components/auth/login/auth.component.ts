@@ -10,7 +10,9 @@ import {TokenStorageService} from "../token-storage.service";
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css']
 })
-export class AuthComponent implements OnInit{
+export class AuthComponent implements OnInit {
+
+  logo_im = 'https://angular.io/assets/images/logos/angular/angular.png'
 
   constructor(
     private router: Router,
