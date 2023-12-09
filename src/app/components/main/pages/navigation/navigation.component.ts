@@ -8,15 +8,5 @@ import {menuItems} from "../../../../data/pages";
 })
 export class NavigationComponent {
   activeItemIndex: number = 0;
-  isVisible: boolean = true;
   protected readonly menuItems = menuItems;
-
-  // constructor(private router: Router) {
-  //   router.events.subscribe(event => {
-  //     if (event instanceof NavigationEnd) {
-  //       // Проверяем, является ли текущий маршрут главной страницей
-  //       this.isVisible = (event.url !== '/');
-  //     }
-  //   });
-  // }
 }
