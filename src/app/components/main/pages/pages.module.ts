@@ -10,10 +10,23 @@ import {MyPatientsListComponent} from "./my-patients/my-patients-list/my-patient
 import {RehabProgramsComponent} from "./my-patients/rehab-programs/rehab-programs.component";
 import {NavigationComponent} from "./navigation/navigation.component";
 import {PatientsComponent} from "./patients/patients.component";
-import {TuiBadgeModule, TuiInputModule, TuiTabsModule} from "@taiga-ui/kit";
-import {TuiButtonModule, TuiTextfieldControllerModule} from "@taiga-ui/core";
+import {
+  TuiBadgeModule, TuiCheckboxLabeledModule,
+  TuiDataListWrapperModule, TuiFieldErrorPipeModule,
+  TuiFilterModule, TuiInputDateModule,
+  TuiInputModule,
+  TuiMultiSelectModule, TuiSelectModule,
+  TuiTabsModule
+} from "@taiga-ui/kit";
+import {
+  TuiButtonModule,
+  TuiDataListModule, TuiErrorModule,
+  TuiHostedDropdownModule,
+  TuiTextfieldControllerModule
+} from "@taiga-ui/core";
 import {TuiTableModule} from "@taiga-ui/addon-table";
 import {TuiLetModule} from "@taiga-ui/cdk";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -39,7 +52,19 @@ import {TuiLetModule} from "@taiga-ui/cdk";
     TuiButtonModule,
     TuiTableModule,
     TuiLetModule,
-    TuiBadgeModule
+    TuiBadgeModule,
+    ReactiveFormsModule,
+    TuiHostedDropdownModule,
+    TuiDataListModule,
+    FormsModule,
+    TuiMultiSelectModule,
+    TuiFilterModule,
+    TuiDataListWrapperModule,
+    TuiSelectModule,
+    TuiInputDateModule,
+    TuiErrorModule,
+    TuiFieldErrorPipeModule,
+    TuiCheckboxLabeledModule
   ]
 })
 export class PagesModule { }

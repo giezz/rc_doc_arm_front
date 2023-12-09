@@ -1,16 +1,20 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {Patient} from "../../../../models/patient";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PatientService {
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  http = inject(HttpClient)
 
-  getAll() {
-    return this.http.get<any>('http://localhost:8080/api/v1/patients')
+  getAll(): Observable<Patient[]> {
+    return this.http.get<Patient[]>('http://localhost:8080/api/v1/patients')
+  }
+
+  getByRequest() {
+
   }
 }

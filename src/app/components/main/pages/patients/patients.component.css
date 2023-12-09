@@ -12,3 +12,7 @@
 tui-badge {
   margin: 0.5rem;
 }
+
+.search {
+  max-width: 10rem;
+}

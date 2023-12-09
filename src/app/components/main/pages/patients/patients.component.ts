@@ -1,33 +1,47 @@
-import { Component } from '@angular/core';
-import {tuiIconSearchLarge} from "@taiga-ui/icons";
-import {IPatient} from "../../../../models/IPatient";
-import {patients} from "../../../../data/patients";
+import {Component, inject, OnInit} from '@angular/core';
 import {PatientService} from "./patient.service";
+import {FormControl, FormGroup} from "@angular/forms";
+import {Patient} from "../../../../models/patient";
 
 @Component({
   selector: 'app-patients',
   templateUrl: './patients.component.html',
   styleUrls: ['./patients.component.css']
 })
-export class PatientsComponent {
+export class PatientsComponent implements OnInit {
 
-  constructor(
-    private patientService: PatientService
-  ) {
-  }
+  patientService = inject(PatientService)
 
-  protected readonly tuiIconSearchLarge = tuiIconSearchLarge;
+  patients: Patient[] = [];
 
-  patients: readonly IPatient[] = patients;
+  readonly columns: string[] = ['lastName', 'firstName', 'middleName', 'gender', 'birthDate', 'deathDate', 'status']
 
-  click() {
+  readonly items = ['Статус 1', 'Статус 2', 'Статус 3'];
+  readonly gender = ['Мужской', 'Женский']
+
+  searchPatients = new FormGroup({
+    input: new FormControl(''),
+    status: new FormControl([]),
+    gender: new FormControl(),
+    birthDate: new FormControl(),
+    isDead: new FormControl(false)
+  })
+
+  onSubmit() {
     this.patientService.getAll().subscribe(
       data => {
         console.log(data)
+        this.patients = data
       }
     )
   }
 
-  readonly columns: string[] = ['lastName', 'firstName', 'middleName', 'gender', 'birthDate', 'deathDate', 'status']
-
+  ngOnInit(): void {
+    this.patientService.getAll().subscribe(
+      data => {
+        console.log(data)
+        this.patients = data
+      }
+    )
+  }
 }

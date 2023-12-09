@@ -1,23 +1,70 @@
 <div class="patient-search">
-  <form>
+  <form [formGroup]="searchPatients" (ngSubmit)="onSubmit()">
+    Value {{searchPatients.value | json}}
     <tui-input
       class="input-search-patient"
       tuiTextfieldSize="m"
+      formControlName="input"
       [tuiTextfieldCleaner]="true"
       [tuiTextfieldLabelOutside]="true"
     >
       Введите ФИО
       <input tuiTextfield/>
     </tui-input>
+    <tui-multi-select
+      formControlName="status"
+      class="search"
+      tuiTextfieldSize="m"
+      [tuiTextfieldCleaner]="true"
+      [editable]="false"
+      [expandable]="true"
+      [tuiTextfieldLabelOutside]="true"
+    >
+      Статус
+      <tui-data-list-wrapper
+        *tuiDataList
+        tuiMultiSelectGroup
+        [items]="items"
+      ></tui-data-list-wrapper>
+    </tui-multi-select>
+    <tui-select
+      formControlName="gender"
+      [tuiTextfieldCleaner]="true"
+      class="search"
+      tuiTextfieldSize="m"
+    >
+      Пол
+      <tui-data-list-wrapper
+        *tuiDataList
+        [items]="gender"
+      ></tui-data-list-wrapper>
+    </tui-select>
+    <tui-input-date
+      class="search"
+      [tuiTextfieldCleaner]="true"
+      tuiTextfieldSize="m"
+      formControlName="birthDate"
+      tuiUnfinishedValidator="Заполните дату"
+    >
+      Дата рождения
+    </tui-input-date>
+    <tui-error
+      formControlName="birthDate"
+      [error]="[] | tuiFieldError | async"
+    ></tui-error>
+    <tui-checkbox-labeled formControlName="isDead">
+      <div class="example">Умершие</div>
+    </tui-checkbox-labeled>
 
+
+    <button
+      type="submit"
+      tuiButton
+      size="m"
+    >
+      Найти
+    </button>
   </form>
-  <button
-    (click)="click()"
-    tuiButton
-    size="m"
-  >
-    Найти
-  </button>
 </div>
 
 <table
@@ -61,7 +108,7 @@
     tuiTr
   >
     <td tuiTd *tuiCell="'status'">
-      <tui-badge status="info" size="m">{{patient.status}}</tui-badge>
+      <tui-badge status="info" size="m">{{patient.patientStatus.name}}</tui-badge>
     </td>
   </tr>
 
