@@ -2,6 +2,8 @@ import {Component, inject, OnInit} from '@angular/core';
 import {PatientService} from "./patient.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Patient} from "../../../../models/patient";
+import {Router} from "@angular/router";
+import {PatientComponentsService} from "../../../../services/patient-components.service";
 
 @Component({
   selector: 'app-patients',
@@ -10,7 +12,7 @@ import {Patient} from "../../../../models/patient";
 })
 export class PatientsComponent implements OnInit {
 
-  patientService = inject(PatientService)
+  patientService: PatientService = inject(PatientService)
 
   patients: Patient[] = [];
 
@@ -27,7 +29,7 @@ export class PatientsComponent implements OnInit {
     isDead: new FormControl(false)
   })
 
-  onSubmit() {
+  ngOnInit(): void {
     this.patientService.getAll().subscribe(
       data => {
         console.log(data)
@@ -36,7 +38,7 @@ export class PatientsComponent implements OnInit {
     )
   }
 
-  ngOnInit(): void {
+  onSubmit() {
     this.patientService.getAll().subscribe(
       data => {
         console.log(data)

@@ -7,6 +7,7 @@ import {HomeComponent} from "./home/home.component";
 import {PagesModule} from "./pages/pages.module";
 import {HeaderComponent} from "./header/header.component";
 import {PatientComponent} from "./patient/patient.component";
+import {TuiTabsModule} from "@taiga-ui/kit";
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import {PatientComponent} from "./patient/patient.component";
     CommonModule,
     MainRoutingModule,
     PagesModule,
+    TuiTabsModule,
   ]
 })
 export class MainModule {

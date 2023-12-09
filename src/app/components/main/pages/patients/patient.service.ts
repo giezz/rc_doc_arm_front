@@ -14,6 +14,10 @@ export class PatientService {
     return this.http.get<Patient[]>('http://localhost:8080/api/v1/patients')
   }
 
+  getByCode(code: number): Observable<Patient> {
+    return this.http.get<Patient>('http://localhost:8080/api/v1/patients/' + code)
+  }
+
   getByRequest() {
 
   }

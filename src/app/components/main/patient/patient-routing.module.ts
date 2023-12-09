@@ -1,12 +1,13 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import {inject, NgModule, OnInit} from '@angular/core';
+import {ActivatedRoute, RouterModule, Routes} from '@angular/router';
 import {PatientComponent} from "./patient.component";
 import {PatientDetailComponent} from "./patient-detail/patient-detail.component";
 import {EhrComponent} from "./ehr/ehr.component";
+import {Patient} from "../../../models/patient";
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':patientCode',
     component: PatientComponent,
     children: [
       {
@@ -25,4 +26,6 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class PatientRoutingModule { }
+export class PatientRoutingModule {
+
+}
