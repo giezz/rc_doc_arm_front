@@ -23,7 +23,7 @@ export class AuthComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.authService.isAuthenticated()) {
-      this.router.navigate(['/home']).then()
+      this.router.navigate(['home']).then()
     }
   }
 
@@ -42,7 +42,7 @@ export class AuthComponent implements OnInit {
       data => {
         this.tokenStorage.setToken(data.token)
         if (this.authService.isAuthenticated()) {
-          this.router.navigate(['/home']).then()
+          this.router.navigate(['home']).then()
         }
       }
     )
