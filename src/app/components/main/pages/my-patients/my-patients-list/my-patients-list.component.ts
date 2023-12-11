@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Patient} from "../../../../../models/patient";
 
 @Component({
   selector: 'app-my-patients-list',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./my-patients-list.component.css']
 })
 export class MyPatientsListComponent {
+
+  patients: Patient[]
 
 }

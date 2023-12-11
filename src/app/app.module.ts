@@ -7,7 +7,7 @@ import {MainComponent} from './components/main/main.component';
 import {TuiButtonModule, TuiRootModule} from "@taiga-ui/core";
 import {BrowserModule} from "@angular/platform-browser";
 import {MainModule} from "./components/main/main.module";
-import {AuthComponent} from "./components/auth/login/auth.component";
+import {AuthComponent} from "./components/login/auth.component";
 import {TuiInputModule} from "@taiga-ui/kit";
 import {TUI_LANGUAGE, TUI_RUSSIAN_LANGUAGE} from '@taiga-ui/i18n';
 import {ReactiveFormsModule} from "@angular/forms";

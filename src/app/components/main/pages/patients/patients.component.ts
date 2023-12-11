@@ -1,5 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {PatientService} from "./patient.service";
+import {PatientService} from "../../../../services/patient.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Patient} from "../../../../models/patient";
 import {Router} from "@angular/router";

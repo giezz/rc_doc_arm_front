@@ -19,7 +19,6 @@ export class Patient {
   patientStatus: Status
   passport: Passport
 
-
   constructor(id: number, patientCode: number, firstName: string, middleName: string, lastName: string, gender: string, birthDate: Date, deathDate: Date, address: string, phoneNumber: string, workPlaceData: string, bookmark: string, snils: string, polis: string, patientStatus: Status, passport: Passport) {
     this.id = id;
     this.patientCode = patientCode;

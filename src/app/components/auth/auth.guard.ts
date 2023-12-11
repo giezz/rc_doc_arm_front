@@ -13,27 +13,3 @@ export const canActivate = () => {
     return false
   }
 }
-//   isAuthenticated(route: ActivatedRouteSnapshot, _: RouterStateSnapshot): boolean {
-//     if (!this.authService.isAuthenticated()) {
-//       this.router.navigate(['/login']).then();
-//       return false;
-//     }
-//
-//     const requiredRoles: unknown = route.data['roles'];
-//
-//     if (!(requiredRoles instanceof Array) || requiredRoles.length === 0) {
-//       return true;
-//     }
-//
-//     let hasRole = requiredRoles.every((role) =>
-//       this.authService.hasRole(role)
-//     );
-//
-//     if (!hasRole) {
-//       this.router.navigate(['/']).then();
-//       return false;
-//     }
-//
-//     return true;
-//   }
-

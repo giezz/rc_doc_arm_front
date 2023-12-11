@@ -27,6 +27,7 @@ import {
 import {TuiTableModule} from "@taiga-ui/addon-table";
 import {TuiLetModule} from "@taiga-ui/cdk";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { PatientDetailCardComponent } from './my-patients/my-patients-list/patient-detail-card/patient-detail-card.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     MyPatientsListComponent,
     RehabProgramsComponent,
     NavigationComponent,
-    PatientsComponent
+    PatientsComponent,
+    PatientDetailCardComponent
   ],
   exports: [
     NavigationComponent
