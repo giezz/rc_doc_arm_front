@@ -1,1 +1,6 @@
-<p>patient-detail-card works!</p>
+<tui-island size="l">
+  <h4 class="tui-island__title">{{patient.lastName + ' ' + patient.firstName + ' ' + patient.middleName}}</h4>
+  <p>{{patient.birthDate}}</p>
+  <p>{{patient.patientStatus.name}}</p>
+  <a [routerLink]="['/patient', patient.patientCode]">Перейти</a>
+</tui-island>

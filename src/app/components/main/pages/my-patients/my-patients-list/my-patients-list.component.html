@@ -18,3 +18,7 @@
     Найти
   </button>
 </div>
+
+<div>
+  <app-patient-detail-card *ngFor="let patient of patients" [patient]="patient"></app-patient-detail-card>
+</div>

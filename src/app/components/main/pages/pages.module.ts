@@ -11,12 +11,12 @@ import {RehabProgramsComponent} from "./my-patients/rehab-programs/rehab-program
 import {NavigationComponent} from "./navigation/navigation.component";
 import {PatientsComponent} from "./patients/patients.component";
 import {
-  TuiBadgeModule, TuiCheckboxLabeledModule,
-  TuiDataListWrapperModule, TuiFieldErrorPipeModule,
-  TuiFilterModule, TuiInputDateModule,
-  TuiInputModule,
-  TuiMultiSelectModule, TuiSelectModule,
-  TuiTabsModule
+    TuiBadgeModule, TuiCheckboxLabeledModule,
+    TuiDataListWrapperModule, TuiFieldErrorPipeModule,
+    TuiFilterModule, TuiInputDateModule,
+    TuiInputModule, TuiIslandModule,
+    TuiMultiSelectModule, TuiSelectModule,
+    TuiTabsModule
 } from "@taiga-ui/kit";
 import {
   TuiButtonModule,
@@ -45,28 +45,29 @@ import { PatientDetailCardComponent } from './my-patients/my-patients-list/patie
   exports: [
     NavigationComponent
   ],
-  imports: [
-    CommonModule,
-    PagesRoutingModule,
-    TuiTabsModule,
-    TuiInputModule,
-    TuiTextfieldControllerModule,
-    TuiButtonModule,
-    TuiTableModule,
-    TuiLetModule,
-    TuiBadgeModule,
-    ReactiveFormsModule,
-    TuiHostedDropdownModule,
-    TuiDataListModule,
-    FormsModule,
-    TuiMultiSelectModule,
-    TuiFilterModule,
-    TuiDataListWrapperModule,
-    TuiSelectModule,
-    TuiInputDateModule,
-    TuiErrorModule,
-    TuiFieldErrorPipeModule,
-    TuiCheckboxLabeledModule
-  ]
+    imports: [
+        CommonModule,
+        PagesRoutingModule,
+        TuiTabsModule,
+        TuiInputModule,
+        TuiTextfieldControllerModule,
+        TuiButtonModule,
+        TuiTableModule,
+        TuiLetModule,
+        TuiBadgeModule,
+        ReactiveFormsModule,
+        TuiHostedDropdownModule,
+        TuiDataListModule,
+        FormsModule,
+        TuiMultiSelectModule,
+        TuiFilterModule,
+        TuiDataListWrapperModule,
+        TuiSelectModule,
+        TuiInputDateModule,
+        TuiErrorModule,
+        TuiFieldErrorPipeModule,
+        TuiCheckboxLabeledModule,
+        TuiIslandModule
+    ]
 })
 export class PagesModule { }
