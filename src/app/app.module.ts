@@ -12,7 +12,7 @@ import {TuiInputModule} from "@taiga-ui/kit";
 import {TUI_LANGUAGE, TUI_RUSSIAN_LANGUAGE} from '@taiga-ui/i18n';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import {httpInterceptorProviders} from "./components/auth/auth-interceptor";
+import {httpInterceptorProviders} from "./auth/auth-interceptor";
 import {JwtModule} from "@auth0/angular-jwt";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {of} from "rxjs";

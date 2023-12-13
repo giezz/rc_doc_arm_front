@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {AuthService} from "../auth/auth.service";
-import {AuthRequest} from "../auth/auth-request";
+import {AuthService} from "../../auth/auth.service";
+import {AuthRequest} from "../../auth/auth-request";
 import {TokenStorageService} from "../../services/token-storage.service";
 
 @Component({
