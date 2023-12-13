@@ -3,7 +3,6 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 import {TokenStorageService} from "./token-storage.service";
 import {TokenDoctor} from "../models/token-doctor";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Patient} from "../models/patient";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -25,11 +24,7 @@ export class DoctorService {
     return this.token?.doctorFullName
   }
 
-  getDoctorCode() {
+  getDoctorId() {
     return this.token?.doctorId
-  }
-
-  addToMyPatients(patientId: number, doctorId: number) {
-    return this.http.put("http://localhost:8080/api/v1/doctors", { patientId, doctorId }, httpOptions)
   }
 }

@@ -16,7 +16,7 @@ export class PatientComponent implements OnInit {
 
   patient: Patient
   patientCode: number
-  doctorCode: number
+  doctorId: number
 
   activeRoute: ActivatedRoute = inject(ActivatedRoute)
   patientService: PatientService = inject(PatientService)
@@ -25,7 +25,7 @@ export class PatientComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPatient()
-    this.doctorCode = this.doctorService.getDoctorCode()
+    this.doctorId = this.doctorService.getDoctorId()
   }
 
   getPatient() {
@@ -38,13 +38,12 @@ export class PatientComponent implements OnInit {
   }
 
   addToMyPatients() {
-    this.doctorService.addToMyPatients(
-      this.patientsComponentService.getPatient().id,
-      this.doctorCode
-    ).subscribe(
-      data => {
-        console.log(data)
-      }
-    )
+    this.patientService.addDoctor(
+      this.patientsComponentService.getPatient(),
+    ).subscribe(data => console.log(data))
+  }
+
+  deleteFromMyPatients() {
+
   }
 }

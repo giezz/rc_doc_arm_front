@@ -19,7 +19,7 @@
   </button>
   <button
     tuiTab
-    routerLink="rehab"
+    routerLink="/rehab"
     routerLinkActive="active"
   >
     Программа реабилитации
@@ -33,6 +33,16 @@
 </div>
 
 <button
+  *ngIf="patient.doctor === null"
+  tuiButton
+  (click)="deleteFromMyPatients()"
+  size="m"
+  appearance="outline"
+>
+  Удалить из "Мои пациенты"
+</button>
+<button
+  *ngIf="patient.doctor !== null"
   tuiButton
   (click)="addToMyPatients()"
   size="m"
@@ -40,5 +50,6 @@
 >
   Добавить в "Мои пациенты"
 </button>
+
 
 <router-outlet></router-outlet>
