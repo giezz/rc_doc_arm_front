@@ -1,6 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import {NavigationComponent} from "./navigation/navigation.component";
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {AboutComponent} from "./about/about.component";
 import {IcfComponent} from "./icf/icf.component";
 import {ExercisesComponent} from "./exercises/exercises.component";
