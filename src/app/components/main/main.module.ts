@@ -9,6 +9,7 @@ import {HeaderComponent} from "./header/header.component";
 import {PatientComponent} from "./patient/patient.component";
 import {TuiAvatarModule, TuiTabsModule} from "@taiga-ui/kit";
 import {TuiButtonModule} from "@taiga-ui/core";
+import { RehabProgramComponent } from './rehab-program/rehab-program.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {TuiButtonModule} from "@taiga-ui/core";
     HomeComponent,
     PagesComponent,
     HeaderComponent,
-    PatientComponent
+    PatientComponent,
+    RehabProgramComponent
   ],
   exports: [
     HeaderComponent

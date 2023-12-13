@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {MainComponent} from "./main.component";
 import {HomeComponent} from "./home/home.component";
-import {canActivate} from "../auth/auth.guard";
+import {canActivate} from "../../auth/auth.guard";
 
 const routes: Routes = [
   {
@@ -22,6 +22,10 @@ const routes: Routes = [
       {
         path: 'patient',
         loadChildren: () => import('./patient/patient.module').then(m => m.PatientModule)
+      },
+      {
+        path: 'rehab',
+        loadChildren: () => import('./rehab-program/rehab-program.module').then(m => m.RehabProgramModule)
       }
     ]
   }
