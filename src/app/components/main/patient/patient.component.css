@@ -1,0 +1,16 @@
+.left-nav {
+  width: 236px;
+  align-content: flex-start;
+}
+
+.pat-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.patient-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 26px;
+}

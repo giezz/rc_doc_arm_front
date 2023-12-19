@@ -1,0 +1,55 @@
+<div *ngIf="!hasProgram">
+  <p>Действующая программа реабилитации отсутсвует</p>
+  <button
+    tuiButton
+    appearance="primary"
+    size="s"
+    (click)="showDialog(template)"
+  >
+    Создать
+  </button>
+</div>
+<div *ngIf="hasProgram">
+  <div>
+    <app-form-block></app-form-block>
+  </div>
+  <div>
+    <app-modules-block></app-modules-block>
+  </div>
+  <div>
+    <app-form-block></app-form-block>
+  </div>
+  <button
+    tuiButton
+    appearance="primary"
+    size="s"
+  >
+    Сохранить
+  </button>
+</div>
+<ng-template
+  #template
+  let-observer
+>
+  <h2>Подтвердите дейтсвие</h2>
+  <p>Начать программу реабилитации?</p>
+  <button
+    tuiButton
+    size="m"
+    appearance="secondary"
+    type="button"
+    (click)="observer.complete()"
+  >
+    Отмена
+  </button>
+  <button
+    tuiButton
+    size="m"
+    appearance="primary"
+    type="button"
+    class="tui-space_right-3"
+    (click)="observer.complete(); createRehabProgram()"
+  >
+    Начать
+  </button>
+</ng-template>

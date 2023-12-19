@@ -3,7 +3,7 @@ import {PatientService} from "../../../../services/patient.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Patient} from "../../../../models/patient";
 import {Router} from "@angular/router";
-import {PatientComponentsService} from "../../../../services/patient-components.service";
+import {ComponentsService} from "../../../../services/components.service";
 
 @Component({
   selector: 'app-patients',
@@ -22,7 +22,9 @@ export class PatientsComponent implements OnInit {
   readonly gender = ['Мужской', 'Женский']
 
   searchPatients = new FormGroup({
-    input: new FormControl(''),
+    firstName: new FormControl(),
+    middleName: new FormControl(),
+    lastName: new FormControl(),
     status: new FormControl([]),
     gender: new FormControl(),
     birthDate: new FormControl(),
@@ -30,16 +32,11 @@ export class PatientsComponent implements OnInit {
   })
 
   ngOnInit(): void {
-    this.patientService.getAll().subscribe(
-      data => {
-        console.log(data)
-        this.patients = data
-      }
-    )
+    this.onSubmit()
   }
 
   onSubmit() {
-    this.patientService.getAll().subscribe(
+    this.patientService.getAll(this.searchPatients.value).subscribe(
       data => {
         console.log(data)
         this.patients = data

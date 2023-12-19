@@ -1,12 +1,26 @@
 .patient-search {
+  width: 100%;
   padding-top: 20px;
-  display: flex;
   align-items: center;
   gap: 10px;
 }
 
 .input-search-patient {
-  width: 1079px;
+  width: 100%;
+}
+
+.input-search-patient-line {
+  display: flex;
+  gap: 10px;
+
+}
+
+.input-filters {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 tui-badge {
@@ -14,5 +28,9 @@ tui-badge {
 }
 
 .search {
-  max-width: 10rem;
+  width: 10rem;
+}
+
+.patients-table {
+  width: 100%;
 }

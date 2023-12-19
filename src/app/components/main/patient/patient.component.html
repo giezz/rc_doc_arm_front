@@ -1,55 +1,23 @@
-<tui-tabs
-  [(activeItemIndex)]="activeItemIndex"
-  vertical="right"
-  class="right"
->
+<div class="pat-info">
+  <a>Назад</a>
+  <h2>{{patient?.lastName + ' ' + patient?.firstName + ' ' + patient?.middleName}}</h2>
   <button
-    tuiTab
-    routerLink="./"
-    routerLinkActive="active"
+    *ngIf="hasDoctor"
+    tuiButton
+    (click)="deleteFromMyPatients()"
+    size="m"
+    appearance="outline"
   >
-    Персональная информация
+    Удалить из "Мои пациенты"
   </button>
   <button
-    tuiTab
-    routerLink="ehr"
-    routerLinkActive="active"
+    *ngIf="!hasDoctor"
+    tuiButton
+    (click)="addToMyPatients()"
+    size="m"
+    appearance="outline"
   >
-    ЭМК
+    Добавить в "Мои пациенты"
   </button>
-  <button
-    tuiTab
-    routerLink="/rehab"
-    routerLinkActive="active"
-  >
-    Программа реабилитации
-  </button>
-
-</tui-tabs>
-<div>
-  <div>
-    {{patient.lastName + ' ' + patient.firstName + ' ' + patient.middleName}}
-  </div>
 </div>
-
-<button
-  *ngIf="patient.doctor === null"
-  tuiButton
-  (click)="deleteFromMyPatients()"
-  size="m"
-  appearance="outline"
->
-  Удалить из "Мои пациенты"
-</button>
-<button
-  *ngIf="patient.doctor !== null"
-  tuiButton
-  (click)="addToMyPatients()"
-  size="m"
-  appearance="outline"
->
-  Добавить в "Мои пациенты"
-</button>
-
-
 <router-outlet></router-outlet>

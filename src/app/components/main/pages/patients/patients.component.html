@@ -1,69 +1,92 @@
 <div class="patient-search">
   <form [formGroup]="searchPatients" (ngSubmit)="onSubmit()">
     Value {{searchPatients.value | json}}
-    <tui-input
-      class="input-search-patient"
-      tuiTextfieldSize="m"
-      formControlName="input"
-      [tuiTextfieldCleaner]="true"
-      [tuiTextfieldLabelOutside]="true"
-    >
-      Введите ФИО
-      <input tuiTextfield/>
-    </tui-input>
-    <tui-multi-select
-      formControlName="status"
-      class="search"
-      tuiTextfieldSize="m"
-      [tuiTextfieldCleaner]="true"
-      [editable]="false"
-      [expandable]="true"
-      [tuiTextfieldLabelOutside]="true"
-    >
-      Статус
-      <tui-data-list-wrapper
-        *tuiDataList
-        tuiMultiSelectGroup
-        [items]="items"
-      ></tui-data-list-wrapper>
-    </tui-multi-select>
-    <tui-select
-      formControlName="gender"
-      [tuiTextfieldCleaner]="true"
-      class="search"
-      tuiTextfieldSize="m"
-    >
-      Пол
-      <tui-data-list-wrapper
-        *tuiDataList
-        [items]="gender"
-      ></tui-data-list-wrapper>
-    </tui-select>
-    <tui-input-date
-      class="search"
-      [tuiTextfieldCleaner]="true"
-      tuiTextfieldSize="m"
-      formControlName="birthDate"
-      tuiUnfinishedValidator="Заполните дату"
-    >
-      Дата рождения
-    </tui-input-date>
-    <tui-error
-      formControlName="birthDate"
-      [error]="[] | tuiFieldError | async"
-    ></tui-error>
-    <tui-checkbox-labeled formControlName="isDead">
-      <div class="example">Умершие</div>
-    </tui-checkbox-labeled>
+    <div class="input-search-patient-line">
+        <tui-input
+          class="input-search-patient"
+          tuiTextfieldSize="m"
+          formControlName="lastName"
+          [tuiTextfieldCleaner]="true"
+          [tuiTextfieldLabelOutside]="true"
+        >
+          Фамилия
+          <input tuiTextfield/>
+        </tui-input>
+        <tui-input
+          class="input-search-patient"
+          tuiTextfieldSize="m"
+          formControlName="firstName"
+          [tuiTextfieldCleaner]="true"
+          [tuiTextfieldLabelOutside]="true"
+        >
+          Имя
+          <input tuiTextfield/>
+        </tui-input>
+        <tui-input
+          class="input-search-patient"
+          tuiTextfieldSize="m"
+          formControlName="middleName"
+          [tuiTextfieldCleaner]="true"
+          [tuiTextfieldLabelOutside]="true"
+        >
+          Отчество
+          <input tuiTextfield/>
+        </tui-input>
+      <button
+        type="submit"
+        tuiButton
+        size="m"
+      >
+        Найти
+      </button>
+    </div>
+    <div class="input-filters">
+      <tui-multi-select
+        formControlName="status"
+        class="search"
+        tuiTextfieldSize="m"
+        [tuiTextfieldCleaner]="true"
+        [editable]="false"
+        [expandable]="true"
+        [tuiTextfieldLabelOutside]="true"
+      >
+        Статус
+        <tui-data-list-wrapper
+          *tuiDataList
+          tuiMultiSelectGroup
+          [items]="items"
+        ></tui-data-list-wrapper>
+      </tui-multi-select>
+      <tui-select
+        formControlName="gender"
+        [tuiTextfieldCleaner]="true"
+        class="search"
+        tuiTextfieldSize="m"
+      >
+        Пол
+        <tui-data-list-wrapper
+          *tuiDataList
+          [items]="gender"
+        ></tui-data-list-wrapper>
+      </tui-select>
+      <tui-input-date
+        class="search"
+        [tuiTextfieldCleaner]="true"
+        tuiTextfieldSize="m"
+        formControlName="birthDate"
+        tuiUnfinishedValidator="Заполните дату"
+      >
+        Дата рождения
+      </tui-input-date>
+      <tui-error
+        formControlName="birthDate"
+        [error]="[] | tuiFieldError | async"
+      ></tui-error>
+      <tui-checkbox-labeled formControlName="isDead">
+        <div class="example">Умершие</div>
+      </tui-checkbox-labeled>
+    </div>
 
-
-    <button
-      type="submit"
-      tuiButton
-      size="m"
-    >
-      Найти
-    </button>
   </form>
 </div>
 
@@ -71,6 +94,7 @@
   tuiTable
   [columns]="columns"
   size="m"
+  class="patients-table"
 >
   <thead tuiThead>
   <tr tuiThGroup>

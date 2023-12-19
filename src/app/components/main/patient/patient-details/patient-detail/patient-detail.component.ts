@@ -1,6 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {Patient} from "../../../../models/patient";
-import {PatientComponentsService} from "../../../../services/patient-components.service";
+import {Patient} from "../../../../../models/patient";
+import {ComponentsService} from "../../../../../services/components.service";
 
 @Component({
   selector: 'app-patient-detail',
@@ -9,11 +9,9 @@ import {PatientComponentsService} from "../../../../services/patient-components.
 })
 export class PatientDetailComponent implements OnInit {
 
-  patientComponentsService: PatientComponentsService = inject(PatientComponentsService)
+  patientComponentsService: ComponentsService = inject(ComponentsService)
 
-  patient: Patient
-
-  today = new Date();
+  patient: Patient | null = null;
 
   ngOnInit(): void {
     this.patient = this.patientComponentsService.getPatient()

@@ -1,8 +1,8 @@
 import {inject, NgModule, OnInit} from '@angular/core';
 import {ActivatedRoute, RouterModule, Routes} from '@angular/router';
 import {PatientComponent} from "./patient.component";
-import {PatientDetailComponent} from "./patient-detail/patient-detail.component";
-import {EhrComponent} from "./ehr/ehr.component";
+import {PatientDetailComponent} from "./patient-details/patient-detail/patient-detail.component";
+import {EhrComponent} from "./patient-details/ehr/ehr.component";
 import {Patient} from "../../../models/patient";
 
 const routes: Routes = [
@@ -12,11 +12,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: PatientDetailComponent
+        loadChildren: () => import('./patient-details/patient-details.module').then(m => m.PatientDetailsModule)
       },
       {
-        path: 'ehr',
-        component: EhrComponent
+        path: 'rehab',
+        loadChildren: () => import('./rehab-program/rehab-program.module').then(m => m.RehabProgramModule)
       }
     ]
   }

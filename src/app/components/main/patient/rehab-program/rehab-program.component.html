@@ -1,0 +1,32 @@
+<div class="patient-content">
+  <div class="left-nav">
+    <tui-tabs
+      [(activeItemIndex)]="activeItemIndex"
+      vertical="right"
+      class="right"
+    >
+      <button
+        tuiTab
+        routerLink="./"
+        routerLinkActive="active"
+      >
+        Программа реабилитации
+      </button>
+      <button
+        tuiTab
+        routerLink="ehr"
+        routerLinkActive="active"
+      >
+        Результаты реабилитации
+      </button>
+      <button
+        tuiTab
+        routerLink="rehab"
+        routerLinkActive="active"
+      >
+        Протокол телемедицинской реабилитации
+      </button>
+    </tui-tabs>
+  </div>
+  <router-outlet></router-outlet>
+</div>

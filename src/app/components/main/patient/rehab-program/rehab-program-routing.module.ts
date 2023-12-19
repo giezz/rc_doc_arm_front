@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {RehabProgramComponent} from "./rehab-program.component";
 import {RehabDetailComponent} from "./rehab-detail/rehab-detail.component";
 
+
 const routes: Routes = [
   {
     path: '',

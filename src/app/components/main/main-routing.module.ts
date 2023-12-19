@@ -22,10 +22,6 @@ const routes: Routes = [
       {
         path: 'patient',
         loadChildren: () => import('./patient/patient.module').then(m => m.PatientModule)
-      },
-      {
-        path: 'rehab',
-        loadChildren: () => import('./rehab-program/rehab-program.module').then(m => m.RehabProgramModule)
       }
     ]
   }

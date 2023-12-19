@@ -9,16 +9,14 @@ import {HeaderComponent} from "./header/header.component";
 import {PatientComponent} from "./patient/patient.component";
 import {TuiAvatarModule, TuiTabsModule} from "@taiga-ui/kit";
 import {TuiButtonModule} from "@taiga-ui/core";
-import { RehabProgramComponent } from './rehab-program/rehab-program.component';
 
 
 @NgModule({
   declarations: [
+    HeaderComponent,
     HomeComponent,
     PagesComponent,
-    HeaderComponent,
-    PatientComponent,
-    RehabProgramComponent
+    PatientComponent
   ],
   exports: [
     HeaderComponent
