@@ -16,11 +16,6 @@ export class RehabProgramComponent implements OnInit {
   activeItemIndex: number = 0;
 
   ngOnInit(): void {
-    if (this.componentsService.getPatient()){
-      let patient: Patient = this.componentsService.getPatient()!
-      this.componentsService.setRehabProgram(
-        this.rehabService.getCurrent(patient)
-      )
-    }
+
   }
 }

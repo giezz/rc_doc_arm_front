@@ -15,36 +15,27 @@ export class PatientComponent implements OnInit {
   patientService: PatientService = inject(PatientService)
   patientsComponentService: ComponentsService = inject(ComponentsService)
 
-  patientCode: number
-  patient: Patient | null = null;
-  hasDoctor: boolean = false;
-
   ngOnInit(): void {
-    this.patientCode = Number(this.activeRoute.snapshot.paramMap.get('patientCode'))
-    this.patientService.getByCode(this.patientCode).subscribe(
-      patient => {
-        this.patientsComponentService.setPatient(patient)
-        this.patient = patient
-      }
-    )
-    console.log("patient form service" + this.patientsComponentService.getPatient())
+    let patientCode: number = Number(this.activeRoute.snapshot.paramMap.get('patientCode'))
+    this.patientsComponentService.setPatient(this.patientService.getByCode(patientCode));
+    // console.log("patient form service" + this.patientsComponentService.getPatient())
   }
 
   deleteFromMyPatients() {
-    this.patientService.removeDoctor(this.patient?.id!).subscribe(
-      () => {
-        this.hasDoctor = false
-      }
-    )
+    // this.patientService.removeDoctor(this.patient?.id!).subscribe(
+    //   () => {
+    //     this.hasDoctor = false
+    //   }
+    // )
   }
 
   addToMyPatients() {
-    console.log(this.patient)
-    console.log(this.patient?.id)
-    this.patientService.addDoctor(this.patient?.id!).subscribe(
-      () => {
-        this.hasDoctor = true
-      }
-    )
+    // console.log(this.patient)
+    // console.log(this.patient?.id)
+    // this.patientService.addDoctor(this.patient?.id!).subscribe(
+    //   () => {
+    //     this.hasDoctor = true
+    //   }
+    // )
   }
 }

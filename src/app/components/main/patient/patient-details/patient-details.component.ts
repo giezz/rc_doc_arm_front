@@ -11,10 +11,10 @@ export class PatientDetailsComponent implements OnInit {
 
   patientComponentsService: ComponentsService = inject(ComponentsService);
 
-  patient: Patient | null = null;
+  // patient: Patient | null = null;
   activeItemIndex: number = 0;
 
   ngOnInit(): void {
-    this.patient = this.patientComponentsService.getPatient();
+    // this.patient = this.patientComponentsService.getPatient();
   }
 }

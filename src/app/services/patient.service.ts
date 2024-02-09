@@ -2,7 +2,6 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Patient} from "../models/patient";
 import {Observable} from "rxjs";
-import {Doctor} from "../models/doctor";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +10,7 @@ export class PatientService {
 
   private http: HttpClient = inject(HttpClient)
 
-  getAll(searchParams: any): Observable<Patient[]> {
+  getAll(searchParams: Partial<any>): Observable<Patient[]> {
     let params = new HttpParams();
 
     if (searchParams.firstName) {
@@ -34,18 +33,18 @@ export class PatientService {
     }
 
     console.log(params);
-    return this.http.get<Patient[]>('http://localhost:8080/api/v1/patient', { params });
+    return this.http.get<Patient[]>('http://localhost:8080/api/v1/patients', { params });
   }
 
   getByCode(code: number): Observable<Patient> {
-    return this.http.get<Patient>('http://localhost:8080/api/v1/patient/' + code)
+    return this.http.get<Patient>('http://localhost:8080/api/v1/patients/' + code)
   }
 
   addDoctor(patientId: number) {
-    return this.http.patch('http://localhost:8080/api/v1/patient/add-doctor', patientId)
+    return this.http.patch('http://localhost:8080/api/v1/patients/add-doctor', patientId)
   }
 
   removeDoctor(patientId: number) {
-    return this.http.patch('http://localhost:8080/api/v1/patient/remove-doctor', patientId)
+    return this.http.patch('http://localhost:8080/api/v1/patients/remove-doctor', patientId)
   }
 }

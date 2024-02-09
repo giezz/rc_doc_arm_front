@@ -8,16 +8,16 @@ import {RehabProgram} from "../models/rehab-program";
 })
 export class ComponentsService {
 
-  private patient: Patient | null = null;
+  private observablePatient: Observable<Patient>;
 
   private rehabProgram: Observable<RehabProgram>;
 
-  setPatient(patient: Patient) {
-    this.patient = patient;
+  setPatient(patient: Observable<Patient>) {
+    this.observablePatient = patient;
   }
 
-  getPatient(): Patient | null {
-    return this.patient;
+  getPatient(): Observable<Patient> {
+    return this.observablePatient;
   }
 
   setRehabProgram(rehabProgram: Observable<RehabProgram>){
@@ -26,5 +26,9 @@ export class ComponentsService {
 
   getRehabProgram() {
     return this.rehabProgram;
+  }
+
+  getCurrentRehabProgram() {
+
   }
 }
