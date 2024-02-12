@@ -16,6 +16,7 @@ import {httpInterceptorProviders} from "./auth/auth-interceptor";
 import {JwtModule} from "@auth0/angular-jwt";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {of} from "rxjs";
+import { SelectFormDialogComponent } from './dialogs/select-form-dialog/select-form-dialog.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -26,7 +27,8 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     MainComponent,
-    AuthComponent
+    AuthComponent,
+    SelectFormDialogComponent
   ],
   imports: [
     BrowserModule,
