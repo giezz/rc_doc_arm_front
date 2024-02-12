@@ -1,0 +1,25 @@
+.dialog-form-frame {
+  display: flex;
+  flex-direction: column;
+  width: 275px;
+  height: 109px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+  border-radius: 12px;
+  border: 1px solid #ededed;
+}
+
+.dialog-form-frames-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 30px 30px;
+  position: relative;
+}
+
+.dialog-form-detail-bottom-row {
+
+}

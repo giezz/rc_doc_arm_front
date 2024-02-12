@@ -1,1 +1,18 @@
-<tui-input>Название анкеты</tui-input>
+<tui-input
+  tuiAutoFocus
+  tuiTextfieldSize="m"
+>
+  Название анкеты
+</tui-input>
+<div class="dialog-form-frames-container">
+  <div *ngFor="let form of forms" class="dialog-form-frame">
+    {{form.name}}
+    <button
+      tuiButton
+      size="s"
+      appearance="secondary"
+      (click)="addForm(form.id)"
+    >Добавить
+    </button>
+  </div>
+</div>

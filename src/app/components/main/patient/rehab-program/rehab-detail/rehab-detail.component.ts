@@ -6,6 +6,7 @@ import {TuiAlertService, TuiDialogContext, TuiDialogService} from "@taiga-ui/cor
 import {PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
 import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus';
 import {SelectFormDialogComponent} from "../../../../../dialogs/select-form-dialog/select-form-dialog.component";
+import {AddModuleDialogComponent} from "../../../../../dialogs/add-module-dialog/add-module-dialog.component";
 
 
 @Component({
@@ -17,10 +18,10 @@ export class RehabDetailComponent implements OnInit {
 
   private componentService: ComponentsService = inject(ComponentsService);
   private rehabProgramService: RehabProgramService = inject(RehabProgramService);
-  private confirmActionDialog = inject(TuiDialogService);
+  private dialogService = inject(TuiDialogService);
   private injector: Injector = inject(Injector);
 
-  private readonly formSelectionDialog = this.confirmActionDialog.open<number>(
+  private readonly formSelectionDialog = this.dialogService.open<number>(
     new PolymorpheusComponent(SelectFormDialogComponent, this.injector),
     {
       data: 237,
@@ -29,11 +30,20 @@ export class RehabDetailComponent implements OnInit {
     },
   );
 
+  private readonly addModuleDialog = this.dialogService.open<string>(
+    new PolymorpheusComponent(AddModuleDialogComponent, this.injector),
+    {
+      data: "ef",
+      dismissible: true,
+      label: 'Добавление модуля',
+    },
+  );
 
   rehabProgram: RehabProgram;
   hasProgram: boolean = false;
 
-  ngOnInit(): void {
+
+  constructor() {
     this.componentService.patient$.subscribe(
       patient => {
         this.rehabProgramService.getCurrent(patient)
@@ -49,16 +59,28 @@ export class RehabDetailComponent implements OnInit {
     )
   }
 
+  ngOnInit(): void {
+
+  }
+
   showDialog(content: PolymorpheusContent<TuiDialogContext>): void {
-    this.confirmActionDialog.open(content).subscribe();
+    this.dialogService.open(content).subscribe();
   }
 
   addModule() {
-    this.rehabProgramService.addModule("test", this.rehabProgram.id).subscribe(
-      program => {
-        this.rehabProgram = program;
-      }
-    )
+    this.addModuleDialog.subscribe({
+      next: name => {
+        console.info(`module name = ${name}`);
+        this.rehabProgramService.addModule(name, this.rehabProgram.id).subscribe(
+          program => {
+            this.rehabProgram = program;
+          }
+        )
+      },
+      complete: () => {
+        console.info('Dialog closed');
+      },
+    })
   }
 
   createRehabProgram() {
@@ -74,10 +96,15 @@ export class RehabDetailComponent implements OnInit {
     )
   }
 
-  showAddFormDialog() {
+  showAddFormDialog(formType: string) {
     this.formSelectionDialog.subscribe({
-      next: data => {
-        console.info(`Dialog emitted data = ${data}`);
+      next: formId => {
+        console.info(`form id = ${formId}`);
+        this.rehabProgramService.addForm(
+          this.rehabProgram.id,
+          formId,
+          formType
+        ).subscribe(program => this.rehabProgram = program)
       },
       complete: () => {
         console.info('Dialog closed');

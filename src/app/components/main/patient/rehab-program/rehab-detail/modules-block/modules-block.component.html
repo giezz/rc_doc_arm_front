@@ -1,23 +1,21 @@
-<div class="detail-island">
-  <div class="module-content">
-    <p>{{module.name}}</p>
-    <div class="module-buttons">
-      <button
-        tuiButton
-        appearance="secondary"
-        size="s"
-      >
+<div class="module-content">
+  <p>{{module.name}}</p>
+  <div class="module-buttons">
+    <button
+      tuiButton
+      appearance="secondary"
+      size="s"
+    >
 
-        Посмотреть
-      </button>
-      <button
-        tuiButton
-        appearance="secondary"
-        size="s"
-      >
-        Редактировать
-      </button>
-    </div>
+      Посмотреть
+    </button>
+    <button
+      tuiButton
+      appearance="secondary"
+      size="s"
+    >
+      Редактировать
+    </button>
   </div>
-  <p *ngIf="module.finishedAt">Завершен</p>
 </div>
+<p *ngIf="module.finishedAt">Завершен</p>

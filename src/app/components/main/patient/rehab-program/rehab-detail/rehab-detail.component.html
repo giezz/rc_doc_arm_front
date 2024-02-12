@@ -15,21 +15,25 @@
       Эпикризис
     </div>
     <div class="detail-island">
-      <h3>Входная анкета</h3>
       <app-form-block [form]="rehabProgram.startForm" [type]="'Вводнаяа анкета'"></app-form-block>
       <button
         *ngIf="!rehabProgram.startForm"
         tuiButton
         appearance="secondary"
         size="s"
-        (click)="showAddFormDialog()"
+        (click)="showAddFormDialog('START')"
       >
         Добавить анкету
       </button>
     </div>
     <div class="detail-island">
       <h3>Мероприятия медицинской реабилитации</h3>
-      <app-modules-block *ngFor="let module of rehabProgram.modules" [module]="module"></app-modules-block>
+      <app-modules-block
+        *ngFor="let module of rehabProgram.modules"
+
+        [module]="module"
+        class="detail-island"
+      ></app-modules-block>
       <button
         tuiButton
         appearance="secondary"
@@ -40,13 +44,13 @@
       </button>
     </div>
     <div class="detail-island">
-      <h3>Выходная анкета</h3>
       <app-form-block [form]="rehabProgram.endForm" [type]="'Выходная анкета'"></app-form-block>
       <button
         *ngIf="!rehabProgram.endForm"
         tuiButton
         appearance="secondary"
         size="s"
+        (click)="showAddFormDialog('END')"
       >
         Добавить анкету
       </button>

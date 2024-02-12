@@ -18,6 +18,12 @@ export class RehabProgramService {
     return this.http.post<RehabProgram>('http://localhost:8080/api/v1/rehabs', {patientId: patientId})
   }
 
+  addForm(programId: number, formId: number, formType: string) {
+    return this.http.patch<RehabProgram>(
+      `http://localhost:8080/api/v1/rehabs/${programId}/add-form`,
+      {formId: formId, formType: formType})
+  }
+
   addModule(name: string, programId: number) {
     return this.http.patch<RehabProgram>(`http://localhost:8080/api/v1/rehabs/${programId}/add-module`, {name: name})
   }
