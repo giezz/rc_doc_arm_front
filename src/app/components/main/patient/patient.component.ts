@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {PatientService} from "../../../services/patient.service";
 import {ComponentsService} from "../../../services/components.service";
 import {Patient} from "../../../models/patient";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-patient',
@@ -11,31 +12,23 @@ import {Patient} from "../../../models/patient";
 })
 export class PatientComponent implements OnInit {
 
-  activeRoute: ActivatedRoute = inject(ActivatedRoute)
-  patientService: PatientService = inject(PatientService)
-  patientsComponentService: ComponentsService = inject(ComponentsService)
+  private activeRoute: ActivatedRoute = inject(ActivatedRoute);
+  private componentsService: ComponentsService = inject(ComponentsService);
+  private patientService: PatientService = inject(PatientService);
+
+  patient: Patient;
 
   ngOnInit(): void {
-    let patientCode: number = Number(this.activeRoute.snapshot.paramMap.get('patientCode'))
-    this.patientsComponentService.setPatient(this.patientService.getByCode(patientCode));
-    // console.log("patient form service" + this.patientsComponentService.getPatient())
+    let patientCode: number = Number(this.activeRoute.snapshot.paramMap.get('patientCode'));
+    this.patientService.getByCode(patientCode)
+      .subscribe(patient => {
+        this.patient = patient;
+        this.componentsService.setPatient(patient);
+      })
   }
-
   deleteFromMyPatients() {
-    // this.patientService.removeDoctor(this.patient?.id!).subscribe(
-    //   () => {
-    //     this.hasDoctor = false
-    //   }
-    // )
   }
 
   addToMyPatients() {
-    // console.log(this.patient)
-    // console.log(this.patient?.id)
-    // this.patientService.addDoctor(this.patient?.id!).subscribe(
-    //   () => {
-    //     this.hasDoctor = true
-    //   }
-    // )
   }
 }

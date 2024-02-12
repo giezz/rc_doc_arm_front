@@ -5,19 +5,18 @@ import {ComponentsService} from "../../../../../services/components.service";
 @Component({
   selector: 'app-patient-detail',
   templateUrl: './patient-detail.component.html',
-  styleUrls: ['./patient-detail.component.css']
+  styleUrls: ['./patient-detail.component.css', '../../patient.component.css']
 })
 export class PatientDetailComponent implements OnInit {
 
-  patientComponentsService: ComponentsService = inject(ComponentsService)
+  componentsService: ComponentsService = inject(ComponentsService)
 
   patient: Patient;
 
   ngOnInit(): void {
-    this.patientComponentsService.getPatient()
-      .subscribe((response) => {
-        this.patient = response;
-        }
-      )
+    this.componentsService.patient$
+      .subscribe(patient => {
+        this.patient = patient;
+      })
   }
 }

@@ -11,10 +11,14 @@ export class RehabProgramService {
   private http: HttpClient = inject(HttpClient)
 
   getCurrent(patient: Patient) {
-    return this.http.get<RehabProgram>(`http://localhost:8080/api/v1/rehab/${patient.id}/current`)
+    return this.http.get<RehabProgram>(`http://localhost:8080/api/v1/rehabs/patient/${patient.id}/current`)
   }
 
   create(patientId: number) {
-    return this.http.post('http://localhost:8080/api/v1/rehab/create', patientId)
+    return this.http.post<RehabProgram>('http://localhost:8080/api/v1/rehabs', {patientId: patientId})
+  }
+
+  addModule(name: string, programId: number) {
+    return this.http.patch<RehabProgram>(`http://localhost:8080/api/v1/rehabs/${programId}/add-module`, {name: name})
   }
 }

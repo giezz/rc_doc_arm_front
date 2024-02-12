@@ -4,11 +4,11 @@ import {Module} from "../../../../../../models/module";
 @Component({
   selector: 'app-modules-block',
   templateUrl: './modules-block.component.html',
-  styleUrls: ['./modules-block.component.css']
+  styleUrls: ['./modules-block.component.css', '../../../patient.component.css']
 })
 export class ModulesBlockComponent {
 
-  @Input("modules")
-  modules: Module[] = []
+  @Input("module")
+  module: Module;
 
 }

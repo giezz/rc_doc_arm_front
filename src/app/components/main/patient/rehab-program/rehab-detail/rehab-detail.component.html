@@ -10,23 +10,58 @@
   </button>
 </div>
 <div *ngIf="hasProgram">
-  <div>
-    <app-form-block></app-form-block>
+  <div class="patient-details">
+    <div class="detail-island">
+      Эпикризис
+    </div>
+    <div class="detail-island">
+      <h3>Входная анкета</h3>
+      <app-form-block [form]="rehabProgram.startForm" [type]="'Вводнаяа анкета'"></app-form-block>
+      <button
+        *ngIf="!rehabProgram.startForm"
+        tuiButton
+        appearance="secondary"
+        size="s"
+        (click)="showAddFormDialog()"
+      >
+        Добавить анкету
+      </button>
+    </div>
+    <div class="detail-island">
+      <h3>Мероприятия медицинской реабилитации</h3>
+      <app-modules-block *ngFor="let module of rehabProgram.modules" [module]="module"></app-modules-block>
+      <button
+        tuiButton
+        appearance="secondary"
+        size="s"
+        (click)="addModule()"
+      >
+        Добавить модуль
+      </button>
+    </div>
+    <div class="detail-island">
+      <h3>Выходная анкета</h3>
+      <app-form-block [form]="rehabProgram.endForm" [type]="'Выходная анкета'"></app-form-block>
+      <button
+        *ngIf="!rehabProgram.endForm"
+        tuiButton
+        appearance="secondary"
+        size="s"
+      >
+        Добавить анкету
+      </button>
+    </div>
+    <button
+      tuiButton
+      appearance="primary"
+      size="s"
+    >
+      Сохранить
+    </button>
   </div>
-  <div>
-    <app-modules-block></app-modules-block>
-  </div>
-  <div>
-    <app-form-block></app-form-block>
-  </div>
-  <button
-    tuiButton
-    appearance="primary"
-    size="s"
-  >
-    Сохранить
-  </button>
 </div>
+
+
 <ng-template
   #template
   let-observer

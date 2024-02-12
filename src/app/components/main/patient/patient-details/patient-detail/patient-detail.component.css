@@ -1,19 +1,1 @@
-.patient-details{
-  display: flex;
-  width: 874px;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px
-}
 
-.detail-island {
-  display: flex;
-  padding: 10px;
-  flex-direction: column;
-  align-items: flex-start;
-  align-self: stretch;
-  border-radius: 12px;
-  border: 1px solid #EDEDED;
-  background: #FFF;
-  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.10);
-}

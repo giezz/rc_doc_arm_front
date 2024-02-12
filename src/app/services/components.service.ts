@@ -1,34 +1,19 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Patient} from "../models/patient";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {RehabProgram} from "../models/rehab-program";
+import {PatientService} from "./patient.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ComponentsService {
 
-  private observablePatient: Observable<Patient>;
+  private patient = new BehaviorSubject<any>(null)
 
-  private rehabProgram: Observable<RehabProgram>;
+  public patient$:Observable<Patient> = this.patient.asObservable()
 
-  setPatient(patient: Observable<Patient>) {
-    this.observablePatient = patient;
-  }
-
-  getPatient(): Observable<Patient> {
-    return this.observablePatient;
-  }
-
-  setRehabProgram(rehabProgram: Observable<RehabProgram>){
-    this.rehabProgram = rehabProgram;
-  }
-
-  getRehabProgram() {
-    return this.rehabProgram;
-  }
-
-  getCurrentRehabProgram() {
-
+  setPatient(patient: Patient) {
+    this.patient.next(patient)
   }
 }

@@ -1,17 +1,23 @@
-<h2>Мероприятия медецинской ребалитации</h2>
-<div *ngIf="modules.length != 0">
-  <div *ngFor="let m of modules">
-    <p>{{m.name}}</p>
-    <p *ngIf="m.finishedAt">Завершен</p>
-  </div>
-</div>
-<div *ngIf="modules.length == 0">
-  <button
-    tuiButton
-    appearance="secondary"
-    size="s"
-  >
-    Добавить модуль
-  </button>
-</div>
+<div class="detail-island">
+  <div class="module-content">
+    <p>{{module.name}}</p>
+    <div class="module-buttons">
+      <button
+        tuiButton
+        appearance="secondary"
+        size="s"
+      >
 
+        Посмотреть
+      </button>
+      <button
+        tuiButton
+        appearance="secondary"
+        size="s"
+      >
+        Редактировать
+      </button>
+    </div>
+  </div>
+  <p *ngIf="module.finishedAt">Завершен</p>
+</div>
