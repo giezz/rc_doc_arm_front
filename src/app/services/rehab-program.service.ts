@@ -2,6 +2,7 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Patient} from "../models/patient";
 import {RehabProgram} from "../models/rehab-program";
+import {delay, Observable, pipe, shareReplay} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,10 @@ export class RehabProgramService {
 
   private http: HttpClient = inject(HttpClient)
 
-  getCurrent(patient: Patient) {
-    return this.http.get<RehabProgram>(`http://localhost:8080/api/v1/rehabs/patient/${patient.id}/current`)
+  getCurrent(patientId: number) : Observable<RehabProgram> {
+    console.log('http call to rehab program')
+    return this.http.get<RehabProgram>(`http://localhost:8080/api/v1/rehabs/patient/${patientId}/current`)
+      .pipe(delay(5000));
   }
 
   create(patientId: number) {

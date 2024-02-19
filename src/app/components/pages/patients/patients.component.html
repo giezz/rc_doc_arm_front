@@ -1,0 +1,140 @@
+<div class="patient-search">
+  <form [formGroup]="searchPatients" (ngSubmit)="onSubmit()">
+    Value {{searchPatients.value | json}}
+    <div class="input-search-patient-line">
+      <tui-input
+        class="input-search-patient"
+        tuiTextfieldSize="m"
+        formControlName="lastName"
+        [tuiTextfieldCleaner]="true"
+        [tuiTextfieldLabelOutside]="true"
+      >
+        Фамилия
+        <input tuiTextfield/>
+      </tui-input>
+      <tui-input
+        class="input-search-patient"
+        tuiTextfieldSize="m"
+        formControlName="firstName"
+        [tuiTextfieldCleaner]="true"
+        [tuiTextfieldLabelOutside]="true"
+      >
+        Имя
+        <input tuiTextfield/>
+      </tui-input>
+      <tui-input
+        class="input-search-patient"
+        tuiTextfieldSize="m"
+        formControlName="middleName"
+        [tuiTextfieldCleaner]="true"
+        [tuiTextfieldLabelOutside]="true"
+      >
+        Отчество
+        <input tuiTextfield/>
+      </tui-input>
+      <button
+        type="submit"
+        tuiButton
+        size="m"
+      >
+        Найти
+      </button>
+    </div>
+    <div class="input-filters">
+      <tui-multi-select
+        formControlName="status"
+        class="search"
+        tuiTextfieldSize="m"
+        [tuiTextfieldCleaner]="true"
+        [editable]="false"
+        [expandable]="true"
+        [tuiTextfieldLabelOutside]="true"
+      >
+        Статус
+        <tui-data-list-wrapper
+          *tuiDataList
+          tuiMultiSelectGroup
+          [items]="items"
+        ></tui-data-list-wrapper>
+      </tui-multi-select>
+      <tui-select
+        formControlName="gender"
+        [tuiTextfieldCleaner]="true"
+        class="search"
+        tuiTextfieldSize="m"
+      >
+        Пол
+        <tui-data-list-wrapper
+          *tuiDataList
+          [items]="gender"
+        ></tui-data-list-wrapper>
+      </tui-select>
+      <tui-input-date
+        class="search"
+        [tuiTextfieldCleaner]="true"
+        tuiTextfieldSize="m"
+        formControlName="birthDate"
+        tuiUnfinishedValidator="Заполните дату"
+      >
+        Дата рождения
+      </tui-input-date>
+      <tui-error
+        formControlName="birthDate"
+        [error]="[] | tuiFieldError | async"
+      ></tui-error>
+      <tui-checkbox-labeled formControlName="isDead">
+        <div class="example">Умершие</div>
+      </tui-checkbox-labeled>
+    </div>
+
+  </form>
+</div>
+
+<table
+  *ngIf="patients$ | async as patients"
+  tuiTable
+  [columns]="columns"
+  size="m"
+  class="patients-table"
+>
+  <thead tuiThead>
+  <tr tuiThGroup>
+    <th tuiTh *tuiHead="'lastName'">
+      Фамилия
+    </th>
+    <th tuiTh *tuiHead="'firstName'">
+      Имя
+    </th>
+    <th tuiTh *tuiHead="'middleName'">
+      Отчество
+    </th>
+    <th tuiTh *tuiHead="'gender'">
+      Пол
+    </th>
+    <th tuiTh *tuiHead="'birthDate'">
+      Дата рождения
+    </th>
+    <th tuiTh *tuiHead="'deathDate'">
+      Дата смерти
+    </th>
+    <th tuiTh *tuiHead="'status'">
+      Статус
+    </th>
+  </tr>
+  </thead>
+  <tbody
+    *tuiLet="patients | tuiTableSort as sortedPatients"
+    tuiTbody
+    [data]="sortedPatients"
+  >
+  <tr
+    *ngFor="let patient of sortedPatients"
+    routerLink="/patient/{{patient.patientCode}}"
+    tuiTr
+  >
+    <td tuiTd *tuiCell="'status'">
+      <tui-badge status="info" size="m">{{patient.patientStatus.name}}</tui-badge>
+    </td>
+  </tr>
+  </tbody>
+</table>

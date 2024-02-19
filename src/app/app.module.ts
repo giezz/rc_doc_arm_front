@@ -1,62 +1,57 @@
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {RouterModule} from "@angular/router";
-import {AppRoutingModule} from "./app-routing.module";
-import {MainComponent} from './components/main/main.component';
-import {TuiButtonModule, TuiDialogModule, TuiRootModule, TuiTextfieldControllerModule} from "@taiga-ui/core";
-import {BrowserModule} from "@angular/platform-browser";
-import {MainModule} from "./components/main/main.module";
-import {AuthComponent} from "./components/login/auth.component";
-import {TuiDataListWrapperModule, TuiInputModule, TuiSelectModule, TuiSliderModule} from "@taiga-ui/kit";
+import {ActivatedRoute, RouterModule} from "@angular/router";
+import {TuiButtonModule, TuiDialogModule, TuiRootModule} from "@taiga-ui/core";
 import {TUI_LANGUAGE, TUI_RUSSIAN_LANGUAGE} from '@taiga-ui/i18n';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
 import {httpInterceptorProviders} from "./auth/auth-interceptor";
 import {JwtModule} from "@auth0/angular-jwt";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {of} from "rxjs";
-import { SelectFormDialogComponent } from './dialogs/select-form-dialog/select-form-dialog.component';
-import {TuiMoneyModule} from "@taiga-ui/addon-commerce";
-import {TuiAutoFocusModule} from "@taiga-ui/cdk";
-import { AddModuleDialogComponent } from './dialogs/add-module-dialog/add-module-dialog.component';
+import { HomeComponent } from './components/home/home.component';
+import {HeaderComponent} from "./components/header/header.component";
+import {TuiAvatarModule, TuiInputModule, TuiTabsModule} from "@taiga-ui/kit";
+import {BrowserModule} from "@angular/platform-browser";
+import {HttpClientModule} from "@angular/common/http";
+import {AppRoutingModule} from "./app-routing.module";
+import {AuthComponent} from "./components/login/auth.component";
+import {ReactiveFormsModule} from "@angular/forms";
+import { PatientComponent } from './components/patient/patient.component';
+import {PatientModule} from "./components/patient/patient.module";
+import { RehabProgramComponent } from './components/rehab-program/rehab-program.component';
+import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
 
-
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent,
     AuthComponent,
-    SelectFormDialogComponent,
-    AddModuleDialogComponent
+    HomeComponent,
+    HeaderComponent,
+    PatientComponent,
+    RehabProgramComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
-    TuiRootModule,
-    MainModule,
-    TuiInputModule,
-    TuiButtonModule,
-    TuiDialogModule,
-    ReactiveFormsModule,
     HttpClientModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-      },
+      }
     }),
-    TuiMoneyModule,
-    TuiAutoFocusModule,
-    TuiTextfieldControllerModule,
-    FormsModule,
-    TuiSelectModule,
-    TuiDataListWrapperModule,
-    TuiSliderModule
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
+    TuiDialogModule,
+    TuiRootModule,
+    TuiAvatarModule,
+    TuiInputModule,
+    ReactiveFormsModule,
+    TuiButtonModule,
+    PatientModule,
+    TuiTabsModule
   ],
   exports: [RouterModule],
   providers: [

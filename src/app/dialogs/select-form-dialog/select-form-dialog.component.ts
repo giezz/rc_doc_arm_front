@@ -3,6 +3,7 @@ import {TuiDialogContext, TuiDialogService} from "@taiga-ui/core";
 import {POLYMORPHEUS_CONTEXT} from '@tinkoff/ng-polymorpheus';
 import {Form} from "../../models/form";
 import {FormService} from "../../services/form.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-select-form-dialog',
@@ -12,7 +13,7 @@ import {FormService} from "../../services/form.service";
 })
 export class SelectFormDialogComponent implements OnInit {
 
-  forms: Form[] = [];
+  forms$: Observable<Form[]>;
 
   constructor(
     @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
@@ -24,12 +25,7 @@ export class SelectFormDialogComponent implements OnInit {
   private readonly formService: FormService = inject(FormService);
 
   ngOnInit(): void {
-    this.formService.getAll()
-      .subscribe(forms => this.forms = forms)
-  }
-
-  get data(): number {
-    return this.context.data;
+    this.forms$ = this.formService.getAll()
   }
 
   addForm(formId: number): void {

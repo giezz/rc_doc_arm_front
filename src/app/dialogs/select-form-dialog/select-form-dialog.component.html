@@ -4,7 +4,7 @@
 >
   Название анкеты
 </tui-input>
-<div class="dialog-form-frames-container">
+<div class="dialog-form-frames-container" *tuiLet="forms$ | async as forms">
   <div *ngFor="let form of forms" class="dialog-form-frame">
     {{form.name}}
     <button

@@ -1,0 +1,14 @@
+<header class="page-header">
+  <div class="header-content">
+    <div>
+      <a routerLink="/home">
+        {{title}}
+      </a>
+    </div>
+    <div class="account-info">
+      {{accountName}}
+      <tui-avatar [text]="accountName"></tui-avatar>
+      <button (click)="logout()">Exit</button>
+    </div>
+  </div>
+</header>

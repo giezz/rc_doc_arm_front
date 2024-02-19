@@ -1,0 +1,92 @@
+<ng-container *ngIf="rehabProgram$ | async as rehabProgram; else no_rehab">
+  <div class="patient-details">
+    <div class="detail-island">
+      Эпикризис
+    </div>
+    <div class="detail-island">
+      <app-form-block [form]="rehabProgram.startForm" [type]="'Вводнаяа анкета'"></app-form-block>
+      <button
+        *ngIf="!rehabProgram.startForm"
+        tuiButton
+        appearance="secondary"
+        size="s"
+        (click)="showAddFormDialog('START')"
+      >
+        Добавить анкету
+      </button>
+    </div>
+    <div class="detail-island">
+      <h3>Мероприятия медицинской реабилитации</h3>
+      <app-modules-block
+        *ngFor="let module of rehabProgram.modules; let i = index"
+        [module]="module"
+        [index]="i"
+        class="detail-island"
+      ></app-modules-block>
+      <button
+        tuiButton
+        appearance="secondary"
+        size="s"
+        (click)="showAddModuleDialog()"
+      >
+        Добавить модуль
+      </button>
+    </div>
+    <div class="detail-island">
+      <app-form-block [form]="rehabProgram.endForm" [type]="'Выходная анкета'"></app-form-block>
+      <button
+        *ngIf="!rehabProgram.endForm"
+        tuiButton
+        appearance="secondary"
+        size="s"
+        (click)="showAddFormDialog('END')"
+      >
+        Добавить анкету
+      </button>
+    </div>
+    <button
+      tuiButton
+      appearance="primary"
+      size="s"
+    >
+      Сохранить
+    </button>
+  </div>
+</ng-container>
+<ng-template #no_rehab>
+  <p>Действующая программа реабилитации отсутсвует</p>
+  <button
+    tuiButton
+    appearance="primary"
+    size="s"
+    (click)="showDialog(confirm_rehab_creation_dialog)"
+  >
+    Создать
+  </button>
+</ng-template>
+<ng-template
+  #confirm_rehab_creation_dialog
+  let-observer
+>
+  <h2>Подтвердите дейтсвие</h2>
+  <p>Начать программу реабилитации?</p>
+  <button
+    tuiButton
+    size="m"
+    appearance="secondary"
+    type="button"
+    (click)="observer.complete()"
+  >
+    Отмена
+  </button>
+  <button
+    tuiButton
+    size="m"
+    appearance="primary"
+    type="button"
+    class="tui-space_right-3"
+    (click)="observer.complete(); createRehabProgram()"
+  >
+    Начать
+  </button>
+</ng-template>

@@ -1,3 +1,6 @@
 <tui-root>
-  <router-outlet></router-outlet>
+  <app-header *ngIf="isLogged()"></app-header>
+  <div class="wrapper">
+    <router-outlet></router-outlet>
+  </div>
 </tui-root>

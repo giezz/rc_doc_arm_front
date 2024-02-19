@@ -1,0 +1,39 @@
+<div *ngIf="patient$ | async as patient">{{patient.lastName}} {{patient.firstName}} {{patient.middleName}}</div>
+<div class="patient-content">
+  <div class="left-nav">
+    <tui-tabs
+      vertical="left"
+      class="left"
+    >
+      <button
+        tuiTab
+        routerLink="./"
+        routerLinkActive="active"
+      >
+        Персональная информация
+      </button>
+      <button
+        tuiTab
+        routerLink="emc"
+        routerLinkActive="active"
+      >
+        ЭМК
+      </button>
+      <button
+        tuiTab
+        routerLink="rehab-programs-history"
+        routerLinkActive="active"
+      >
+        История проведения медицинских реабилитаций
+      </button>
+      <button
+        tuiTab
+        routerLink="./rehab-program"
+        routerLinkActive="active"
+      >
+        Программа реабилитации
+      </button>
+    </tui-tabs>
+  </div>
+  <router-outlet></router-outlet>
+</div>
