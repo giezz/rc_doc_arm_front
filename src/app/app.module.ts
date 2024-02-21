@@ -19,6 +19,7 @@ import { PatientComponent } from './components/patient/patient.component';
 import {PatientModule} from "./components/patient/patient.module";
 import { RehabProgramComponent } from './components/rehab-program/rehab-program.component';
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
+import { ModuleEditDialogComponent } from './dialogs/module-edit-dialog/module-edit-dialog.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -31,7 +32,8 @@ export function tokenGetter() {
     HomeComponent,
     HeaderComponent,
     PatientComponent,
-    RehabProgramComponent
+    RehabProgramComponent,
+    ModuleEditDialogComponent
   ],
   imports: [
     BrowserModule,
