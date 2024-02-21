@@ -13,11 +13,9 @@
 }
 
 .dialog-form-frames-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 30px 30px;
-  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px 10px
 }
 
 .dialog-form-detail-bottom-row {

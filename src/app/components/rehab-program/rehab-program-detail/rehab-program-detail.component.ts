@@ -8,6 +8,7 @@ import {SelectFormDialogComponent} from "../../../dialogs/select-form-dialog/sel
 import {AddModuleDialogComponent} from "../../../dialogs/add-module-dialog/add-module-dialog.component";
 import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus';
 import {PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
+import {TuiSizeXL} from "@taiga-ui/core/types/size";
 
 @Component({
   selector: 'app-rehab-program-detail',
@@ -27,6 +28,7 @@ export class RehabProgramDetailComponent implements OnInit, OnDestroy {
       data: 237,
       dismissible: true,
       label: 'Добавление анкеты',
+      size: "auto"
     },
   );
 
@@ -41,15 +43,26 @@ export class RehabProgramDetailComponent implements OnInit, OnDestroy {
 
   subscription: Subscription = new Subscription();
 
-  rehabProgram$: Observable<RehabProgram>;
   rehabProgram: RehabProgram;
+
+  isLoaded: boolean = true;
+  hasProgram: boolean = false;
 
   ngOnInit(): void {
     console.log('RehabProgramDetailComponent');
-    this.rehabProgram$ = this.componentsService.getRehabProgram();
     const sub$ = this.componentsService.getRehabProgram().subscribe(
-      program => {
-        this.rehabProgram = program;
+      {
+        next: program => {
+          this.rehabProgram = program;
+          console.log(program);
+          this.hasProgram = true;
+          this.isLoaded = false;
+        },
+        error: err => {
+          console.log(err.message)
+          this.hasProgram = false
+          this.isLoaded = false;
+        }
       }
     )
     this.subscription.add(sub$);
@@ -66,7 +79,6 @@ export class RehabProgramDetailComponent implements OnInit, OnDestroy {
         const rehabSub$ = this.rehabProgramService.create(patient.id).subscribe(
           program => {
             this.rehabProgram = program;
-            this.rehabProgram$ = of(program);
           }
         );
         this.subscription.add(rehabSub$);
@@ -86,7 +98,6 @@ export class RehabProgramDetailComponent implements OnInit, OnDestroy {
           const programSub$ = this.rehabProgramService.addModule(name, this.rehabProgram.id).subscribe(
             program => {
               this.rehabProgram = program;
-              this.rehabProgram$ = of(program);
             }
           )
           this.subscription.add(programSub$);
@@ -110,7 +121,6 @@ export class RehabProgramDetailComponent implements OnInit, OnDestroy {
           ).subscribe(
             program => {
               this.rehabProgram = program;
-              this.rehabProgram$ = of(program);
             }
           )
           this.subscription.add(rehabSub$);

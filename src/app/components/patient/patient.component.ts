@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {PatientService} from "../../services/patient.service";
 import {ActivatedRoute} from "@angular/router";
 import {ComponentsService} from "../../services/components.service";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-patient',
@@ -15,6 +16,7 @@ export class PatientComponent implements OnInit, OnDestroy {
   private activeRoute: ActivatedRoute = inject(ActivatedRoute);
   private patientService: PatientService = inject(PatientService);
   private componentsService: ComponentsService = inject(ComponentsService);
+  private location: Location = inject(Location);
 
   patient$: Observable<Patient>;
 
@@ -27,5 +29,9 @@ export class PatientComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     console.log('PatientComponent destroyed');
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

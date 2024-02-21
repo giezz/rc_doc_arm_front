@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RehabProgramRoutingModule } from './rehab-program-routing.module';
 import { RehabProgramDetailComponent } from './rehab-program-detail/rehab-program-detail.component';
 import {TuiAutoFocusModule, TuiLetModule} from "@taiga-ui/cdk";
-import {TuiButtonModule, TuiLabelModule, TuiTextfieldControllerModule} from "@taiga-ui/core";
+import {TuiButtonModule, TuiLabelModule, TuiLoaderModule, TuiTextfieldControllerModule} from "@taiga-ui/core";
 import {SelectFormDialogComponent} from "../../dialogs/select-form-dialog/select-form-dialog.component";
 import {AddModuleDialogComponent} from "../../dialogs/add-module-dialog/add-module-dialog.component";
 import {TuiInputModule} from "@taiga-ui/kit";
@@ -34,7 +34,8 @@ import { ProtocolComponent } from './protocol/protocol.component';
     TuiAutoFocusModule,
     TuiTextfieldControllerModule,
     FormsModule,
-    TuiLabelModule
+    TuiLabelModule,
+    TuiLoaderModule
   ]
 })
 export class RehabProgramModule { }

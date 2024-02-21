@@ -40,7 +40,7 @@ export class PatientService {
   getByCode(code: number): Observable<Patient> {
     console.log('http call to patient')
     return this.http.get<Patient>('http://localhost:8080/api/v1/patients/' + code)
-      .pipe(shareReplay(1), delay(5000));
+      .pipe(shareReplay(1), delay(1000));
   }
 
   getCurrentRehabProgram(code: number): Observable<RehabProgram> {
@@ -52,7 +52,7 @@ export class PatientService {
           current: true
         }
       }
-    ).pipe(shareReplay(1), delay(5000));
+    ).pipe(shareReplay(1), delay(1000));
   }
 
   addDoctor(patientId: number) {

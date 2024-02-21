@@ -40,3 +40,10 @@
   background: #FFF;
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.10);
 }
+
+.current-patient-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 229px;
+  position: relative;
+}

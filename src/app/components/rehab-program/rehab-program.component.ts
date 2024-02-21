@@ -6,6 +6,7 @@ import {RehabProgramService} from "../../services/rehab-program.service";
 import {Patient} from "../../models/patient";
 import {Observable, of, Subscription, switchMap, tap} from "rxjs";
 import {RehabProgram} from "../../models/rehab-program";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-rehab-program',
@@ -16,11 +17,10 @@ export class RehabProgramComponent implements OnInit, OnDestroy {
 
   private activeRoute: ActivatedRoute = inject(ActivatedRoute);
   private patientService: PatientService = inject(PatientService);
-  private rehabProgramService: RehabProgramService = inject(RehabProgramService);
   private componentsService: ComponentsService = inject(ComponentsService);
+  private location: Location = inject(Location);
 
   patient$: Observable<Patient>;
-  subscription: Subscription;
 
   ngOnInit(): void {
     console.log('RehabProgramComponent');
@@ -32,5 +32,9 @@ export class RehabProgramComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     console.log('RehabProgramComponent destroyed');
+  }
+
+  goBack() {
+    this.location.back();
   }
 }
