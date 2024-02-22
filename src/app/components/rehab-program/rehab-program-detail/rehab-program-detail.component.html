@@ -18,12 +18,14 @@
       </div>
       <div class="detail-island">
         <h3>Мероприятия медицинской реабилитации</h3>
-        <app-modules-block
-          *ngFor="let module of rehabProgram.modules; let i = index"
-          [module]="module"
-          [index]="i"
-          class="detail-island"
-        ></app-modules-block>
+        <div class="modules-content">
+          <app-modules-block
+            *ngFor="let module of rehabProgram.modules; let i = index"
+            [module]="module"
+            [index]="i"
+            class="module-island"
+          ></app-modules-block>
+        </div>
         <button
           tuiButton
           appearance="secondary"

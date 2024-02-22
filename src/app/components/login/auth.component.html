@@ -6,24 +6,26 @@
     </div>
     <div class="login-container">
       <form [formGroup]="loginForm" (ngSubmit)="submit()">
-        <tui-input
-          formControlName="username"
-          class="w-full p-3">
-          Логин
-          <input
-            tuiTextfield
-            type="text"
-          />
-        </tui-input>
-        <tui-input
-          formControlName="password"
-          class="w-full p-3">
-          Пароль
-          <input
-            tuiTextfield
-            type="password"
-          />
-        </tui-input>
+        <div class="input-form-container">
+          <tui-input
+            formControlName="username"
+            class="w-full p-3">
+            Логин
+            <input
+              tuiTextfield
+              type="text"
+            />
+          </tui-input>
+          <tui-input
+            formControlName="password"
+            class="w-full p-3">
+            Пароль
+            <input
+              tuiTextfield
+              type="password"
+            />
+          </tui-input>
+        </div>
         <button
           type="submit"
           [disabled]="!loginForm.valid"
