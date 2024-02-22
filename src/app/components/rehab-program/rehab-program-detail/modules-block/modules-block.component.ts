@@ -3,7 +3,7 @@ import {Module} from "../../../../models/module";
 import {PolymorpheusComponent} from "@tinkoff/ng-polymorpheus";
 import {ModuleEditDialogComponent} from "../../../../dialogs/module-edit-dialog/module-edit-dialog.component";
 import {TuiDialogService} from "@taiga-ui/core";
-import {Subscription} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-modules-block',
@@ -21,25 +21,27 @@ export class ModulesBlockComponent implements OnInit, OnDestroy {
   private dialogService = inject(TuiDialogService);
   private injector: Injector = inject(Injector);
 
+  private moduleEditDialog: Observable<String>;
+
   subscription: Subscription = new Subscription();
 
   ngOnInit(): void {
     console.log('RehabProgramDetailComponent');
+    this.moduleEditDialog = this.dialogService.open<string>(
+      new PolymorpheusComponent(ModuleEditDialogComponent, this.injector),
+      {
+        data: this.module.id,
+        dismissible: false,
+        closeable: true,
+        size: 'page'
+      },
+    );
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
     console.log('ModulesBlockComponent destroyed');
   }
-
-  private readonly moduleEditDialog = this.dialogService.open<string>(
-    new PolymorpheusComponent(ModuleEditDialogComponent, this.injector),
-    {
-      dismissible: false,
-      closeable: true,
-      size: 'page'
-    },
-  );
 
   showModuleEditDialog(): void {
     const dialogSub$ = this.moduleEditDialog.subscribe();

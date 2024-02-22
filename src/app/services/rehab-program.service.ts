@@ -14,7 +14,7 @@ export class RehabProgramService {
   getCurrent(patientId: number) : Observable<RehabProgram> {
     console.log('http call to rehab program')
     return this.http.get<RehabProgram>(`http://localhost:8080/api/v1/rehabs/patient/${patientId}/current`)
-      .pipe(delay(5000));
+      .pipe(delay(500));
   }
 
   create(patientId: number) {

@@ -2,13 +2,12 @@ import {Component, inject, Injector, OnDestroy, OnInit} from '@angular/core';
 import {RehabProgramService} from "../../../services/rehab-program.service";
 import {ComponentsService} from "../../../services/components.service";
 import {RehabProgram} from "../../../models/rehab-program";
-import {Observable, of, Subscription} from "rxjs";
+import {Subscription} from "rxjs";
 import {TuiDialogContext, TuiDialogService} from "@taiga-ui/core";
-import {SelectFormDialogComponent} from "../../../dialogs/select-form-dialog/select-form-dialog.component";
+import {AddFormDialogComponent} from "../../../dialogs/add-form-dialog/add-form-dialog.component";
 import {AddModuleDialogComponent} from "../../../dialogs/add-module-dialog/add-module-dialog.component";
 import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus';
 import {PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
-import {TuiSizeXL} from "@taiga-ui/core/types/size";
 
 @Component({
   selector: 'app-rehab-program-detail',
@@ -23,9 +22,8 @@ export class RehabProgramDetailComponent implements OnInit, OnDestroy {
   private injector: Injector = inject(Injector);
 
   private readonly formSelectionDialog = this.dialogService.open<number>(
-    new PolymorpheusComponent(SelectFormDialogComponent, this.injector),
+    new PolymorpheusComponent(AddFormDialogComponent, this.injector),
     {
-      data: 237,
       dismissible: true,
       label: 'Добавление анкеты',
       size: "auto"
@@ -35,7 +33,6 @@ export class RehabProgramDetailComponent implements OnInit, OnDestroy {
   private readonly addModuleDialog = this.dialogService.open<string>(
     new PolymorpheusComponent(AddModuleDialogComponent, this.injector),
     {
-      data: "ef",
       dismissible: true,
       label: 'Добавление модуля',
     },
@@ -45,7 +42,7 @@ export class RehabProgramDetailComponent implements OnInit, OnDestroy {
 
   rehabProgram: RehabProgram;
 
-  isLoaded: boolean = true;
+  isLoaded: boolean = false;
   hasProgram: boolean = false;
 
   ngOnInit(): void {
@@ -56,12 +53,12 @@ export class RehabProgramDetailComponent implements OnInit, OnDestroy {
           this.rehabProgram = program;
           console.log(program);
           this.hasProgram = true;
-          this.isLoaded = false;
+          this.isLoaded = true;
         },
         error: err => {
           console.log(err.message)
           this.hasProgram = false
-          this.isLoaded = false;
+          this.isLoaded = true;
         }
       }
     )

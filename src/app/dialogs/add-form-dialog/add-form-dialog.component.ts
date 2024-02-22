@@ -7,22 +7,21 @@ import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-select-form-dialog',
-  templateUrl: './select-form-dialog.component.html',
-  styleUrls: ['./select-form-dialog.component.css'],
+  templateUrl: './add-form-dialog.component.html',
+  styleUrls: ['./add-form-dialog.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SelectFormDialogComponent implements OnInit {
+export class AddFormDialogComponent implements OnInit {
+
+  private readonly formService: FormService = inject(FormService);
 
   forms$: Observable<Form[]>;
 
   constructor(
-    @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
     @Inject(POLYMORPHEUS_CONTEXT)
     private readonly context: TuiDialogContext<number, number>,
   ) {
   }
-
-  private readonly formService: FormService = inject(FormService);
 
   ngOnInit(): void {
     this.forms$ = this.formService.getAll()

@@ -5,7 +5,7 @@ import { RehabProgramRoutingModule } from './rehab-program-routing.module';
 import { RehabProgramDetailComponent } from './rehab-program-detail/rehab-program-detail.component';
 import {TuiAutoFocusModule, TuiLetModule} from "@taiga-ui/cdk";
 import {TuiButtonModule, TuiLabelModule, TuiLoaderModule, TuiTextfieldControllerModule} from "@taiga-ui/core";
-import {SelectFormDialogComponent} from "../../dialogs/select-form-dialog/select-form-dialog.component";
+import {AddFormDialogComponent} from "../../dialogs/add-form-dialog/add-form-dialog.component";
 import {AddModuleDialogComponent} from "../../dialogs/add-module-dialog/add-module-dialog.component";
 import {TuiInputModule} from "@taiga-ui/kit";
 import {FormsModule} from "@angular/forms";
@@ -18,7 +18,7 @@ import { ProtocolComponent } from './protocol/protocol.component';
 @NgModule({
   declarations: [
     RehabProgramDetailComponent,
-    SelectFormDialogComponent,
+    AddFormDialogComponent,
     AddModuleDialogComponent,
     FormBlockComponent,
     ModulesBlockComponent,

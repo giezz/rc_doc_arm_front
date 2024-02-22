@@ -1,5 +1,5 @@
 <div class="patient-details">
-  <ng-container *ngIf="!isLoaded; else loading">
+  <ng-container *ngIf="isLoaded; else loading">
     <ng-container *ngIf="hasProgram ; else no_rehab">
       <div class="detail-island">
         Эпикризис

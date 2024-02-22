@@ -1,14 +1,8 @@
-.module-items-container {
+.dialog-form-frame {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 30px 30px;
-  position: relative;
-}
-
-.module-form-container {
-  display: inline-flex;
   flex-direction: column;
+  width: 275px;
+  height: 109px;
   align-items: center;
   justify-content: center;
   gap: 10px;
@@ -16,4 +10,10 @@
   position: relative;
   border-radius: 12px;
   border: 1px solid #ededed;
+}
+
+.dialog-form-frames-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px 10px
 }
