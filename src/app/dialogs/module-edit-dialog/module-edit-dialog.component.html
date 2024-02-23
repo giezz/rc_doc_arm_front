@@ -1,8 +1,9 @@
 <div class="wrapper">
+  <span>Редактирование модуля: {{module.name}}</span><br>
   <ng-container *ngIf="!isLoaded; else loading">
     <ng-container *ngFor="let blockId of [1, 2, 3]">
+      {{ blockId === 1 ? 'разминочный блок' : (blockId === 2 ? 'основной блок' : 'заминочный блок') }}
       <div class="detail-island">
-        {{ blockId === 1 ? 'разминочный блок' : (blockId === 2 ? 'основной блок' : 'заминочный блок') }}
         <div class="module-items-container">
           <ng-container *ngFor="let exercise of module.exercises">
             <ng-container *ngIf="exercise.blockId === blockId">
