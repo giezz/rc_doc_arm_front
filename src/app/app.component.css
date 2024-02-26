@@ -24,7 +24,6 @@
   display: flex;
   width: 879px;
   flex-direction: column;
-  align-items: center;
   gap: 10px
 }
 
@@ -39,6 +38,14 @@
   border: 1px solid #EDEDED;
   background: #FFF;
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.10);
+}
+
+.detail-block {
+  padding-top: 10px;
+}
+
+.detail-block:first-child {
+  padding-top: 0;
 }
 
 .current-patient-info {

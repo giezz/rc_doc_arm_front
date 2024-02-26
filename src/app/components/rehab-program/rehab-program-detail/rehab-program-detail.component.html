@@ -1,51 +1,62 @@
 <div class="patient-details">
   <ng-container *ngIf="isLoaded; else loading">
     <ng-container *ngIf="hasProgram ; else no_rehab">
-      <div class="detail-island">
-        Эпикризис
-      </div>
-      <div class="detail-island">
-        <app-form-block [form]="rehabProgram.startForm" [type]="'Вводнаяа анкета'"></app-form-block>
-        <button
-          *ngIf="!rehabProgram.startForm"
-          tuiButton
-          appearance="secondary"
-          size="s"
-          (click)="showAddFormDialog('START')"
-        >
-          Добавить анкету
-        </button>
-      </div>
-      <div class="detail-island">
-        <h3>Мероприятия медицинской реабилитации</h3>
-        <div class="modules-content">
-          <app-modules-block
-            *ngFor="let module of rehabProgram.modules; let i = index"
-            [module]="module"
-            [index]="i"
-            class="module-island"
-          ></app-modules-block>
+      <div class="detail-block">
+        <h2>Эпикризис</h2>
+        <div class="detail-island">
+          Эпикризис
         </div>
-        <button
-          tuiButton
-          appearance="secondary"
-          size="s"
-          (click)="showAddModuleDialog()"
-        >
-          Добавить модуль
-        </button>
       </div>
-      <div class="detail-island">
-        <app-form-block [form]="rehabProgram.endForm" [type]="'Выходная анкета'"></app-form-block>
-        <button
-          *ngIf="!rehabProgram.endForm"
-          tuiButton
-          appearance="secondary"
-          size="s"
-          (click)="showAddFormDialog('END')"
-        >
-          Добавить анкету
-        </button>
+      <div class="detail-block">
+        <h2>Входная анкета</h2>
+        <div class="detail-island">
+          <app-form-block [form]="rehabProgram.startForm"></app-form-block>
+          <button
+            *ngIf="!rehabProgram.startForm"
+            tuiButton
+            appearance="secondary"
+            size="s"
+            (click)="showAddFormDialog('START')"
+          >
+            Добавить анкету
+          </button>
+        </div>
+      </div>
+      <div class="detail-block">
+        <h2>Мероприятия медицинской реабилитации</h2>
+        <div class="detail-island">
+          <div class="modules-wrapper">
+            <app-modules-block
+              *ngFor="let module of rehabProgram.modules; let i = index"
+              [module]="module"
+              [index]="i"
+              class="module-island"
+            ></app-modules-block>
+          </div>
+          <button
+            tuiButton
+            appearance="secondary"
+            size="s"
+            (click)="showAddModuleDialog()"
+          >
+            Добавить модуль
+          </button>
+        </div>
+      </div>
+      <div class="detail-block">
+        <h2>Выходная анкета</h2>
+        <div class="detail-island">
+          <app-form-block [form]="rehabProgram.endForm"></app-form-block>
+          <button
+            *ngIf="!rehabProgram.endForm"
+            tuiButton
+            appearance="secondary"
+            size="s"
+            (click)="showAddFormDialog('END')"
+          >
+            Добавить анкету
+          </button>
+        </div>
       </div>
       <button
         tuiButton

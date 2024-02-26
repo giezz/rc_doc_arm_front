@@ -1,23 +1,19 @@
-<div class="module-content">
-  <div class="module-content-container">
-    <label tuiLabel="Модуль №{{index + 1}}">{{module.name}}</label>
-    <div class="module-buttons">
-      <button
-        tuiButton
-        appearance="secondary"
-        size="s"
-      >
-        Посмотреть
-      </button>
-      <button
-        tuiButton
-        appearance="secondary"
-        size="s"
-        (click)="showModuleEditDialog()"
-      >
-        Редактировать
-      </button>
-    </div>
-  </div>
+<div><label tuiLabel="Модуль №{{index + 1}}">{{module.name}}</label></div>
+<div class="module-buttons">
+  <button
+    tuiButton
+    appearance="secondary"
+    size="s"
+  >
+    Button
+  </button>
+  <button
+    tuiButton
+    appearance="secondary"
+    size="s"
+    (click)="showModuleEditDialog()"
+  >
+    Редактировать
+  </button>
 </div>
 <p *ngIf="module.finishedAt">Завершен</p>

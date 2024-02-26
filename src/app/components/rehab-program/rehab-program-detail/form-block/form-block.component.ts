@@ -9,8 +9,4 @@ import {Form} from "../../../../models/form";
 export class FormBlockComponent {
   @Input("form")
   form: Form;
-
-  @Input("type")
-  formType: string;
-
 }

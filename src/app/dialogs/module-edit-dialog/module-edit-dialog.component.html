@@ -1,30 +1,36 @@
 <div class="wrapper">
-  <span>Редактирование модуля: {{module.name}}</span><br>
   <ng-container *ngIf="!isLoaded; else loading">
+    <span>Редактирование модуля: {{module.name}}</span><br>
     <ng-container *ngFor="let blockId of [1, 2, 3]">
-      {{ blockId === 1 ? 'разминочный блок' : (blockId === 2 ? 'основной блок' : 'заминочный блок') }}
+      <h2>{{ blockId === 1 ? 'Разминочный блок' : (blockId === 2 ? 'Основной блок' : 'Заминочный блок') }}</h2>
       <div class="detail-island">
         <div class="module-items-container">
           <ng-container *ngFor="let exercise of module.exercises">
             <ng-container *ngIf="exercise.blockId === blockId">
-              <div class="module-form-container">
-                {{exercise.exerciseName}}
-                <div>
-                  подробнее
-                  <button
-                    appearance="icon"
-                    icon="tuiIconTrash"
-                    tuiIconButton
-                    type="button"
-                    (click)="deleteExercise(module.id, exercise.id)"
-                  >
-                  </button>
+              <div class="module-exercise-container">
+                <tui-avatar
+                  text="U I"
+                  class="module-exercise-logo"
+                  [autoColor]="true"
+                ></tui-avatar>
+                <div class="module-exercise-content">
+                  {{exercise.exerciseName}}
+                  <div class="module-actions">
+                    <a tuiLink [pseudo]="true">Подробнее</a>
+                    <button
+                      appearance="icon"
+                      icon="tuiIconTrash2Large"
+                      tuiIconButton
+                      type="button"
+                      (click)="deleteExercise(module.id, exercise.id)"
+                    ></button>
+                  </div>
                 </div>
               </div>
             </ng-container>
           </ng-container>
           <button
-            appearance="icon"
+            appearance="secondary"
             icon="tuiIconPlusLarge"
             tuiIconButton
             type="button"
@@ -32,17 +38,17 @@
             (click)="showAddExerciseDialog(module.id, blockId)"
           ></button>
         </div>
-        опросы
+        <h3>Опросы</h3>
         <div class="module-items-container">
           <ng-container *ngFor="let form of module.forms">
             <ng-container *ngIf="form.blockId === blockId">
               <div class="module-form-container">
                 {{form.formName}}
-                <div>
-                  подробнее
+                <div class="module-actions">
+                  <a tuiLink [pseudo]="true">Подробнее</a>
                   <button
                     appearance="icon"
-                    icon="tuiIconTrash"
+                    icon="tuiIconTrash2Large"
                     tuiIconButton
                     type="button"
                     (click)="deleteFrom(module.id, form.id)"
@@ -53,7 +59,7 @@
             </ng-container>
           </ng-container>
           <button
-            appearance="icon"
+            appearance="secondary"
             icon="tuiIconPlusLarge"
             tuiIconButton
             type="button"

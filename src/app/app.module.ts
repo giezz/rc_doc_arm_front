@@ -4,7 +4,7 @@ import {AppComponent} from './app.component';
 import {RouterModule} from "@angular/router";
 import {
   TuiButtonModule,
-  TuiDialogModule,
+  TuiDialogModule, TuiLinkModule,
   TuiLoaderModule,
   TuiRootModule,
   TuiTextfieldControllerModule
@@ -26,7 +26,7 @@ import {PatientModule} from "./components/patient/patient.module";
 import {RehabProgramComponent} from './components/rehab-program/rehab-program.component';
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 import {ModuleEditDialogComponent} from './dialogs/module-edit-dialog/module-edit-dialog.component';
-import { AddExerciseDialogComponent } from './dialogs/add-exercise-dialog/add-exercise-dialog.component';
+import {AddExerciseDialogComponent} from './dialogs/add-exercise-dialog/add-exercise-dialog.component';
 import {TuiAutoFocusModule, TuiLetModule} from "@taiga-ui/cdk";
 
 export function tokenGetter() {
@@ -54,7 +54,6 @@ export function tokenGetter() {
       }
     }),
     BrowserAnimationsModule,
-    NoopAnimationsModule,
     TuiDialogModule,
     TuiRootModule,
     TuiAvatarModule,
@@ -66,7 +65,8 @@ export function tokenGetter() {
     TuiLoaderModule,
     TuiAutoFocusModule,
     TuiLetModule,
-    TuiTextfieldControllerModule
+    TuiTextfieldControllerModule,
+    TuiLinkModule
   ],
   exports: [RouterModule],
   providers: [
