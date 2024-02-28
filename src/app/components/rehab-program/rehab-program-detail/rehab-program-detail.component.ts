@@ -47,11 +47,20 @@ export class RehabProgramDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     console.log('RehabProgramDetailComponent');
+    this.getRehabProgram();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+    console.log('RehabProgramDetailComponent destroyed');
+  }
+
+  getRehabProgram() {
     const sub$ = this.componentsService.getRehabProgram().subscribe(
       {
         next: program => {
           this.rehabProgram = program;
-          console.log(program);
+          this.rehabProgram.modules.sort((a, b) => a.id - b.id)
           this.hasProgram = true;
           this.isLoaded = true;
         },
@@ -63,11 +72,6 @@ export class RehabProgramDetailComponent implements OnInit, OnDestroy {
       }
     )
     this.subscription.add(sub$);
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-    console.log('RehabProgramDetailComponent destroyed');
   }
 
   createRehabProgram() {

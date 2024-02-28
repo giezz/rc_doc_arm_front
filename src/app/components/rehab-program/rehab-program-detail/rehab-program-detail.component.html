@@ -1,6 +1,6 @@
 <div class="patient-details">
   <ng-container *ngIf="isLoaded; else loading">
-    <ng-container *ngIf="hasProgram ; else no_rehab">
+    <ng-container *ngIf="hasProgram; else no_rehab">
       <div class="detail-block">
         <h2>Эпикризис</h2>
         <div class="detail-island">
@@ -91,20 +91,20 @@
   <button
     tuiButton
     size="m"
-    appearance="secondary"
-    type="button"
-    (click)="observer.complete()"
-  >
-    Отмена
-  </button>
-  <button
-    tuiButton
-    size="m"
     appearance="primary"
     type="button"
     class="tui-space_right-3"
     (click)="observer.complete(); createRehabProgram()"
   >
     Начать
+  </button>
+  <button
+    tuiButton
+    size="m"
+    appearance="secondary"
+    type="button"
+    (click)="observer.complete()"
+  >
+    Отмена
   </button>
 </ng-template>
