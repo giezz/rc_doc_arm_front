@@ -1,6 +1,6 @@
 import {Component, inject, Inject, Injector, OnDestroy, OnInit} from '@angular/core';
 import {TuiDialogContext, TuiDialogService} from "@taiga-ui/core";
-import {POLYMORPHEUS_CONTEXT, PolymorpheusComponent} from "@tinkoff/ng-polymorpheus";
+import {POLYMORPHEUS_CONTEXT, PolymorpheusComponent, PolymorpheusContent} from "@tinkoff/ng-polymorpheus";
 import {Module} from "../../models/module";
 import {ModuleService} from "../../services/module.service";
 import {Subscription} from "rxjs";
@@ -37,6 +37,7 @@ export class ModuleEditDialogComponent implements OnInit, OnDestroy {
   );
 
   module: Module;
+  moduleName: string = "";
 
   subscription: Subscription = new Subscription();
   isLoaded: boolean = true;
@@ -106,6 +107,10 @@ export class ModuleEditDialogComponent implements OnInit, OnDestroy {
     this.subscription.add(dialogSub$);
   }
 
+  showRenameModuleDialog(content: PolymorpheusContent<TuiDialogContext>): void {
+    this.dialogService.open(content).subscribe();
+  }
+
   deleteFrom(moduleId: number, formId: number) {
     const sub$ = this.moduleService.deleteFrom(moduleId, formId).subscribe(
       module => {
@@ -117,6 +122,15 @@ export class ModuleEditDialogComponent implements OnInit, OnDestroy {
 
   deleteExercise(moduleId: number, exerciseId: number) {
     const sub$ = this.moduleService.deleteExercise(moduleId, exerciseId).subscribe(
+      module => {
+        this.module = module;
+      }
+    );
+    this.subscription.add(sub$);
+  }
+
+  renameModule() {
+    const sub$ = this.moduleService.renameModule(this.module.id, this.moduleName).subscribe(
       module => {
         this.module = module;
       }

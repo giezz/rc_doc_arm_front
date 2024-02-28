@@ -1,71 +1,83 @@
 <div class="wrapper">
   <ng-container *ngIf="!isLoaded; else loading">
-    <span>Редактирование модуля: {{module.name}}</span><br>
+    <br>
+    <span>Редактирование модуля:</span>
+    <br>
+    <span>{{module.name}}</span>
+    <br>
+    <button
+      tuiIconButton appearance="icon"
+      icon="tuiIconEditLarge"
+      type="button"
+      (click)="showRenameModuleDialog(rename_module_dialog)"
+    ></button>
+    <br>
     <ng-container *ngFor="let blockId of [1, 2, 3]">
-      <h2>{{ blockId === 1 ? 'Разминочный блок' : (blockId === 2 ? 'Основной блок' : 'Заминочный блок') }}</h2>
-      <div class="detail-island">
-        <div class="module-items-container">
-          <ng-container *ngFor="let exercise of module.exercises">
-            <ng-container *ngIf="exercise.blockId === blockId">
-              <div class="module-exercise-container">
-                <tui-avatar
-                  text="U I"
-                  class="module-exercise-logo"
-                  [autoColor]="true"
-                ></tui-avatar>
-                <div class="module-exercise-content">
-                  {{exercise.exerciseName}}
+      <div class="detail-block">
+        <h2>{{ blockId === 1 ? 'Разминочный блок' : (blockId === 2 ? 'Основной блок' : 'Заминочный блок') }}</h2>
+        <div class="detail-island">
+          <div class="module-items-container">
+            <ng-container *ngFor="let exercise of module.exercises">
+              <ng-container *ngIf="exercise.blockId === blockId">
+                <div class="module-exercise-container">
+                  <tui-avatar
+                    text="U I"
+                    class="module-exercise-logo"
+                  ></tui-avatar>
+                  <div class="module-exercise-content">
+                    {{exercise.exerciseName}}
+                    <div class="module-actions">
+                      <a tuiLink [pseudo]="true">Подробнее</a>
+                      <button
+                        tuiIconButton
+                        appearance="icon"
+                        icon="tuiIconTrash2Large"
+                        type="button"
+                        (click)="deleteExercise(module.id, exercise.id)"
+                      ></button>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </ng-container>
+            <button
+              tuiIconButton
+              appearance="secondary"
+              icon="tuiIconPlusLarge"
+              type="button"
+              class="tui-space_right-3 tui-space_bottom-3"
+              (click)="showAddExerciseDialog(module.id, blockId)"
+            ></button>
+          </div>
+          <h3>Опросы</h3>
+          <div class="module-items-container">
+            <ng-container *ngFor="let form of module.forms">
+              <ng-container *ngIf="form.blockId === blockId">
+                <div class="module-form-container">
+                  {{form.formName}}
                   <div class="module-actions">
                     <a tuiLink [pseudo]="true">Подробнее</a>
                     <button
+                      tuiIconButton
                       appearance="icon"
                       icon="tuiIconTrash2Large"
-                      tuiIconButton
                       type="button"
-                      (click)="deleteExercise(module.id, exercise.id)"
-                    ></button>
+                      (click)="deleteFrom(module.id, form.id)"
+                    >
+                    </button>
                   </div>
                 </div>
-              </div>
+              </ng-container>
             </ng-container>
-          </ng-container>
-          <button
-            appearance="secondary"
-            icon="tuiIconPlusLarge"
-            tuiIconButton
-            type="button"
-            class="tui-space_right-3 tui-space_bottom-3"
-            (click)="showAddExerciseDialog(module.id, blockId)"
-          ></button>
-        </div>
-        <h3>Опросы</h3>
-        <div class="module-items-container">
-          <ng-container *ngFor="let form of module.forms">
-            <ng-container *ngIf="form.blockId === blockId">
-              <div class="module-form-container">
-                {{form.formName}}
-                <div class="module-actions">
-                  <a tuiLink [pseudo]="true">Подробнее</a>
-                  <button
-                    appearance="icon"
-                    icon="tuiIconTrash2Large"
-                    tuiIconButton
-                    type="button"
-                    (click)="deleteFrom(module.id, form.id)"
-                  >
-                  </button>
-                </div>
-              </div>
-            </ng-container>
-          </ng-container>
-          <button
-            appearance="secondary"
-            icon="tuiIconPlusLarge"
-            tuiIconButton
-            type="button"
-            class="tui-space_right-3 tui-space_bottom-3"
-            (click)="showAddFormDialog(module.id, blockId)"
-          ></button>
+            <button
+              tuiIconButton
+              appearance="secondary"
+              icon="tuiIconPlusLarge"
+              type="button"
+              class="tui-space_right-3 tui-space_bottom-3"
+              (click)="showAddFormDialog(module.id, blockId)"
+            ></button>
+          </div>
         </div>
       </div>
     </ng-container>
@@ -73,4 +85,33 @@
 </div>
 <ng-template #loading>
   <tui-loader [showLoader]="true" [size]="'xxl'" class="loader"></tui-loader>
+</ng-template>
+
+<ng-template
+  #rename_module_dialog
+  let-observer
+>
+  <h2>Переимеименование модуля: {{module.name}}</h2>
+  <tui-input
+    [(ngModel)]="moduleName"
+  >Новое название модуля</tui-input>
+  <button
+    tuiButton
+    size="m"
+    appearance="secondary"
+    type="button"
+    (click)="observer.complete(); renameModule()"
+  >
+    Переименовать
+  </button>
+  <button
+    tuiButton
+    size="m"
+    appearance="primary"
+    type="button"
+    class="tui-space_right-3"
+    (click)="observer.complete()"
+  >
+    Отмена
+  </button>
 </ng-template>

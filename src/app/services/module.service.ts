@@ -41,4 +41,11 @@ export class ModuleService {
   deleteExercise(moduleId: number, exerciseId: number) {
     return this.http.delete<Module>(`http://localhost:8080/api/v1/modules/${moduleId}/delete-exercise/${exerciseId}`)
   }
+
+  renameModule(moduleId: number, moduleName: string) {
+    return this.http.patch<Module>(
+      `http://localhost:8080/api/v1/modules/${moduleId}/name`,
+      {newName: moduleName}
+    )
+  }
 }

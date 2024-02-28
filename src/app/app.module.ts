@@ -20,7 +20,7 @@ import {BrowserModule} from "@angular/platform-browser";
 import {HttpClientModule} from "@angular/common/http";
 import {AppRoutingModule} from "./app-routing.module";
 import {AuthComponent} from "./components/login/auth.component";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {PatientComponent} from './components/patient/patient.component';
 import {PatientModule} from "./components/patient/patient.module";
 import {RehabProgramComponent} from './components/rehab-program/rehab-program.component';
@@ -66,7 +66,8 @@ export function tokenGetter() {
     TuiAutoFocusModule,
     TuiLetModule,
     TuiTextfieldControllerModule,
-    TuiLinkModule
+    TuiLinkModule,
+    FormsModule
   ],
   exports: [RouterModule],
   providers: [
