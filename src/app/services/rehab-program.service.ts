@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Patient} from "../models/patient";
 import {RehabProgram} from "../models/rehab-program";
 import {delay, Observable, pipe, shareReplay} from "rxjs";
+import {FormResult} from "../models/form-result";
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,8 @@ export class RehabProgramService {
 
   private http: HttpClient = inject(HttpClient)
 
-  getCurrent(patientId: number) : Observable<RehabProgram> {
-    console.log('http call to rehab program')
-    return this.http.get<RehabProgram>(`http://localhost:8080/api/v1/rehabs/patient/${patientId}/current`)
-      .pipe(delay(500));
+  getResults(programId: number): Observable<FormResult[]> {
+    return this.http.get<FormResult[]>(`http://localhost:8080/api/v1/rehabs/${programId}/results`)
   }
 
   create(patientId: number) {
@@ -22,12 +21,12 @@ export class RehabProgramService {
   }
 
   addForm(programId: number, formId: number, formType: string) {
-    return this.http.patch<RehabProgram>(
-      `http://localhost:8080/api/v1/rehabs/${programId}/add-form`,
+    return this.http.put<RehabProgram>(
+      `http://localhost:8080/api/v1/rehabs/${programId}/form`,
       {formId: formId, formType: formType})
   }
 
   addModule(name: string, programId: number) {
-    return this.http.patch<RehabProgram>(`http://localhost:8080/api/v1/rehabs/${programId}/add-module`, {name: name})
+    return this.http.put<RehabProgram>(`http://localhost:8080/api/v1/rehabs/${programId}/module`, {name: name})
   }
 }

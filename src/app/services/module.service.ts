@@ -16,7 +16,7 @@ export class ModuleService {
 
   addForm(moduleId: number, formId: number, blockId: number): Observable<Module> {
     return this.http.post<Module>(
-      `http://localhost:8080/api/v1/modules/${moduleId}/add-form`,
+      `http://localhost:8080/api/v1/modules/${moduleId}/form`,
       {
         formId: formId,
         blockId: blockId
@@ -26,7 +26,7 @@ export class ModuleService {
 
   addExercise(moduleId: number, exerciseId: number, blockId: number): Observable<Module> {
     return this.http.post<Module>(
-      `http://localhost:8080/api/v1/modules/${moduleId}/add-exercise`,
+      `http://localhost:8080/api/v1/modules/${moduleId}/exercise`,
       {
         exerciseId: exerciseId,
         blockId: blockId
@@ -35,11 +35,11 @@ export class ModuleService {
   }
 
   deleteFrom(moduleId: number, formId: number): Observable<Module> {
-    return this.http.delete<Module>(`http://localhost:8080/api/v1/modules/${moduleId}/delete-form/${formId}`)
+    return this.http.delete<Module>(`http://localhost:8080/api/v1/modules/${moduleId}/form/${formId}`)
   }
 
   deleteExercise(moduleId: number, exerciseId: number) {
-    return this.http.delete<Module>(`http://localhost:8080/api/v1/modules/${moduleId}/delete-exercise/${exerciseId}`)
+    return this.http.delete<Module>(`http://localhost:8080/api/v1/modules/${moduleId}/exercise/${exerciseId}`)
   }
 
   renameModule(moduleId: number, moduleName: string) {

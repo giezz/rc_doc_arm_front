@@ -55,11 +55,4 @@ export class PatientService {
     ).pipe(shareReplay(1), delay(500));
   }
 
-  addDoctor(patientId: number) {
-    return this.http.patch('http://localhost:8080/api/v1/patients/add-doctor', patientId)
-  }
-
-  removeDoctor(patientId: number) {
-    return this.http.patch('http://localhost:8080/api/v1/patients/remove-doctor', patientId)
-  }
 }

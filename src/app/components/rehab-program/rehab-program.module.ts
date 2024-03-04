@@ -13,6 +13,7 @@ import { FormBlockComponent } from './rehab-program-detail/form-block/form-block
 import { ModulesBlockComponent } from './rehab-program-detail/modules-block/modules-block.component';
 import { RehabProgramResultsComponent } from './rehab-program-results/rehab-program-results.component';
 import { ProtocolComponent } from './protocol/protocol.component';
+import { FormResultsComponent } from './rehab-program-results/form-results/form-results.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ProtocolComponent } from './protocol/protocol.component';
     FormBlockComponent,
     ModulesBlockComponent,
     RehabProgramResultsComponent,
-    ProtocolComponent
+    ProtocolComponent,
+    FormResultsComponent
   ],
   imports: [
     CommonModule,
