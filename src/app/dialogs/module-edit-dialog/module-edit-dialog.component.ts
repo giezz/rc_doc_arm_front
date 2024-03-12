@@ -69,16 +69,11 @@ export class ModuleEditDialogComponent implements OnInit, OnDestroy {
     return this.context.data
   }
 
-  showAddFormDialog(moduleId: number, blockId: number) {
+  showAddFormDialog(moduleId: number) {
     const dialogSub$ = this.addFormDialog.subscribe(
       {
         next: formId => {
-          const moduleSub$ = this.moduleService.addForm(moduleId, formId, blockId).subscribe(
-            module => {
-              this.module = module;
-            }
-          )
-          this.subscription.add(moduleSub$);
+            this.addForm(moduleId, formId);
         },
         complete: () => {
           console.info('Dialog closed');
@@ -92,12 +87,7 @@ export class ModuleEditDialogComponent implements OnInit, OnDestroy {
     const dialogSub$ = this.addExerciseDialog.subscribe(
       {
         next: exerciseId => {
-          const moduleSub$ = this.moduleService.addExercise(moduleId, exerciseId, blockId).subscribe(
-            module => {
-              this.module = module;
-            }
-          )
-          this.subscription.add(moduleSub$);
+            this.addExercise(moduleId, exerciseId, blockId)
         },
         complete: () => {
           console.info('Dialog closed');
@@ -111,6 +101,15 @@ export class ModuleEditDialogComponent implements OnInit, OnDestroy {
     this.dialogService.open(content).subscribe();
   }
 
+  addForm(moduleId: number, formId: number) {
+      const moduleSub$ = this.moduleService.addForm(moduleId, formId).subscribe(
+          module => {
+              this.module = module;
+          }
+      )
+      this.subscription.add(moduleSub$);
+  }
+
   deleteFrom(moduleId: number, formId: number) {
     const sub$ = this.moduleService.deleteFrom(moduleId, formId).subscribe(
       module => {
@@ -118,6 +117,15 @@ export class ModuleEditDialogComponent implements OnInit, OnDestroy {
       }
     );
     this.subscription.add(sub$);
+  }
+
+  addExercise(moduleId: number, exerciseId: number, blockId: number) {
+      const moduleSub$ = this.moduleService.addExercise(moduleId, exerciseId, blockId).subscribe(
+          module => {
+              this.module = module;
+          }
+      )
+      this.subscription.add(moduleSub$);
   }
 
   deleteExercise(moduleId: number, exerciseId: number) {

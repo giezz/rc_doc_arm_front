@@ -40,7 +40,10 @@ export class PatientService {
   getByCode(code: number): Observable<Patient> {
     console.log('http call to patient')
     return this.http.get<Patient>('http://localhost:8080/api/v1/patients/' + code)
-      .pipe(shareReplay(1), delay(500));
+      .pipe(
+        // shareReplay(1),
+        delay(500)
+      );
   }
 
   getCurrentRehabProgram(code: number): Observable<RehabProgram> {
@@ -52,7 +55,10 @@ export class PatientService {
           current: true
         }
       }
-    ).pipe(shareReplay(1), delay(500));
+    ).pipe(
+      // shareReplay(1),
+      delay(500)
+    );
   }
 
 }

@@ -49,44 +49,45 @@
               (click)="showAddExerciseDialog(module.id, blockId)"
             ></button>
           </div>
-          <h3>Опросы</h3>
-          <div class="module-items-container">
-            <ng-container *ngFor="let form of module.forms">
-              <ng-container *ngIf="form.blockId === blockId">
-                <div class="module-form-container">
-                  {{form.formName}}
-                  <div class="module-actions">
-                    <a tuiLink [pseudo]="true">Подробнее</a>
-                    <button
-                      tuiIconButton
-                      appearance="icon"
-                      icon="tuiIconTrash2Large"
-                      type="button"
-                      (click)="deleteFrom(module.id, form.id)"
-                    >
-                    </button>
-                  </div>
-                </div>
-              </ng-container>
-            </ng-container>
-            <button
-              tuiIconButton
-              appearance="secondary"
-              icon="tuiIconPlusLarge"
-              type="button"
-              class="tui-space_right-3 tui-space_bottom-3"
-              (click)="showAddFormDialog(module.id, blockId)"
-            ></button>
-          </div>
         </div>
       </div>
     </ng-container>
+    <div class="detail-block">
+      <h2>Анкеты</h2>
+      <div class="detail-island">
+        <div class="module-items-container">
+          <ng-container *ngFor="let moduleForm of module.forms">
+            <div class="module-form-container">
+              {{moduleForm.form.name}}
+              <div class="module-actions">
+                <a tuiLink [pseudo]="true">Подробнее</a>
+                <button
+                  tuiIconButton
+                  appearance="icon"
+                  icon="tuiIconTrash2Large"
+                  type="button"
+                  (click)="deleteFrom(module.id, moduleForm.id)"
+                >
+                </button>
+              </div>
+            </div>
+          </ng-container>
+          <button
+            tuiIconButton
+            appearance="secondary"
+            icon="tuiIconPlusLarge"
+            type="button"
+            class="tui-space_right-3 tui-space_bottom-3"
+            (click)="showAddFormDialog(module.id)"
+          ></button>
+        </div>
+      </div>
+    </div>
   </ng-container>
 </div>
 <ng-template #loading>
   <tui-loader [showLoader]="true" [size]="'xxl'" class="loader"></tui-loader>
 </ng-template>
-
 <ng-template
   #rename_module_dialog
   let-observer
@@ -94,7 +95,8 @@
   <h2>Переимеименование модуля: {{module.name}}</h2>
   <tui-input
     [(ngModel)]="moduleName"
-  >Новое название модуля</tui-input>
+  >Новое название модуля
+  </tui-input>
   <button
     tuiButton
     size="m"

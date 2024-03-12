@@ -1,9 +1,7 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
-import {PatientService} from "../../../services/patient.service";
 import {Patient} from "../../../models/patient";
 import {Observable} from "rxjs";
-import {ActivatedRoute} from "@angular/router";
-import {ComponentsService} from "../../../services/components.service";
+import {PatientComponentsService} from "../../../services/patient-components.service";
 
 @Component({
   selector: 'app-patient-detail',
@@ -12,13 +10,12 @@ import {ComponentsService} from "../../../services/components.service";
 })
 export class PatientDetailComponent implements OnInit, OnDestroy {
 
-  private componentsService: ComponentsService = inject(ComponentsService);
+  private patientComponentService: PatientComponentsService = inject(PatientComponentsService);
 
   patient$: Observable<Patient>;
 
   ngOnInit(): void {
-    // let patientCode: number = Number(this.activeRoute.snapshot.params['patientCode']);
-    this.patient$ = this.componentsService.getPatient()
+    this.patient$ = this.patientComponentService.patient$
     console.log('PatientDetailComponent');
   }
 

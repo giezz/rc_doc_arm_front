@@ -14,12 +14,11 @@ export class ModuleService {
     return this.http.get<Module>(`http://localhost:8080/api/v1/modules/${id}`);
   }
 
-  addForm(moduleId: number, formId: number, blockId: number): Observable<Module> {
+  addForm(moduleId: number, formId: number): Observable<Module> {
     return this.http.post<Module>(
       `http://localhost:8080/api/v1/modules/${moduleId}/form`,
       {
-        formId: formId,
-        blockId: blockId
+        formId: formId
       }
     );
   }

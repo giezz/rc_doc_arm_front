@@ -1,7 +1,9 @@
+import {Form} from "./form";
+
 export class ModuleForm {
   id: number;
-  formId: number;
-  formName: string;
-  blockId: number;
+  moduleName: string;
+  form: Form;
   finishedAt: string;
+  score: number;
 }
