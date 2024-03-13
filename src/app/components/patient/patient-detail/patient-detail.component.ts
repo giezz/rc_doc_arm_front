@@ -1,7 +1,7 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {Patient} from "../../../models/patient";
 import {Observable} from "rxjs";
-import {PatientComponentsService} from "../../../services/patient-components.service";
+import {PatientComponentsService} from "../../../services/components/patient-components.service";
 
 @Component({
   selector: 'app-patient-detail',

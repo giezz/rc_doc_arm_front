@@ -19,6 +19,9 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {TuiButtonModule, TuiErrorModule, TuiTextfieldControllerModule} from "@taiga-ui/core";
 import {TuiTableModule} from "@taiga-ui/addon-table";
 import {TuiLetModule} from "@taiga-ui/cdk";
+import { MyPatientsListComponent } from './my-patients/my-patients-list/my-patients-list.component';
+import { RehabProgramsComponent } from './my-patients/rehab-programs/rehab-programs.component';
+import { RehabDetailCardComponent } from './my-patients/rehab-programs/rehab-detail-card/rehab-detail-card.component';
 
 
 @NgModule({
@@ -26,7 +29,10 @@ import {TuiLetModule} from "@taiga-ui/cdk";
     PatientsComponent,
     MyPatientsComponent,
     PagesComponent,
-    NavigationComponent
+    NavigationComponent,
+    MyPatientsListComponent,
+    RehabProgramsComponent,
+    RehabDetailCardComponent
   ],
   imports: [
     CommonModule,

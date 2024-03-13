@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable, ReplaySubject, shareReplay} from "rxjs";
-import {Patient} from "../models/patient";
+import {Patient} from "../../models/patient";
 
 @Injectable({
     providedIn: 'root'

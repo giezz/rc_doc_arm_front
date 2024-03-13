@@ -1,14 +1,12 @@
 import {Component, inject, Injector, OnDestroy, OnInit} from '@angular/core';
 import {RehabProgramService} from "../../../services/rehab-program.service";
-import {ComponentsService} from "../../../services/components.service";
 import {RehabProgram} from "../../../models/rehab-program";
 import {Subscription} from "rxjs";
 import {TuiDialogContext, TuiDialogService} from "@taiga-ui/core";
 import {AddFormDialogComponent} from "../../../dialogs/add-form-dialog/add-form-dialog.component";
 import {AddModuleDialogComponent} from "../../../dialogs/add-module-dialog/add-module-dialog.component";
-import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus';
-import {PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
-import {RehabProgramComponentsService} from "../../../services/rehab-program-components.service";
+import {PolymorpheusComponent, PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
+import {RehabProgramComponentsService} from "../../../services/components/rehab-program-components.service";
 
 @Component({
     selector: 'app-rehab-program-detail',

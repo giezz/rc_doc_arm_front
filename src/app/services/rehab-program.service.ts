@@ -11,6 +11,14 @@ export class RehabProgramService {
 
     private http: HttpClient = inject(HttpClient)
 
+    getListByCurrentDoctor() {
+        return this.http.get<RehabProgram[]>("http://localhost:8080/api/v1/rehabs")
+    }
+
+    getResults(programId: number): Observable<ModuleForm[]> {
+        return this.http.get<ModuleForm[]>(`http://localhost:8080/api/v1/rehabs/${programId}/results`)
+    }
+
     create(patientId: number) {
         return this.http.post<RehabProgram>(
             'http://localhost:8080/api/v1/rehabs',
@@ -30,7 +38,4 @@ export class RehabProgramService {
         )
     }
 
-    getResults(programId: number): Observable<ModuleForm[]> {
-        return this.http.get<ModuleForm[]>(`http://localhost:8080/api/v1/rehabs/${programId}/results`)
-    }
 }

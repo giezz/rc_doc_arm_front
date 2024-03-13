@@ -1,5 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {RehabProgramComponentsService} from "../../../services/rehab-program-components.service";
+import {RehabProgramComponentsService} from "../../../services/components/rehab-program-components.service";
 
 @Component({
   selector: 'app-protocol',

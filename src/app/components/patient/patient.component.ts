@@ -4,7 +4,7 @@ import {Observable, Subscription} from "rxjs";
 import {PatientService} from "../../services/patient.service";
 import {ActivatedRoute} from "@angular/router";
 import {Location} from "@angular/common";
-import {PatientComponentsService} from "../../services/patient-components.service";
+import {PatientComponentsService} from "../../services/components/patient-components.service";
 
 @Component({
   selector: 'app-patient',

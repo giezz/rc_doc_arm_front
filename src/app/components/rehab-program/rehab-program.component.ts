@@ -4,7 +4,7 @@ import {PatientService} from "../../services/patient.service";
 import {Patient} from "../../models/patient";
 import {Observable, of, Subscription} from "rxjs";
 import {Location} from "@angular/common";
-import {RehabProgramComponentsService} from "../../services/rehab-program-components.service";
+import {RehabProgramComponentsService} from "../../services/components/rehab-program-components.service";
 
 @Component({
     selector: 'app-rehab-program',
