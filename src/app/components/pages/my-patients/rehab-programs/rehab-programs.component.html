@@ -1,3 +1,7 @@
-<div *ngFor="let program of rehabPrograms">
-  {{program.isCurrent}}
+<div class="rehab-programs-list">
+  <app-rehab-detail-card
+    *ngFor="let program of rehabPrograms"
+    [rehabProgram]="program"
+    class="rehab-detail-card"
+  ></app-rehab-detail-card>
 </div>

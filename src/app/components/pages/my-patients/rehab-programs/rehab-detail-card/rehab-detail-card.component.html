@@ -1,1 +1,13 @@
-<p>rehab-detail-card works!</p>
+<div class="tui-text_body-m">Программа реабилитации от {{rehabProgram.startDate | date}}</div>
+<label tuiLabel="Пациент">
+  {{rehabProgram.patient.lastName}}
+  {{rehabProgram.patient.firstName}}
+  {{rehabProgram.patient.middleName}}
+</label>
+<label tuiLabel="Статус">
+  <tui-badge
+    [status]="statusResolver(rehabProgram).status"
+    class="tui-space_right-2 tui-space_bottom-2"
+    [value]="statusResolver(rehabProgram).value"
+  ></tui-badge>
+</label>

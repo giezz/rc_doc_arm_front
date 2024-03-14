@@ -16,7 +16,7 @@ import {
   TuiTabsModule
 } from "@taiga-ui/kit";
 import {ReactiveFormsModule} from "@angular/forms";
-import {TuiButtonModule, TuiErrorModule, TuiTextfieldControllerModule} from "@taiga-ui/core";
+import {TuiButtonModule, TuiErrorModule, TuiLabelModule, TuiTextfieldControllerModule} from "@taiga-ui/core";
 import {TuiTableModule} from "@taiga-ui/addon-table";
 import {TuiLetModule} from "@taiga-ui/cdk";
 import { MyPatientsListComponent } from './my-patients/my-patients-list/my-patients-list.component';
@@ -34,24 +34,25 @@ import { RehabDetailCardComponent } from './my-patients/rehab-programs/rehab-det
     RehabProgramsComponent,
     RehabDetailCardComponent
   ],
-  imports: [
-    CommonModule,
-    PagesRoutingModule,
-    TuiTabsModule,
-    ReactiveFormsModule,
-    TuiInputModule,
-    TuiTextfieldControllerModule,
-    TuiMultiSelectModule,
-    TuiDataListWrapperModule,
-    TuiSelectModule,
-    TuiInputDateModule,
-    TuiErrorModule,
-    TuiCheckboxLabeledModule,
-    TuiFieldErrorPipeModule,
-    TuiTableModule,
-    TuiLetModule,
-    TuiBadgeModule,
-    TuiButtonModule
-  ]
+    imports: [
+        CommonModule,
+        PagesRoutingModule,
+        TuiTabsModule,
+        ReactiveFormsModule,
+        TuiInputModule,
+        TuiTextfieldControllerModule,
+        TuiMultiSelectModule,
+        TuiDataListWrapperModule,
+        TuiSelectModule,
+        TuiInputDateModule,
+        TuiErrorModule,
+        TuiCheckboxLabeledModule,
+        TuiFieldErrorPipeModule,
+        TuiTableModule,
+        TuiLetModule,
+        TuiBadgeModule,
+        TuiButtonModule,
+        TuiLabelModule
+    ]
 })
 export class PagesModule { }

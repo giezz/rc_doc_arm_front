@@ -1,0 +1,11 @@
+.rehab-detail-card {
+  border: 1px solid #ededed;
+  border-radius: 12px;
+  padding: 5px;
+  width: 335px;
+  height: 161px;
+}
+
+.rehab-programs-list {
+  display: flex;
+}
