@@ -1,0 +1,48 @@
+<div class="wrapper">
+  <ng-container *ngIf="isLoaded; else loading">
+    <br>
+    <span>{{module.name}}</span>
+    <br>
+    <ng-container *ngFor="let blockId of [1, 2, 3]">
+      <div class="detail-block">
+        <h2>{{ blockId === 1 ? 'Разминочный блок' : (blockId === 2 ? 'Основной блок' : 'Заминочный блок') }}</h2>
+        <div class="detail-island">
+          <div class="module-items-container">
+            <ng-container *ngFor="let exercise of module.exercises">
+              <ng-container *ngIf="exercise.blockId === blockId">
+                <div class="module-exercise-container">
+                  <tui-avatar
+                    text="U I"
+                    class="module-exercise-logo"
+                  ></tui-avatar>
+                  <div class="module-exercise-content">
+                    {{exercise.exerciseName}}
+                  </div>
+                </div>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <div class="detail-block">
+      <h2>Анкеты</h2>
+      <div class="detail-island">
+        <div class="module-items-container">
+          <ng-container *ngFor="let moduleForm of module.forms">
+            <div class="module-form-container">
+              {{moduleForm.form.name}}
+              <div class="module-actions">
+                <a tuiLink [pseudo]="true">Подробнее</a>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+<ng-template #loading>
+  <tui-loader [showLoader]="true" [size]="'xxl'" class="loader"></tui-loader>
+</ng-template>
+

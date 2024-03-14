@@ -28,6 +28,7 @@ import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-b
 import {ModuleEditDialogComponent} from './dialogs/module-edit-dialog/module-edit-dialog.component';
 import {AddExerciseDialogComponent} from './dialogs/add-exercise-dialog/add-exercise-dialog.component';
 import {TuiAutoFocusModule, TuiLetModule} from "@taiga-ui/cdk";
+import { ModulePreviewDialogComponent } from './dialogs/module-preview-dialog/module-preview-dialog.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -42,7 +43,8 @@ export function tokenGetter() {
     PatientComponent,
     RehabProgramComponent,
     ModuleEditDialogComponent,
-    AddExerciseDialogComponent
+    AddExerciseDialogComponent,
+    ModulePreviewDialogComponent
   ],
   imports: [
     BrowserModule,

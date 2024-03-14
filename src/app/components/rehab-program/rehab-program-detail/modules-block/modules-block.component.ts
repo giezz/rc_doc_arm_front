@@ -4,47 +4,61 @@ import {PolymorpheusComponent} from "@tinkoff/ng-polymorpheus";
 import {ModuleEditDialogComponent} from "../../../../dialogs/module-edit-dialog/module-edit-dialog.component";
 import {TuiDialogService} from "@taiga-ui/core";
 import {Observable, Subscription} from "rxjs";
+import {ModulePreviewDialogComponent} from "../../../../dialogs/module-preview-dialog/module-preview-dialog.component";
 
 @Component({
-  selector: 'app-modules-block',
-  templateUrl: './modules-block.component.html',
-  styleUrls: ['./modules-block.component.css']
+    selector: 'app-modules-block',
+    templateUrl: './modules-block.component.html',
+    styleUrls: ['./modules-block.component.css']
 })
 export class ModulesBlockComponent implements OnInit, OnDestroy {
 
-  @Input("module")
-  module: Module;
+    @Input("module")
+    module: Module;
 
-  @Input("index")
-  index: number;
+    @Input("index")
+    index: number;
 
-  private dialogService = inject(TuiDialogService);
-  private injector: Injector = inject(Injector);
+    private dialogService = inject(TuiDialogService);
+    private injector: Injector = inject(Injector);
 
-  private moduleEditDialog: Observable<String>;
+    private moduleEditDialog: Observable<String>;
+    private modulePreviewDialog: Observable<String>;
 
-  subscription: Subscription = new Subscription();
+    subscription: Subscription = new Subscription();
 
-  ngOnInit(): void {
-    console.log('RehabProgramDetailComponent');
-    this.moduleEditDialog = this.dialogService.open<string>(
-      new PolymorpheusComponent(ModuleEditDialogComponent, this.injector),
-      {
-        data: this.module.id,
-        dismissible: false,
-        closeable: true,
-        size: 'page'
-      },
-    );
-  }
+    ngOnInit(): void {
+        this.moduleEditDialog = this.dialogService.open<string>(
+            new PolymorpheusComponent(ModuleEditDialogComponent, this.injector),
+            {
+                data: this.module.id,
+                dismissible: false,
+                closeable: true,
+                size: 'page'
+            }
+        );
+        this.modulePreviewDialog = this.dialogService.open<string>(
+            new PolymorpheusComponent(ModulePreviewDialogComponent, this.injector),
+            {
+                data: this.module.id,
+                dismissible: true,
+                closeable: true,
+                size: 'auto'
+            }
+        )
+    }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-    console.log('ModulesBlockComponent destroyed');
-  }
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
+    }
 
-  showModuleEditDialog(): void {
-    const dialogSub$ = this.moduleEditDialog.subscribe();
-    this.subscription.add(dialogSub$);
-  }
+    showModuleEditDialog(): void {
+        const dialogSub$ = this.moduleEditDialog.subscribe();
+        this.subscription.add(dialogSub$);
+    }
+
+    showModulePreviewDialog() {
+        const dialogSub$ = this.modulePreviewDialog.subscribe();
+        this.subscription.add(dialogSub$);
+    }
 }
