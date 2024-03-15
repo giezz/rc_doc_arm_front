@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {RehabProgram} from "../../../../../models/rehab-program";
+import {RehabProgram} from "../../../../models/rehab-program";
 import {TuiStatus} from "@taiga-ui/kit";
 
 @Component({
@@ -12,11 +12,21 @@ export class RehabDetailCardComponent {
     @Input()
     rehabProgram: RehabProgram;
 
+    readonly dropDownItems = ["Перейти к пациенту", "Перейти к программе реабилитации"]
+
     statusResolver(rehabProgram: RehabProgram): {status: TuiStatus, value: string} {
         if (rehabProgram.isCurrent) {
             return {status: "info", value: "В процессе"}
         } else {
-            return {status: "success", value: "завершена"}
+            return {status: "success", value: "Завершена"}
         }
+    }
+
+    navigateToPatient() {
+
+    }
+
+    navigateToRehabProgram() {
+
     }
 }

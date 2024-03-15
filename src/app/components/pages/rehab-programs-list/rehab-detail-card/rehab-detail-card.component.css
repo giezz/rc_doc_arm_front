@@ -1,0 +1,18 @@
+:host {
+  display: flex;
+  border: 1px solid #ededed;
+  border-radius: 12px;
+  padding: 5px;
+  width: 335px;
+  height: 161px;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.detail-card-bottom-row {
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: space-between;
+}

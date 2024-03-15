@@ -1,16 +1,13 @@
 import {Component, inject} from '@angular/core';
-import {TokenStorageService} from "./services/token-storage.service";
+import {AuthService} from "./auth/auth.service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.css']
+    selector: 'app-root',
+    templateUrl: 'app.component.html',
+    styleUrls: ['app.component.css']
 })
 export class AppComponent {
 
-  tokenService: TokenStorageService = inject(TokenStorageService);
+    authService: AuthService = inject(AuthService);
 
-  isLogged() : boolean {
-    return !!this.tokenService.getToken();
-  }
 }

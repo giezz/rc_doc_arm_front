@@ -1,37 +1,41 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { PagesRoutingModule } from './pages-routing.module';
-import { PatientsComponent } from './patients/patients.component';
-import { MyPatientsComponent } from './my-patients/my-patients.component';
-import { PagesComponent } from './pages.component';
-import { NavigationComponent } from './navigation/navigation.component';
+import {PagesRoutingModule} from './pages-routing.module';
+import {PatientsComponent} from './patients/patients.component';
+import {RehabProgramsListComponent} from './rehab-programs-list/rehab-programs-list.component';
+import {PagesComponent} from './pages.component';
+import {NavigationComponent} from './navigation/navigation.component';
 import {
-  TuiBadgeModule,
-  TuiCheckboxLabeledModule,
-  TuiDataListWrapperModule, TuiFieldErrorPipeModule, TuiInputDateModule,
-  TuiInputModule,
-  TuiMultiSelectModule,
-  TuiSelectModule,
-  TuiTabsModule
+    TuiBadgeModule,
+    TuiCheckboxLabeledModule,
+    TuiDataListWrapperModule,
+    TuiFieldErrorPipeModule,
+    TuiInputDateModule,
+    TuiInputModule,
+    TuiMultiSelectModule,
+    TuiSelectModule,
+    TuiTabsModule
 } from "@taiga-ui/kit";
 import {ReactiveFormsModule} from "@angular/forms";
-import {TuiButtonModule, TuiErrorModule, TuiLabelModule, TuiTextfieldControllerModule} from "@taiga-ui/core";
+import {
+    TuiButtonModule, TuiDataListModule,
+    TuiErrorModule,
+    TuiHostedDropdownModule,
+    TuiLabelModule,
+    TuiTextfieldControllerModule
+} from "@taiga-ui/core";
 import {TuiTableModule} from "@taiga-ui/addon-table";
 import {TuiLetModule} from "@taiga-ui/cdk";
-import { MyPatientsListComponent } from './my-patients/my-patients-list/my-patients-list.component';
-import { RehabProgramsComponent } from './my-patients/rehab-programs/rehab-programs.component';
-import { RehabDetailCardComponent } from './my-patients/rehab-programs/rehab-detail-card/rehab-detail-card.component';
+import {RehabDetailCardComponent} from './rehab-programs-list/rehab-detail-card/rehab-detail-card.component';
 
 
 @NgModule({
   declarations: [
     PatientsComponent,
-    MyPatientsComponent,
+    RehabProgramsListComponent,
     PagesComponent,
     NavigationComponent,
-    MyPatientsListComponent,
-    RehabProgramsComponent,
     RehabDetailCardComponent
   ],
     imports: [
@@ -52,7 +56,9 @@ import { RehabDetailCardComponent } from './my-patients/rehab-programs/rehab-det
         TuiLetModule,
         TuiBadgeModule,
         TuiButtonModule,
-        TuiLabelModule
+        TuiLabelModule,
+        TuiHostedDropdownModule,
+        TuiDataListModule
     ]
 })
 export class PagesModule { }

@@ -1,8 +1,8 @@
 .body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(to top, #007BFF, #ffffff);
-  font-family: 'Arial', sans-serif;
+  /*background: linear-gradient(to top, #007BFF, #ffffff);*/
+  /*font-family: 'Arial', sans-serif;*/
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,7 +10,8 @@
 }
 
 .login-container {
-  background: rgba(255, 255, 255, 0.35); /* Прозрачный белый фон */
+  /*background: linear-gradient(to top, #007BFF, #ffffff);*/
+  /*background: rgba(255, 255, 255, 0.35); !* Прозрачный белый фон *!*/
   padding: 60px;
   border-radius: 10%;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);

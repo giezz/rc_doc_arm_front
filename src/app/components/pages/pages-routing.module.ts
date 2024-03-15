@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {PatientsComponent} from "./patients/patients.component";
-import {MyPatientsComponent} from "./my-patients/my-patients.component";
+import {RehabProgramsListComponent} from "./rehab-programs-list/rehab-programs-list.component";
 import {PagesComponent} from "./pages.component";
 
 const routes: Routes = [
@@ -14,8 +14,8 @@ const routes: Routes = [
         component: PatientsComponent
       },
       {
-        path: 'my-patients',
-        component: MyPatientsComponent
+        path: 'rehab-programs',
+        component: RehabProgramsListComponent
       }
     ]
   }

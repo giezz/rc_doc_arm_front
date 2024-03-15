@@ -1,5 +1,5 @@
 <tui-root>
-  <app-header *ngIf="isLogged()"></app-header>
+  <app-header *ngIf="this.authService.isAuthenticated()"></app-header>
   <div class="wrapper">
     <router-outlet></router-outlet>
   </div>
