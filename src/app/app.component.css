@@ -17,14 +17,13 @@
 .patient-content {
   display: flex;
   align-items: flex-start;
-  gap: 26px;
+  justify-content: space-between;
 }
 
 .patient-details {
   display: flex;
   width: 879px;
   flex-direction: column;
-  gap: 10px
 }
 
 .detail-island {
@@ -33,7 +32,6 @@
   flex-direction: column;
   width: 100%;
   align-items: flex-start;
-  align-self: stretch;
   border-radius: 12px;
   border: 1px solid #EDEDED;
   background: #FFF;
