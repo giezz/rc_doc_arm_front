@@ -14,6 +14,7 @@ import {ModulesBlockComponent} from './rehab-program-detail/modules-block/module
 import {RehabProgramResultsComponent} from './rehab-program-results/rehab-program-results.component';
 import {ProtocolComponent} from './protocol/protocol.component';
 import {TuiAxesModule, TuiLineChartModule, TuiLineDaysChartModule} from "@taiga-ui/addon-charts";
+import { ResultDetailSingleComponent } from './rehab-program-results/result-detail-single/result-detail-single.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {TuiAxesModule, TuiLineChartModule, TuiLineDaysChartModule} from "@taiga-
         FormBlockComponent,
         ModulesBlockComponent,
         RehabProgramResultsComponent,
-        ProtocolComponent
+        ProtocolComponent,
+        ResultDetailSingleComponent
     ],
     imports: [
         CommonModule,

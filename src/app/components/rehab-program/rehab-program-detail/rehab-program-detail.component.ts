@@ -7,6 +7,7 @@ import {AddFormDialogComponent} from "../../../dialogs/add-form-dialog/add-form-
 import {AddModuleDialogComponent} from "../../../dialogs/add-module-dialog/add-module-dialog.component";
 import {PolymorpheusComponent, PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
 import {RehabProgramComponentsService} from "../../../services/components/rehab-program-components.service";
+import {ProgramForm} from "../../../models/program-form";
 
 @Component({
     selector: 'app-rehab-program-detail',
@@ -135,4 +136,6 @@ export class RehabProgramDetailComponent implements OnInit, OnDestroy {
         );
         this.subscription.add(dialogSub$);
     }
+
+    protected readonly ProgramForm = ProgramForm;
 }

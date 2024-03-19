@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Form} from "../../../../models/form";
+import {ProgramForm} from "../../../../models/program-form";
 
 @Component({
   selector: 'app-form-block',
@@ -8,5 +9,5 @@ import {Form} from "../../../../models/form";
 })
 export class FormBlockComponent {
   @Input("form")
-  form: Form;
+  form: ProgramForm;
 }

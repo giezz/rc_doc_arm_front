@@ -1,11 +1,10 @@
 <ng-container *ngIf="isLoaded; else loading">
   <ng-container *ngIf="hasResults; else no_results">
-    <div *ngFor="let moduleForm of moduleForms">
-      {{moduleForm.moduleName}}
-      {{moduleForm.form.name}}
-      {{moduleForm.form.description}}
-      {{moduleForm.score}}
-    </div>
+    <app-result-detail-single
+      *ngFor="let moduleForm of moduleForms"
+      [moduleForm]="moduleForm"
+    >
+    </app-result-detail-single>
   </ng-container>
 </ng-container>
 <ng-template #loading>

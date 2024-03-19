@@ -1,73 +1,77 @@
-<div class="patient-details">
-  <ng-container *ngIf="isLoaded; else loading">
-    <ng-container *ngIf="hasProgram; else no_rehab">
-      <div class="detail-block">
-        <h2>Эпикризис</h2>
-        <div class="detail-island">
-          Эпикризис
-        </div>
+<ng-container *ngIf="isLoaded; else loading">
+  <ng-container *ngIf="hasProgram; else no_rehab">
+    <div class="detail-block">
+      <h2>Выписной эпикриз</h2>
+      <div class="detail-island">
+        <span>Выписной эпикриз</span>
       </div>
-      <div class="detail-block">
-        <h2>Входная анкета</h2>
-        <div class="detail-island">
-          <app-form-block [form]="rehabProgram.startForm"></app-form-block>
-          <button
-            *ngIf="!rehabProgram.startForm"
-            tuiButton
-            appearance="secondary"
-            size="s"
-            (click)="showAddFormDialog('START')"
-          >
-            Добавить анкету
-          </button>
-        </div>
+    </div>
+    <div class="detail-block">
+      <h2>Входная анкета</h2>
+      <div class="detail-island">
+        <ng-container *ngFor="let startForm of rehabProgram.forms">
+          <ng-container *ngIf="startForm.typeId === 1">
+            <app-form-block [form]="startForm"></app-form-block>
+          </ng-container>
+        </ng-container>
+        <button
+          tuiButton
+          appearance="secondary"
+          size="s"
+          (click)="showAddFormDialog('START')"
+        >
+          Добавить анкету
+        </button>
       </div>
-      <div class="detail-block">
-        <h2>Мероприятия медицинской реабилитации</h2>
-        <div class="detail-island">
-          <div class="modules-wrapper">
-            <app-modules-block
-              *ngFor="let module of rehabProgram.modules; let i = index"
-              [module]="module"
-              [index]="i"
-              class="module-island"
-            ></app-modules-block>
-          </div>
-          <button
-            tuiButton
-            appearance="secondary"
-            size="s"
-            (click)="showAddModuleDialog()"
-          >
-            Добавить модуль
-          </button>
+    </div>
+    <div class="detail-block">
+      <h2>Мероприятия медицинской реабилитации</h2>
+      <div class="detail-island">
+        <div class="modules-wrapper">
+          <app-modules-block
+            *ngFor="let module of rehabProgram.modules; let i = index"
+            [module]="module"
+            [index]="i"
+            class="module-island"
+          ></app-modules-block>
         </div>
+        <button
+          tuiButton
+          appearance="secondary"
+          size="s"
+          (click)="showAddModuleDialog()"
+        >
+          Добавить модуль
+        </button>
       </div>
-      <div class="detail-block">
-        <h2>Выходная анкета</h2>
-        <div class="detail-island">
-          <app-form-block [form]="rehabProgram.endForm"></app-form-block>
-          <button
-            *ngIf="!rehabProgram.endForm"
-            tuiButton
-            appearance="secondary"
-            size="s"
-            (click)="showAddFormDialog('END')"
-          >
-            Добавить анкету
-          </button>
-        </div>
+    </div>
+    <div class="detail-block">
+      <h2>Выходная анкета</h2>
+      <div class="detail-island">
+        <ng-container *ngFor="let startForm of rehabProgram.forms">
+          <ng-container *ngIf="startForm.typeId === 2">
+            <app-form-block [form]="startForm"></app-form-block>
+          </ng-container>
+        </ng-container>
+        <button
+          tuiButton
+          appearance="secondary"
+          size="s"
+          (click)="showAddFormDialog('END')"
+        >
+          Добавить анкету
+        </button>
       </div>
-      <button
-        tuiButton
-        appearance="primary"
-        size="s"
-      >
-        Сохранить
-      </button>
-    </ng-container>
+    </div>
+    <button
+      tuiButton
+      appearance="primary"
+      size="s"
+    >
+      Сохранить
+    </button>
   </ng-container>
-</div>
+</ng-container>
 <ng-template #loading>
   <tui-loader [showLoader]="true" [size]="'xxl'" class="loader"></tui-loader>
 </ng-template>
