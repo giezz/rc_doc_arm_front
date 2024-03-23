@@ -137,5 +137,4 @@ export class RehabProgramDetailComponent implements OnInit, OnDestroy {
         this.subscription.add(dialogSub$);
     }
 
-    protected readonly ProgramForm = ProgramForm;
 }
