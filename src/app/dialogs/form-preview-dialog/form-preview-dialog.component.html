@@ -1,0 +1,16 @@
+<ng-container *ngIf="isLoaded">
+  <div *tuiLet="formDetails.form as form">
+    <h2>{{form.name}}</h2>
+    <p>{{form.description}}</p>
+  </div>
+  <div>
+    <div *ngFor="let question of formDetails.questions; let i = index">
+      <h1>{{i + 1}}. {{question.content}}</h1>
+      <div *ngFor="let variant of question.variants">
+        <p>{{variant.content}}</p>
+        <hr/>
+      </div>
+    </div>
+  </div>
+</ng-container>
+

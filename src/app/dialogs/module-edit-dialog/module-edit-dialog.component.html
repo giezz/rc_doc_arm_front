@@ -58,7 +58,7 @@
         <div class="module-items-container">
           <ng-container *ngFor="let moduleForm of module.forms">
             <div class="module-form-container">
-              {{moduleForm.form.name}}
+              <app-form-card [form]="moduleForm.form"></app-form-card>
               <div class="module-actions">
                 <a tuiLink [pseudo]="true">Подробнее</a>
                 <button

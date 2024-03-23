@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+}
+
+.variant-container {
+  display: flex;
+  width: 100%;
+}
+
+.answered-variant {
+  background-color: rgba(112, 182, 246, .12);
+  border-bottom: solid;
+  border-bottom-color: #70b6f6;
+}
