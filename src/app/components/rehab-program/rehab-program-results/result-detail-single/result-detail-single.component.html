@@ -1,4 +1,13 @@
-<label tuiLabel="Модуль">{{moduleForm.moduleName}}</label>
-<label tuiLabel="Анкета">{{moduleForm.form.name}}</label>
+<div class="result-info">
+  <label tuiLabel="Модуль">{{moduleForm.moduleName}}</label>
+  <label tuiLabel="Анкета">{{moduleForm.form.name}}</label>
+</div>
 <label tuiLabel="Описание">{{moduleForm.form.description}}</label>
-<label tuiLabel="Результат">{{moduleForm.score}}</label>
+<label tuiLabel="Дата прохождения">{{moduleForm.finishedAt | date}}</label>
+<div class="result-info">
+  <label tuiLabel="Результат">{{moduleForm.score}}</label>
+  <a tuiLink [pseudo]="true"
+     (click)="showFormResultsDialog()"
+  >Показать результат</a>
+</div>
+

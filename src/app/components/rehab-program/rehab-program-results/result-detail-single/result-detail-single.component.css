@@ -7,3 +7,9 @@
   border: 1px solid #ededed;
   padding: 5px 10px;
 }
+
+.result-info {
+  display: flex;
+  width: 100%;
+  gap: 15px;
+}
