@@ -3,11 +3,11 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {RouterModule} from "@angular/router";
 import {
-  TuiButtonModule,
-  TuiDialogModule, TuiLinkModule,
-  TuiLoaderModule,
-  TuiRootModule,
-  TuiTextfieldControllerModule
+    TuiButtonModule,
+    TuiDialogModule, TuiLabelModule, TuiLinkModule,
+    TuiLoaderModule,
+    TuiRootModule,
+    TuiTextfieldControllerModule
 } from "@taiga-ui/core";
 import {TUI_LANGUAGE, TUI_RUSSIAN_LANGUAGE} from '@taiga-ui/i18n';
 import {httpInterceptorProviders} from "./auth/auth-interceptor";
@@ -28,58 +28,65 @@ import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-b
 import {ModuleEditDialogComponent} from './dialogs/module-edit-dialog/module-edit-dialog.component';
 import {AddExerciseDialogComponent} from './dialogs/add-exercise-dialog/add-exercise-dialog.component';
 import {TuiAutoFocusModule, TuiLetModule} from "@taiga-ui/cdk";
-import { ModulePreviewDialogComponent } from './dialogs/module-preview-dialog/module-preview-dialog.component';
+import {ModulePreviewDialogComponent} from './dialogs/module-preview-dialog/module-preview-dialog.component';
+import {FormPreviewDialogComponent} from './dialogs/form-preview-dialog/form-preview-dialog.component';
+import {FormResultsDialogComponent} from './dialogs/form-results-dialog/form-results-dialog.component';
+import {FormCardComponent} from './components/shared/form-card/form-card.component';
 
 export function tokenGetter() {
-  return localStorage.getItem("token");
+    return localStorage.getItem("token");
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AuthComponent,
-    HomeComponent,
-    HeaderComponent,
-    PatientComponent,
-    RehabProgramComponent,
-    ModuleEditDialogComponent,
-    AddExerciseDialogComponent,
-    ModulePreviewDialogComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter,
-      }
-    }),
-    BrowserAnimationsModule,
-    TuiDialogModule,
-    TuiRootModule,
-    TuiAvatarModule,
-    TuiInputModule,
-    ReactiveFormsModule,
-    TuiButtonModule,
-    PatientModule,
-    TuiTabsModule,
-    TuiLoaderModule,
-    TuiAutoFocusModule,
-    TuiLetModule,
-    TuiTextfieldControllerModule,
-    TuiLinkModule,
-    FormsModule
-  ],
-  exports: [RouterModule],
-  providers: [
-    httpInterceptorProviders,
-    {
-      provide: TUI_LANGUAGE,
-      useValue: of(TUI_RUSSIAN_LANGUAGE),
-    }
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        AuthComponent,
+        HomeComponent,
+        HeaderComponent,
+        PatientComponent,
+        RehabProgramComponent,
+        ModuleEditDialogComponent,
+        AddExerciseDialogComponent,
+        ModulePreviewDialogComponent,
+        FormPreviewDialogComponent,
+        FormResultsDialogComponent,
+        FormCardComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        JwtModule.forRoot({
+            config: {
+                tokenGetter: tokenGetter,
+            }
+        }),
+        BrowserAnimationsModule,
+        TuiDialogModule,
+        TuiRootModule,
+        TuiAvatarModule,
+        TuiInputModule,
+        ReactiveFormsModule,
+        TuiButtonModule,
+        PatientModule,
+        TuiTabsModule,
+        TuiLoaderModule,
+        TuiAutoFocusModule,
+        TuiLetModule,
+        TuiTextfieldControllerModule,
+        TuiLinkModule,
+        FormsModule,
+        TuiLabelModule
+    ],
+    exports: [RouterModule, FormCardComponent],
+    providers: [
+        httpInterceptorProviders,
+        {
+            provide: TUI_LANGUAGE,
+            useValue: of(TUI_RUSSIAN_LANGUAGE),
+        }
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }
