@@ -1,5 +1,5 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {PatientService} from "../../services/patient.service";
 import {Patient} from "../../models/patient";
 import {Observable, of, Subscription} from "rxjs";
@@ -13,23 +13,24 @@ import {RehabProgramComponentsService} from "../../services/components/rehab-pro
 })
 export class RehabProgramComponent implements OnInit, OnDestroy {
     private activeRoute: ActivatedRoute = inject(ActivatedRoute);
+    private router: Router = inject(Router);
     private patientService: PatientService = inject(PatientService);
     private rehabProgramComponentsService: RehabProgramComponentsService = inject(RehabProgramComponentsService);
-    private location: Location = inject(Location);
 
+    private patientCode: number;
     patient$: Observable<Patient>;
 
     subscription: Subscription = new Subscription();
 
     ngOnInit(): void {
         console.log('RehabProgramComponent');
-        let patientCode: number = Number(this.activeRoute.snapshot.params['patientCode']);
-        this.getPatient(patientCode);
-        this.getPatientCurrentProgram(patientCode);
+        this.patientCode = Number(this.activeRoute.snapshot.params['patientCode']);
+        this.getPatient(this.patientCode);
+        this.getPatientCurrentProgram(this.patientCode);
     }
 
     private getPatient(code: number) {
-        let sub$ = this.patientService.getByCode(code).subscribe(
+        const sub$ = this.patientService.getByCode(code).subscribe(
             {
                 next: patient => {
                     this.rehabProgramComponentsService.setPatient(patient);
@@ -45,7 +46,7 @@ export class RehabProgramComponent implements OnInit, OnDestroy {
     }
 
     private getPatientCurrentProgram(code: number) {
-        let sub$ = this.patientService.getCurrentRehabProgram(code).subscribe(
+        const sub$ = this.patientService.getCurrentRehabProgram(code).subscribe(
             {
                 next: program => {
                     this.rehabProgramComponentsService.setProgram(program);
@@ -64,7 +65,7 @@ export class RehabProgramComponent implements OnInit, OnDestroy {
         console.log('RehabProgramComponent destroyed');
     }
 
-    goBack() {
-        this.location.back();
+    navigateToPatient(): void {
+        this.router.navigate(["/patient", this.patientCode]).then()
     }
 }
