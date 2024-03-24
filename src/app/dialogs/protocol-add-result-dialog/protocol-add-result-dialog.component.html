@@ -1,0 +1,11 @@
+<ng-container *ngIf="isLoaded">
+  <div *ngFor="let programForm of programForms">
+    {{programForm.score}}
+    {{programForm.interpretation}}
+    <button
+      tuiButton
+      (click)="addResult(programForm)"
+    >Add</button>
+  </div>
+
+</ng-container>

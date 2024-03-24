@@ -2,8 +2,6 @@ import {Component, Inject, inject, OnDestroy, OnInit} from '@angular/core';
 import {FormService} from "../../services/form.service";
 import {POLYMORPHEUS_CONTEXT} from "@tinkoff/ng-polymorpheus";
 import {TuiDialogContext} from "@taiga-ui/core";
-import {ProgramForm} from "../../models/program-form";
-import {ModuleForm} from "../../models/module-form";
 import {Subscription} from "rxjs";
 import {FormDetails} from "../../models/form-details";
 import {Variant} from "../../models/variant";
@@ -18,7 +16,7 @@ export class FormResultsDialogComponent implements OnInit, OnDestroy {
     private formService: FormService = inject(FormService);
 
     constructor(
-        @Inject(POLYMORPHEUS_CONTEXT) private readonly context: TuiDialogContext<number, ModuleForm | ProgramForm>,
+        @Inject(POLYMORPHEUS_CONTEXT) private readonly context: TuiDialogContext<null, {id: number, isProgramForm: boolean}>,
     ) {
     }
 
@@ -28,22 +26,36 @@ export class FormResultsDialogComponent implements OnInit, OnDestroy {
     subscription: Subscription = new Subscription();
 
     ngOnInit(): void {
-        console.log(typeof this.data);
-
-        const detailsSub$ = this.formService.getDetails(this.data.form.id).subscribe(
-            formDetails => {
-                this.formDetails = formDetails;
-                const resultsSub$ = this.formService.getModuleFormResults(this.data.id).subscribe(
-                    variants => {
-                        this.answeredVariants = variants;
-                        this.isLoaded = true;
-                    }
-                )
-                this.subscription.add(resultsSub$);
-            }
-        )
-        this.subscription.add(detailsSub$);
-
+        console.log(this.data.isProgramForm);
+        if (this.data.isProgramForm) {
+            const detailsSub$ = this.formService.getDetails(this.data.id).subscribe(
+                formDetails => {
+                    this.formDetails = formDetails;
+                    const resultsSub$ = this.formService.getProgramFormResults(this.data.id).subscribe(
+                        variants => {
+                            this.answeredVariants = variants;
+                            this.isLoaded = true;
+                        }
+                    )
+                    this.subscription.add(resultsSub$);
+                }
+            )
+            this.subscription.add(detailsSub$);
+        } else {
+            const detailsSub$ = this.formService.getDetails(this.data.id).subscribe(
+                formDetails => {
+                    this.formDetails = formDetails;
+                    const resultsSub$ = this.formService.getModuleFormResults(this.data.id).subscribe(
+                        variants => {
+                            this.answeredVariants = variants;
+                            this.isLoaded = true;
+                        }
+                    )
+                    this.subscription.add(resultsSub$);
+                }
+            )
+            this.subscription.add(detailsSub$);
+        }
     }
 
     ngOnDestroy(): void {

@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {RehabProgram} from "../models/rehab-program";
 import {Observable} from "rxjs";
 import {ModuleForm} from "../models/module-form";
+import {ProgramForm} from "../models/program-form";
 
 @Injectable({
     providedIn: 'root'
@@ -15,8 +16,12 @@ export class RehabProgramService {
         return this.http.get<RehabProgram[]>("http://localhost:8080/api/v1/rehabs")
     }
 
-    getResults(programId: number): Observable<ModuleForm[]> {
-        return this.http.get<ModuleForm[]>(`http://localhost:8080/api/v1/rehabs/${programId}/results`)
+    getModuleResults(programId: number): Observable<ModuleForm[]> {
+        return this.http.get<ModuleForm[]>(`http://localhost:8080/api/v1/rehabs/${programId}/modules-results"`)
+    }
+
+    getResults(programId: number): Observable<ProgramForm[]> {
+        return this.http.get<ProgramForm[]>(`http://localhost:8080/api/v1/rehabs/${programId}/results`)
     }
 
     create(patientId: number) {
