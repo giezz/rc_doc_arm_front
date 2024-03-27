@@ -1,2 +1,8 @@
-<h3>{{form.form.name}}</h3>
-<p>{{form.form.description}}</p>
+<app-form-card [form]="programForm.form"></app-form-card>
+<a tuiLink [pseudo]="true"
+   (click)="showFormDetailsDialog(programForm.form.id)"
+>Подробнее</a>
+<a *ngIf="programForm.finishedAt"
+   (click)="showFormResultsDialog(programForm)"
+   tuiLink [pseudo]="true"
+>Посмотреть результаты</a>

@@ -1,45 +1,64 @@
-<h1>Протокол телемедицинской консультации</h1>
-{{protocolForm.value | json}}
-<form [formGroup]="protocolForm" (ngSubmit)="createProtocol()">
-  <h2>Оценка состояния по шкалам</h2>
-  <div formArrayName="scales">
-    <ng-container *ngFor="let control of scales.controls; let i = index">
-        <tui-textarea
-          [tuiTextfieldCleaner]="true"
-          [tuiTextfieldLabelOutside]="true"
-          [formControlName]="i"
-          [readOnly]="true"
-          [expandable]="true"
-        >
-        </tui-textarea>
-    </ng-container>
-  </div>
-  <button
-    tuiButton
-    type="button"
-    (click)="openAddScaleDialog()"
-  >
-    Добавить шкалу
-  </button>
-  <h2>Результат реабилитации</h2>
-  <tui-textarea
-    formControlName="result"
-    [expandable]="true"
-  ></tui-textarea>
-  <h2>Реабилитационный диагноз</h2>
-  <tui-textarea
-    formControlName="result"
-    [expandable]="true"
-  ></tui-textarea>
-  <h2>Рекомендации</h2>
-  <tui-textarea
-    formControlName="recommendations"
-    [expandable]="true"
-  ></tui-textarea>
-  <button
-    tuiButton
-    type="submit"
-  >
-    Создать
-  </button>
-</form>
+<ng-container *ngIf="isLoaded">
+  <ng-container *ngIf="rehabProgram">
+    {{protocolForm.value | json}}
+    <form [formGroup]="protocolForm" (ngSubmit)="createProtocol()">
+      <h2>Оценка состояния по шкалам</h2>
+      <div formArrayName="scales" class="protocol-scales-container">
+        <div
+          *ngFor="let control of scales.controls; let i = index"
+          class="protocol-scale-container">
+          <tui-textarea
+            style="width: 100%"
+            [tuiTextfieldCleaner]="true"
+            [tuiTextfieldLabelOutside]="true"
+            [formControlName]="i"
+            [readOnly]="true"
+            [expandable]="true"
+          >
+          </tui-textarea>
+          <button
+            tuiButton
+            appearance="icon"
+            [icon]="'tuiIconClose'"
+            tuiIconButton
+            type="button"
+            (click)="removeScale(i)"
+          >
+          </button>
+        </div>
+      </div>
+      <button
+        tuiButton
+        type="button"
+        size="s"
+        (click)="openAddScaleDialog()"
+      >
+        Добавить шкалу
+      </button>
+      <h2>Результат реабилитации</h2>
+      <tui-textarea
+        formControlName="result"
+        [expandable]="true"
+      ></tui-textarea>
+      <h2>Реабилитационный диагноз</h2>
+      <tui-textarea
+        formControlName="diagnosis"
+        [expandable]="true"
+      ></tui-textarea>
+      <h2>Рекомендации</h2>
+      <tui-textarea
+        formControlName="recommendations"
+        [expandable]="true"
+      ></tui-textarea>
+      <button
+        tuiButton
+        type="submit"
+        size="s"
+      >
+        Создать
+      </button>
+    </form>
+  </ng-container>
+</ng-container>
+
+

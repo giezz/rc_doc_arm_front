@@ -9,11 +9,13 @@
     <div class="detail-block">
       <h2>Входная анкета</h2>
       <div class="detail-island">
-        <ng-container *ngFor="let startForm of rehabProgram.forms">
-          <ng-container *ngIf="startForm.typeId === 1">
-            <app-form-block [form]="startForm"></app-form-block>
+        <div class="forms-block-container">
+          <ng-container *ngFor="let startForm of rehabProgram.forms">
+            <ng-container *ngIf="startForm.typeId === 1">
+              <app-form-block [form]="startForm"></app-form-block>
+            </ng-container>
           </ng-container>
-        </ng-container>
+        </div>
         <button
           tuiButton
           appearance="secondary"
@@ -48,11 +50,13 @@
     <div class="detail-block">
       <h2>Выходная анкета</h2>
       <div class="detail-island">
-        <ng-container *ngFor="let startForm of rehabProgram.forms">
-          <ng-container *ngIf="startForm.typeId === 2">
-            <app-form-block [form]="startForm"></app-form-block>
+        <div class="forms-block-container">
+          <ng-container *ngFor="let endForm of rehabProgram.forms">
+            <ng-container *ngIf="endForm.typeId === 2">
+              <app-form-block [form]="endForm"></app-form-block>
+            </ng-container>
           </ng-container>
-        </ng-container>
+        </div>
         <button
           tuiButton
           appearance="secondary"
@@ -76,15 +80,30 @@
   <tui-loader [showLoader]="true" [size]="'xxl'" class="loader"></tui-loader>
 </ng-template>
 <ng-template #no_rehab>
-  <p>Действующая программа реабилитации отсутсвует</p>
-  <button
-    tuiButton
-    appearance="primary"
-    size="s"
-    (click)="showDialog(confirm_rehab_creation_dialog)"
+  <tui-notification
+    style="width: 400px"
+    icon=""
+    size="l"
+    status="warning"
   >
-    Создать
-  </button>
+    <div class="tui-text_body-l-2">
+      <strong>Внимание</strong>
+    </div>
+    Действующая программа реабилитации отсутсвует
+    <div
+      class="buttons tui-space_top-3"
+    >
+      <button
+        appearance="outline"
+        size="s"
+        tuiButton
+        class="tui-space_right-5"
+        (click)="showDialog(confirm_rehab_creation_dialog)"
+      >
+        Создать
+      </button>
+    </div>
+  </tui-notification>
 </ng-template>
 <ng-template
   #confirm_rehab_creation_dialog

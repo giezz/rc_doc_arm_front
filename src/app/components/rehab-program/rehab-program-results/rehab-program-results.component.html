@@ -1,10 +1,22 @@
-<ng-container *ngIf="isLoaded; else loading">
-  <ng-container *ngIf="hasResults; else no_results">
-    <app-result-detail-single
-      *ngFor="let moduleForm of moduleForms"
-      [moduleForm]="moduleForm"
+<h2>Промежуточные результаты анкет модулей</h2>
+<ng-container *ngIf="isModulesResultsLoaded; else loading">
+  <ng-container *ngIf="hasModulesResults; else no_results">
+    <app-module-form-result
+      *ngFor="let result of modulesFormsResults"
+      [result]="result"
     >
-    </app-result-detail-single>
+    </app-module-form-result>
+  </ng-container>
+</ng-container>
+<hr/>
+<h2>Результаты вводных и выходных анкет</h2>
+<ng-container *ngIf="isProgramResultsLoaded; else loading">
+  <ng-container *ngIf="hasProgramResults; else no_results">
+    <app-program-form-result
+            *ngFor="let result of programFormsResults"
+            [result]="result"
+    >
+    </app-program-form-result>
   </ng-container>
 </ng-container>
 <ng-template #loading>

@@ -31,7 +31,8 @@ import {TuiAutoFocusModule, TuiLetModule} from "@taiga-ui/cdk";
 import {ModulePreviewDialogComponent} from './dialogs/module-preview-dialog/module-preview-dialog.component';
 import {FormPreviewDialogComponent} from './dialogs/form-preview-dialog/form-preview-dialog.component';
 import {FormResultsDialogComponent} from './dialogs/form-results-dialog/form-results-dialog.component';
-import {FormCardComponent} from './components/shared/form-card/form-card.component';
+import {SharedModule} from "./components/shared/shared.module";
+import {ProtocolAddResultDialog} from "./dialogs/protocol-add-result-dialog/protocol-add-result-dialog.component";
 
 export function tokenGetter() {
     return localStorage.getItem("token");
@@ -50,7 +51,7 @@ export function tokenGetter() {
         ModulePreviewDialogComponent,
         FormPreviewDialogComponent,
         FormResultsDialogComponent,
-        FormCardComponent
+        ProtocolAddResultDialog
     ],
     imports: [
         BrowserModule,
@@ -76,9 +77,10 @@ export function tokenGetter() {
         TuiTextfieldControllerModule,
         TuiLinkModule,
         FormsModule,
-        TuiLabelModule
+        TuiLabelModule,
+        SharedModule
     ],
-    exports: [RouterModule, FormCardComponent],
+    exports: [RouterModule],
     providers: [
         httpInterceptorProviders,
         {

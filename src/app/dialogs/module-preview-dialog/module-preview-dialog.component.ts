@@ -64,10 +64,12 @@ export class ModulePreviewDialogComponent implements OnInit, OnDestroy {
     }
 
     showFormResultsDialog(moduleForm: ModuleForm) {
+        const id = moduleForm.id;
+        const formId = moduleForm.form.id;
         this.formResultDialog = this.dialogService.open<void>(
             new PolymorpheusComponent(FormResultsDialogComponent, this.injector),
             {
-                data: moduleForm,
+                data: {id: id, formId: formId, isProgramForm: false},
                 closeable: true,
                 size: 'auto'
             }

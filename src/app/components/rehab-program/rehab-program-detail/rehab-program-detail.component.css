@@ -16,3 +16,11 @@
 .module-island:last-child{
   margin-bottom: 1rem;
 }
+
+.forms-block-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}

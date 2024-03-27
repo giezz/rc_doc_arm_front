@@ -28,6 +28,7 @@ export class FormPreviewDialogComponent implements OnInit, OnDestroy {
             formDetails => {
                 this.formDetails = formDetails;
                 this.isLoaded = true;
+                console.log(formDetails.form.id);
             }
         )
         this.subscription.add(sub$);

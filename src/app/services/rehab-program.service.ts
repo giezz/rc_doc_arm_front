@@ -1,9 +1,11 @@
 import {inject, Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {RehabProgram} from "../models/rehab-program";
 import {Observable} from "rxjs";
 import {ModuleForm} from "../models/module-form";
 import {ProgramForm} from "../models/program-form";
+import {ModuleFormResult} from "../models/module-form-result";
+import {ProgramFormResult} from "../models/program-form-result";
 
 @Injectable({
     providedIn: 'root'
@@ -16,18 +18,39 @@ export class RehabProgramService {
         return this.http.get<RehabProgram[]>("http://localhost:8080/api/v1/rehabs")
     }
 
-    getModuleResults(programId: number): Observable<ModuleForm[]> {
-        return this.http.get<ModuleForm[]>(`http://localhost:8080/api/v1/rehabs/${programId}/modules-results"`)
+    getModulesFormsResults(programId: number, excludeIds: number[]): Observable<ModuleFormResult[]> {
+        let params = new HttpParams().set('excludeIds', excludeIds.join(','));
+
+        return this.http.get<ModuleFormResult[]>(
+            `http://localhost:8080/api/v1/rehabs/${programId}/modules-forms-results`,
+            {
+                params: params
+            }
+        )
     }
 
-    getResults(programId: number): Observable<ProgramForm[]> {
-        return this.http.get<ProgramForm[]>(`http://localhost:8080/api/v1/rehabs/${programId}/results`)
+    getProgramFormsResults(programId: number, excludeIds: number[]): Observable<ProgramFormResult[]> {
+        let params = new HttpParams().set('excludeIds', excludeIds.join(','));
+
+        return this.http.get<ProgramFormResult[]>(
+            `http://localhost:8080/api/v1/rehabs/${programId}/program-forms-results`,
+            {
+                params: params
+            }
+        );
     }
 
     create(patientId: number) {
         return this.http.post<RehabProgram>(
             'http://localhost:8080/api/v1/rehabs',
             {patientId: patientId})
+    }
+
+    createProtocol(programId: number, req: any) {
+        this.http.post(
+            `http://localhost:8080/api/v1/rehabs/${programId}/results`,
+            {}
+        )
     }
 
     addForm(programId: number, formId: number, formType: string) {

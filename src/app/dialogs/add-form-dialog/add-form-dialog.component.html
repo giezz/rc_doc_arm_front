@@ -6,7 +6,7 @@
 </tui-input>
 <div class="dialog-form-frames-container" *tuiLet="forms$ | async as forms">
   <div *ngFor="let form of forms" class="dialog-form-frame">
-
+    <app-form-card [form]="form"></app-form-card>
     <button
       tuiButton
       size="s"

@@ -8,7 +8,7 @@ import {
     TuiButtonModule,
     TuiLabelModule,
     TuiLinkModule,
-    TuiLoaderModule,
+    TuiLoaderModule, TuiNotificationModule,
     TuiTextfieldControllerModule
 } from "@taiga-ui/core";
 import {AddFormDialogComponent} from "../../dialogs/add-form-dialog/add-form-dialog.component";
@@ -20,7 +20,9 @@ import {ModulesBlockComponent} from './rehab-program-detail/modules-block/module
 import {RehabProgramResultsComponent} from './rehab-program-results/rehab-program-results.component';
 import {ProtocolComponent} from './protocol/protocol.component';
 import {TuiAxesModule, TuiLineChartModule, TuiLineDaysChartModule} from "@taiga-ui/addon-charts";
-import { ResultDetailSingleComponent } from './rehab-program-results/result-detail-single/result-detail-single.component';
+import {SharedModule} from "../shared/shared.module";
+import {ModuleFormResultComponent} from "./rehab-program-results/module-form-result/module-form-result.component";
+import { ProgramFormResultComponent } from './rehab-program-results/program-form-result/program-form-result.component';
 
 
 @NgModule({
@@ -32,7 +34,8 @@ import { ResultDetailSingleComponent } from './rehab-program-results/result-deta
         ModulesBlockComponent,
         RehabProgramResultsComponent,
         ProtocolComponent,
-        ResultDetailSingleComponent
+        ModuleFormResultComponent,
+        ProgramFormResultComponent
     ],
     imports: [
         CommonModule,
@@ -51,7 +54,9 @@ import { ResultDetailSingleComponent } from './rehab-program-results/result-deta
         TuiInputDateRangeModule,
         TuiLinkModule,
         TuiTextareaModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        SharedModule,
+        TuiNotificationModule
     ]
 })
 export class RehabProgramModule {

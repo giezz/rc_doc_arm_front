@@ -13,14 +13,18 @@ export class FormService {
     private http: HttpClient = inject(HttpClient);
 
     getAll(): Observable<Form[]> {
-        return this.http.get<Form[]>("http://localhost:8080/api/v1/forms")
+        return this.http.get<Form[]>("http://localhost:8080/api/v1/forms");
     }
 
     getDetails(formId: number): Observable<FormDetails> {
-        return this.http.get<FormDetails>(`http://localhost:8080/api/v1/forms/${formId}/details`)
+        return this.http.get<FormDetails>(`http://localhost:8080/api/v1/forms/${formId}/details`);
     }
 
-    getModuleFormResults(moduleFormId: number) {
-        return this.http.get<Variant[]>(`http://localhost:8080/api/v1/forms/module-form/${moduleFormId}/results`)
+    getModuleFormResults(moduleFormId: number): Observable<Variant[]> {
+        return this.http.get<Variant[]>(`http://localhost:8080/api/v1/forms/module-form/${moduleFormId}/results`);
+    }
+
+    getProgramFormResults(programFormId: number): Observable<Variant[]> {
+        return this.http.get<Variant[]>(`http://localhost:8080/api/v1/forms/program-form/${programFormId}/results`);
     }
 }

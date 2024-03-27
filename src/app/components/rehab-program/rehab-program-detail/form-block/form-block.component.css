@@ -1,0 +1,8 @@
+:host {
+  width: 250px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #EDEDED;
+  background: #FFF;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.10);
+}

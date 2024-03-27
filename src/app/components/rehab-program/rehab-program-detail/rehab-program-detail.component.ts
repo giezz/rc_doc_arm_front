@@ -96,7 +96,6 @@ export class RehabProgramDetailComponent implements OnInit, OnDestroy {
     showAddModuleDialog() {
         const dialogSub$ = this.addModuleDialog.subscribe({
                 next: name => {
-                    console.info(`module name = ${name}`);
                     const programSub$ = this.rehabProgramService.addModule(name, this.rehabProgram.id).subscribe(
                         program => {
                             this.rehabProgram = program;

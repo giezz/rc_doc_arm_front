@@ -18,7 +18,7 @@ export class ProtocolAddResultDialog implements OnInit, OnDestroy {
     private rehabProgramComponentsService: RehabProgramComponentsService = inject(RehabProgramComponentsService);
 
     constructor(
-        @Inject(POLYMORPHEUS_CONTEXT) private readonly context: TuiDialogContext<ProgramForm>,
+        @Inject(POLYMORPHEUS_CONTEXT) private readonly context: TuiDialogContext<ProgramForm, ProgramForm[]>,
     ) {}
 
     programForms: ProgramForm[] = [];
@@ -27,33 +27,22 @@ export class ProtocolAddResultDialog implements OnInit, OnDestroy {
     subscription: Subscription = new Subscription();
 
     ngOnInit() {
-        const sub$ = this.rehabProgramComponentsService.program$.subscribe(
-            {
-                next: program => {
-                    if (program != null) {
-                        this.getResults(program.id);
-                    }
-                }
-            }
-        );
-        this.subscription.add(sub$);
+        this.programForms = this.data;
     }
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
     }
 
-    getResults(programId: number) {
-        const sub$ = this.rehabProgramService.getResults(programId).subscribe(
-            programForms => {
-                this.programForms = programForms;
-                this.isLoaded = true;
-            }
-        );
-        this.subscription.add(sub$);
+    get data() {
+        return this.context.data
     }
 
     addResult(programForm: ProgramForm) {
         this.context.$implicit.next(programForm);
+        const index = this.programForms.indexOf(programForm, 0);
+        if (index > -1) {
+            this.programForms.splice(index, 1);
+        }
     }
 }

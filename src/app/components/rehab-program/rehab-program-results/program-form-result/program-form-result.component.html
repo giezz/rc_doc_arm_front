@@ -1,0 +1,13 @@
+<div class="result-info">
+    <label tuiLabel="Модуль">ТИП :{{result.typeId}}</label>
+    <label tuiLabel="Анкета">{{result.form.name}}</label>
+</div>
+<label tuiLabel="Описание">{{result.form.description}}</label>
+<label tuiLabel="Дата прохождения">{{result.finishedAt | date}}</label>
+<div class="result-info">
+    <label tuiLabel="Количетсво баллов">{{result.score}}</label>
+    <label tuiLabel="Результат">{{result.interpretation}}</label>
+    <a tuiLink [pseudo]="true"
+       (click)="showFormResultsDialog()"
+    >Показать ответы</a>
+</div>

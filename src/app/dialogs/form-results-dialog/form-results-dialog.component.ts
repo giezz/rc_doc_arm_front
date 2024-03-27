@@ -16,7 +16,7 @@ export class FormResultsDialogComponent implements OnInit, OnDestroy {
     private formService: FormService = inject(FormService);
 
     constructor(
-        @Inject(POLYMORPHEUS_CONTEXT) private readonly context: TuiDialogContext<null, {id: number, isProgramForm: boolean}>,
+        @Inject(POLYMORPHEUS_CONTEXT) private readonly context: TuiDialogContext<null, {id: number, formId: number, isProgramForm: boolean}>,
     ) {
     }
 
@@ -28,7 +28,7 @@ export class FormResultsDialogComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         console.log(this.data.isProgramForm);
         if (this.data.isProgramForm) {
-            const detailsSub$ = this.formService.getDetails(this.data.id).subscribe(
+            const detailsSub$ = this.formService.getDetails(this.data.formId).subscribe(
                 formDetails => {
                     this.formDetails = formDetails;
                     const resultsSub$ = this.formService.getProgramFormResults(this.data.id).subscribe(
@@ -42,7 +42,7 @@ export class FormResultsDialogComponent implements OnInit, OnDestroy {
             )
             this.subscription.add(detailsSub$);
         } else {
-            const detailsSub$ = this.formService.getDetails(this.data.id).subscribe(
+            const detailsSub$ = this.formService.getDetails(this.data.formId).subscribe(
                 formDetails => {
                     this.formDetails = formDetails;
                     const resultsSub$ = this.formService.getModuleFormResults(this.data.id).subscribe(
