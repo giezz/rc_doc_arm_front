@@ -3,9 +3,9 @@
     {{protocolForm.value | json}}
     <form [formGroup]="protocolForm" (ngSubmit)="createProtocol()">
       <h2>Оценка состояния по шкалам</h2>
-      <div formArrayName="scales" class="protocol-scales-container">
+      <div formArrayName="programScales" class="protocol-scales-container">
         <div
-          *ngFor="let control of scales.controls; let i = index"
+          *ngFor="let control of programScales.controls; let i = index"
           class="protocol-scale-container">
           <tui-textarea
             style="width: 100%"
@@ -22,7 +22,7 @@
             [icon]="'tuiIconClose'"
             tuiIconButton
             type="button"
-            (click)="removeScale(i)"
+            (click)="removeProgramFormResult(i)"
           >
           </button>
         </div>
@@ -31,7 +31,7 @@
         tuiButton
         type="button"
         size="s"
-        (click)="openAddScaleDialog()"
+        (click)="openDialog(scales_dialog)"
       >
         Добавить шкалу
       </button>
@@ -60,5 +60,20 @@
     </form>
   </ng-container>
 </ng-container>
-
+<ng-template
+  #scales_dialog
+  let-observer
+>
+  <ng-container *tuiLet="programFormsResults | async as programResults">
+    <div *ngFor="let result of programResults">
+      <p>{{result.finishedAt | date}}</p>
+    </div>
+  </ng-container>
+  <hr/>
+  <ng-container *tuiLet="modulesFormsResults | async as programResults">
+    <div *ngFor="let result of programResults">
+      <p>{{result.finishedAt | date}}</p>
+    </div>
+  </ng-container>
+</ng-template>
 
