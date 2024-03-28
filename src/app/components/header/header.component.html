@@ -8,7 +8,12 @@
     <div class="account-info">
       {{accountName}}
       <tui-avatar [text]="accountName"></tui-avatar>
-      <button (click)="logout()">Exit</button>
+      <button
+        tuiIconButton
+        appearance="icon"
+        [icon]="'tuiIconLogOutLarge'"
+        (click)="logout()"
+      >Exit</button>
     </div>
   </div>
 </header>
