@@ -6,6 +6,7 @@ import {ModuleForm} from "../models/module-form";
 import {ProgramForm} from "../models/program-form";
 import {ModuleFormResult} from "../models/module-form-result";
 import {ProgramFormResult} from "../models/program-form-result";
+import {CreateProtocolRequest} from "../models/request/create-protocol-request";
 
 @Injectable({
     providedIn: 'root'
@@ -46,10 +47,10 @@ export class RehabProgramService {
             {patientId: patientId})
     }
 
-    createProtocol(programId: number, req: any) {
-        this.http.post(
-            `http://localhost:8080/api/v1/rehabs/${programId}/results`,
-            {}
+    createProtocol(programId: number, req: CreateProtocolRequest) {
+        return this.http.post<void>(
+            `http://localhost:8080/api/v1/rehabs/${programId}/protocol`,
+            req
         )
     }
 

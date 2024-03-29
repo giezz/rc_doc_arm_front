@@ -1,0 +1,8 @@
+<label [tuiLabel]="'Модуль'">{{formResult.moduleName}}</label>
+<app-form-card [form]="formResult.form"></app-form-card>
+<div style="display: flex;">
+  <label [tuiLabel]="'Дата прохождения'">{{formResult.finishedAt | date}}</label>
+  <label [tuiLabel]="'Количество баллов'">{{formResult.score}}</label>
+  <a tuiLink [pseudo]="true" (click)="showModuleFormResult(formResult.id, formResult.form.id)">Посмотреть результаты</a>
+</div>
+<label [tuiLabel]="'Интерпретация'">{{formResult.interpretation}}</label>
