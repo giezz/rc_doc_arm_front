@@ -1,8 +1,5 @@
 .patient-search {
   width: 100%;
-  padding-top: 20px;
-  align-items: center;
-  gap: 10px;
 }
 
 .input-search-patient {
@@ -33,4 +30,23 @@ tui-badge {
 
 .patients-table {
   width: 100%;
+}
+
+td,
+th {
+  white-space: nowrap;
+  border-color: transparent;
+  border-right-color: var(--tui-base-04);
+
+  &:last-child {
+    border-right-color: transparent;
+  }
+}
+
+tbody {
+  border-color: transparent;
+}
+
+tr:nth-child(even) td {
+  background: var(--tui-base-02);
 }

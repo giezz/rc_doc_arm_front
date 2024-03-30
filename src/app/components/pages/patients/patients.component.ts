@@ -3,6 +3,8 @@ import {PatientService} from "../../../services/patient.service";
 import {Patient} from "../../../models/patient";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Observable} from "rxjs";
+import {TuiStatus} from "@taiga-ui/kit";
+import {Status} from "../../../models/status";
 
 @Component({
   selector: 'app-patients',
@@ -15,18 +17,16 @@ export class PatientsComponent implements OnInit, OnDestroy {
 
   patients$: Observable<Patient[]>;
 
-  readonly columns: string[] = ['lastName', 'firstName', 'middleName', 'gender', 'birthDate', 'deathDate', 'status']
+  readonly columns: string[] = ['lastName', 'firstName', 'middleName', 'gender', 'birthDate', 'status', 'action']
 
   readonly items = ['Статус 1', 'Статус 2', 'Статус 3'];
   readonly gender = ['Мужской', 'Женский']
 
   ngOnInit(): void {
-    console.log('PatientsComponent');
     this.onSubmit()
   }
 
   ngOnDestroy() {
-    console.log('PatientsComponent destroyed');
   }
 
   searchPatients = new FormGroup({
@@ -41,11 +41,23 @@ export class PatientsComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.patients$ = this.patientService.getAll(this.searchPatients.value)
-    // this.patientService.getAll(this.searchPatients.value).subscribe(
-    //   data => {
-    //     console.log(data)
-    //     this.patients = data
-    //   }
-    // )
   }
+
+    statusResolver(status: Status): TuiStatus {
+        switch (status.name) {
+            case "Нуждается в реабилитации": {
+                return "warning"
+            }
+            case "Проходил реабилитацию ранее": {
+                return "info";
+            }
+            case "Проходит реабилитацию": {
+                return "primary";
+            }
+            default: {
+                return "error";
+            }
+        }
+    }
+
 }

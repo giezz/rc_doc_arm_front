@@ -91,13 +91,13 @@
 </div>
 
 <table
-  *ngIf="patients$ | async as patients"
   tuiTable
+  *ngIf="patients$ | async as patients"
   [columns]="columns"
   size="m"
   class="patients-table"
 >
-  <thead tuiThead>
+  <thead>
   <tr tuiThGroup>
     <th tuiTh *tuiHead="'lastName'">
       Фамилия
@@ -114,11 +114,10 @@
     <th tuiTh *tuiHead="'birthDate'">
       Дата рождения
     </th>
-    <th tuiTh *tuiHead="'deathDate'">
-      Дата смерти
-    </th>
     <th tuiTh *tuiHead="'status'">
       Статус
+    </th>
+    <th tuiTh *tuiHead="'action'" [sorter]="null">
     </th>
   </tr>
   </thead>
@@ -129,12 +128,60 @@
   >
   <tr
     *ngFor="let patient of sortedPatients"
-    routerLink="/patient/{{patient.patientCode}}"
     tuiTr
   >
-    <td tuiTd *tuiCell="'status'">
-      <tui-badge status="info" size="l">{{patient.patientStatus.name}}</tui-badge>
+    <td tuiTd *tuiCell="'lastName'">
+      {{patient.lastName}}
     </td>
+    <td tuiTd *tuiCell="'firstName'">
+      {{patient.firstName}}
+    </td>
+    <td tuiTd *tuiCell="'middleName'">
+      {{patient.middleName}}
+    </td>
+    <td tuiTd *tuiCell="'gender'">
+      {{patient.gender}}
+    </td>
+    <td tuiTd *tuiCell="'birthDate'">
+      {{patient.birthDate}}
+    </td>
+    <td tuiTd *tuiCell="'birthDate'">
+      {{patient.birthDate}}
+    </td>
+    <td tuiTd *tuiCell="'action'">
+      <tui-hosted-dropdown
+        [content]="dropdown"
+      >
+        <button
+          tuiIconButton
+          appearance="flat"
+          [icon]="'tuiIconMoreVertical'"
+          size="s"
+          shape="rounded"
+          type="button"
+        ></button>
+      </tui-hosted-dropdown>
+    </td>
+    <td tuiTd *tuiCell="'status'">
+      <tui-badge
+        [status]="statusResolver(patient.patientStatus)"
+        [value]="patient.patientStatus.name"
+        class="tui-space_right-2 tui-space_bottom-2"
+      ></tui-badge>
+    </td>
+    <ng-template #dropdown>
+      <tui-data-list>
+        <tui-opt-group>
+          <button
+            tuiOption
+            [routerLink]="['/patient', patient.patientCode]"
+          >
+            Перейти к пациенту
+          </button>
+        </tui-opt-group>
+      </tui-data-list>
+    </ng-template>
   </tr>
   </tbody>
 </table>
+
