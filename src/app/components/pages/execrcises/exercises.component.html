@@ -1,0 +1,19 @@
+<form (ngSubmit)="searchExercises()">
+  <div class="t">
+    <tui-input>
+      Название упражнения
+    </tui-input>
+    <button
+      tuiButton
+      type="submit"
+    >
+      Найти
+    </button>
+  </div>
+</form>
+<div class="exercises-container">
+  <app-exercise-card
+    *ngFor="let exercise of exercises$ | async"
+    [exercise]="exercise">
+  </app-exercise-card>
+</div>

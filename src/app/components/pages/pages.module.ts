@@ -17,7 +17,7 @@ import {
     TuiSelectModule,
     TuiTabsModule
 } from "@taiga-ui/kit";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {
     TuiButtonModule, TuiDataListModule,
     TuiErrorModule,
@@ -28,6 +28,9 @@ import {
 import {TuiTableModule} from "@taiga-ui/addon-table";
 import {TuiLetModule} from "@taiga-ui/cdk";
 import {RehabDetailCardComponent} from './rehab-programs-list/rehab-detail-card/rehab-detail-card.component';
+import { ExercisesComponent } from './execrcises/exercises.component';
+import {SharedModule} from "../shared/shared.module";
+import { FormsComponent } from './forms/forms.component';
 
 
 @NgModule({
@@ -36,7 +39,9 @@ import {RehabDetailCardComponent} from './rehab-programs-list/rehab-detail-card/
     RehabProgramsListComponent,
     PagesComponent,
     NavigationComponent,
-    RehabDetailCardComponent
+    RehabDetailCardComponent,
+    ExercisesComponent,
+    FormsComponent
   ],
     imports: [
         CommonModule,
@@ -58,7 +63,9 @@ import {RehabDetailCardComponent} from './rehab-programs-list/rehab-detail-card/
         TuiButtonModule,
         TuiLabelModule,
         TuiHostedDropdownModule,
-        TuiDataListModule
+        TuiDataListModule,
+        SharedModule,
+        FormsModule
     ]
 })
 export class PagesModule { }

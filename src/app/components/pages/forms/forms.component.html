@@ -1,0 +1,19 @@
+<form (ngSubmit)="searchForms()">
+  <div class="t">
+    <tui-input>
+      Название анкеты
+    </tui-input>
+    <button
+      tuiButton
+      type="submit"
+    >
+      Найти
+    </button>
+  </div>
+</form>
+<div class="forms-container">
+  <app-form-card
+    *ngFor="let form of forms$ | async"
+    [form]="form">
+  </app-form-card>
+</div>
