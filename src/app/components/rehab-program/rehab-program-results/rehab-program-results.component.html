@@ -1,24 +1,25 @@
-<h2>Промежуточные результаты анкет модулей</h2>
-<ng-container *ngIf="isModulesResultsLoaded; else loading">
-  <ng-container *ngIf="hasModulesResults; else no_results">
-    <app-module-form-result
-      *ngFor="let result of modulesFormsResults"
-      [result]="result"
-    >
-    </app-module-form-result>
-  </ng-container>
-</ng-container>
-<hr/>
 <h2>Результаты вводных и выходных анкет</h2>
 <ng-container *ngIf="isProgramResultsLoaded; else loading">
   <ng-container *ngIf="hasProgramResults; else no_results">
-    <app-program-form-result
-            *ngFor="let result of programFormsResults"
-            [result]="result"
+    <app-form-result-card
+      *ngFor="let result of programFormsResults"
+      [formResult]="result"
     >
-    </app-program-form-result>
+    </app-form-result-card>
   </ng-container>
 </ng-container>
+<hr/>
+<h2>Промежуточные результаты анкет модулей</h2>
+<ng-container *ngIf="isModulesResultsLoaded; else loading">
+  <ng-container *ngIf="hasModulesResults; else no_results">
+    <app-module-form-result-card
+      *ngFor="let result of modulesFormsResults"
+      [formResult]="result"
+    >
+    </app-module-form-result-card>
+  </ng-container>
+</ng-container>
+
 <ng-template #loading>
   <tui-loader [showLoader]="true" [size]="'xxl'" class="loader"></tui-loader>
 </ng-template>
