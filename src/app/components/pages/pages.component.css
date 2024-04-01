@@ -1,3 +1,12 @@
 .pages-container {
   margin-top: 20px;
 }
+
+.input-search-patient {
+  width: 100%;
+}
+
+.input-search-patient-line {
+  display: flex;
+  gap: 10px;
+}
