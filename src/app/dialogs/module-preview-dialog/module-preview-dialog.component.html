@@ -6,7 +6,7 @@
     <ng-container *ngFor="let blockId of [1, 2, 3]">
       <div class="detail-block">
         <h2>{{ blockId === 1 ? 'Разминочный блок' : (blockId === 2 ? 'Основной блок' : 'Заминочный блок') }}</h2>
-        <div class="detail-island">
+        <div class="detail-islandd">
           <div class="module-items-container">
             <ng-container *ngFor="let exercise of module.exercises">
               <ng-container *ngIf="exercise.blockId === blockId">
@@ -27,7 +27,7 @@
     </ng-container>
     <div class="detail-block">
       <h2>Анкеты</h2>
-      <div class="detail-island">
+      <div class="detail-islandd">
         <div class="module-items-container">
           <ng-container *ngFor="let moduleForm of module.forms">
             <div class="module-form-container">
