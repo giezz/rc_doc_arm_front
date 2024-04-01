@@ -6,7 +6,7 @@ import {Exercise} from "../../../models/exercise";
 @Component({
   selector: 'app-exercises',
   templateUrl: './exercises.component.html',
-  styleUrls: ['./exercises.component.css']
+  styleUrls: ['./exercises.component.css', '../pages.component.css']
 })
 export class ExercisesComponent implements OnInit, OnDestroy {
 
