@@ -7,7 +7,7 @@ import {Patient} from "../../models/patient";
 })
 export class PatientComponentsService {
 
-    private patientSubject = new ReplaySubject<Patient>(1);
+    private patientSubject = new ReplaySubject<Patient | null>(1);
     public patient$ = this.patientSubject.asObservable();
 
     public setPatient(patient: Patient) {

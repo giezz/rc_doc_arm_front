@@ -1,25 +1,25 @@
-<ng-container *tuiLet="patient$ | async as patient">
+<ng-container *ngIf="!!patient">
   <div class="detail-island" >
     <label tuiLabel="Пол"></label>
     <div>
-      <label tuiLabel="Дата">{{patient?.birthDate}}</label>
+      <label tuiLabel="Дата">{{patient.birthDate}}</label>
       <label tuiLabel="Возраст"></label>
     </div>
     <label tuiLabel="Дата смерти">-</label>
-    <label tuiLabel="Статус">{{patient?.patientStatus?.name}}</label>
-    <label tuiLabel="Место жительства">{{patient?.address}}</label>
-    <label tuiLabel="Данные о работе">{{patient?.workPlaceData}}</label>
-    <label tuiLabel="Заметка врача">{{patient?.bookmark}}</label>
+    <label tuiLabel="Статус">{{patient.patientStatus.name}}</label>
+    <label tuiLabel="Место жительства">{{patient.address}}</label>
+    <label tuiLabel="Данные о работе">{{patient.workPlaceData}}</label>
+    <label tuiLabel="Заметка врача">{{patient.bookmark}}</label>
   </div>
   <div class="detail-island">
-    <label tuiLabel="Серия и номер паспорта">{{patient?.passport?.series + ' ' + patient?.passport?.number}}</label>
-    <label tuiLabel="Выдан">{{patient?.passport?.issued}}</label>
-    <label tuiLabel="Дата выдачи">{{patient?.passport?.issuedDate}}</label>
+    <label tuiLabel="Серия и номер паспорта">{{patient.passport?.series + ' ' + patient.passport.number}}</label>
+    <label tuiLabel="Выдан">{{patient.passport.issued}}</label>
+    <label tuiLabel="Дата выдачи">{{patient.passport.issuedDate}}</label>
   </div>
   <div class="detail-island">
-    <label tuiLabel="Номер">{{patient?.snils}}</label>
+    <label tuiLabel="Номер">{{patient.snils}}</label>
   </div>
   <div class="detail-island">
-    <label tuiLabel="Номер">{{patient?.polis}}</label>
+    <label tuiLabel="Номер">{{patient.polis}}</label>
   </div>
 </ng-container>

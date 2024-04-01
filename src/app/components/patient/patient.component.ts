@@ -17,7 +17,7 @@ export class PatientComponent implements OnInit, OnDestroy {
     private patientService: PatientService = inject(PatientService);
     private patientComponentService: PatientComponentsService = inject(PatientComponentsService);
 
-    patient$: Observable<Patient>;
+    patient: Patient;
     private patientCode: number;
 
     subscription: Subscription = new Subscription();
@@ -27,7 +27,7 @@ export class PatientComponent implements OnInit, OnDestroy {
         const sub$ = this.patientService.getByCode(this.patientCode).subscribe(
             patient => {
                 this.patientComponentService.setPatient(patient);
-                this.patient$ = this.patientComponentService.patient$;
+                this.patient = patient;
             }
         )
         this.subscription.add(sub$);
