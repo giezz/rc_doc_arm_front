@@ -1,1 +1,27 @@
-<p>rehab-programs-history works!</p>
+<ng-container *ngIf="isLoaded; else loading">
+  <div *ngFor="let program of rehabPrograms">
+    <label [tuiLabel]="'Врач'">{{program.doctor.lastName}} {{program.doctor.firstName}} {{program.doctor.middleName}}</label>
+    <div *ngIf="program.isCurrent; else not_current" class="rehab-program-status-info">
+      <label [tuiLabel]="'Статус'">
+        <tui-badge
+          status="primary"
+          [value]="'Текущая'"
+        ></tui-badge>
+      </label>
+      <label [tuiLabel]="'Дата начала'">{{program.startDate | date}}</label>
+    </div>
+    <ng-template #not_current>
+      <label [tuiLabel]="'Статус'">
+        <tui-badge
+          status="info"
+          [value]="'Завершена'"
+        ></tui-badge>
+      </label>
+      <label [tuiLabel]="'Дата начала'">{{program.startDate | date}}</label>
+      <label [tuiLabel]="'Дата окончания'">{{program.endDate | date}}</label>
+    </ng-template>
+  </div>
+</ng-container>
+<ng-template #loading>
+  <h1>Z</h1>
+</ng-template>
