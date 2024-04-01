@@ -16,17 +16,10 @@ export class RehabDetailCardComponent {
 
     statusResolver(rehabProgram: RehabProgram): {status: TuiStatus, value: string} {
         if (rehabProgram.isCurrent) {
-            return {status: "info", value: "В процессе"}
+            return {status: "primary", value: "Текущая"}
         } else {
             return {status: "success", value: "Завершена"}
         }
     }
 
-    navigateToPatient() {
-
-    }
-
-    navigateToRehabProgram() {
-
-    }
 }

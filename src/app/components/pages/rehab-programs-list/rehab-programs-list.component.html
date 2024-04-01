@@ -1,4 +1,86 @@
-<div class="rehab-programs-container">
+<form [formGroup]="searchProgramForm" (ngSubmit)="searchRehabPrograms()">
+  {{searchProgramForm.value | json}}
+  <div class="input-search-patient-line">
+    <tui-input
+      class="input-search-patient"
+      formControlName="lastName"
+      tuiTextfieldSize="m"
+      [tuiTextfieldCleaner]="true"
+      [tuiTextfieldLabelOutside]="true"
+    >
+      Фамилия
+    </tui-input>
+    <tui-input
+      class="input-search-patient"
+      formControlName="firstName"
+      tuiTextfieldSize="m"
+      [tuiTextfieldCleaner]="true"
+      [tuiTextfieldLabelOutside]="true"
+    >
+      Имя
+    </tui-input>
+    <tui-input
+      class="input-search-patient"
+      formControlName="middleName"
+      tuiTextfieldSize="m"
+      [tuiTextfieldCleaner]="true"
+      [tuiTextfieldLabelOutside]="true"
+    >
+      Отчество
+    </tui-input>
+    <button
+      tuiButton
+      size="m"
+      type="submit"
+    >
+      Найти
+    </button>
+  </div>
+  <tui-accordion class="tui-space_top-3" [rounded]="false">
+    <tui-accordion-item
+      size="s"
+      [borders]="null"
+      [noPadding]="true"
+    >
+      Фильтры
+      <ng-template tuiAccordionItemContent>
+        <div class="t">
+          <tui-input-date-range
+            tuiTextfieldSize="m"
+            formControlName="dateRange"
+            tuiUnfinishedValidator="Выберите даты"
+            [tuiTextfieldCleaner]="true"
+            [max]="max"
+            [min]="min"
+          >
+            Выберите даты
+            <input
+              placeholder="From - To"
+              tuiTextfield
+            />
+          </tui-input-date-range>
+          <tui-multi-select
+            formControlName="status"
+            class="search"
+            tuiTextfieldSize="m"
+            [tuiTextfieldCleaner]="true"
+            [editable]="false"
+            [expandable]="true"
+            [tuiTextfieldLabelOutside]="true"
+          >
+            Статус
+            <tui-data-list-wrapper
+              *tuiDataList
+              tuiMultiSelectGroup
+              [items]="items"
+            ></tui-data-list-wrapper>
+          </tui-multi-select>
+        </div>
+      </ng-template>
+    </tui-accordion-item>
+  </tui-accordion>
+</form>
+<div class="rehab-programs-container tui-space_top-3">
   <app-rehab-detail-card
     *ngFor="let program of rehabPrograms"
     [rehabProgram]="program"
