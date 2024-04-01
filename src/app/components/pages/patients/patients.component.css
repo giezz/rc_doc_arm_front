@@ -2,16 +2,6 @@
   width: 100%;
 }
 
-.input-search-patient {
-  width: 100%;
-}
-
-.input-search-patient-line {
-  display: flex;
-  gap: 10px;
-
-}
-
 .input-filters {
   padding-top: 10px;
   padding-bottom: 10px;

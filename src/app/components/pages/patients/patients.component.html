@@ -1,6 +1,6 @@
 <div class="patient-search">
   <form [formGroup]="searchPatients" (ngSubmit)="onSubmit()">
-    Value {{searchPatients.value | json}}
+    {{searchPatients.value | json}}
     <div class="input-search-patient-line">
       <tui-input
         class="input-search-patient"
@@ -40,53 +40,61 @@
         Найти
       </button>
     </div>
-    <div class="input-filters">
-      <tui-multi-select
-        formControlName="status"
-        class="search"
-        tuiTextfieldSize="m"
-        [tuiTextfieldCleaner]="true"
-        [editable]="false"
-        [expandable]="true"
-        [tuiTextfieldLabelOutside]="true"
+    <tui-accordion class="tui-space_top-3">
+      <tui-accordion-item
+        size="s"
       >
-        Статус
-        <tui-data-list-wrapper
-          *tuiDataList
-          tuiMultiSelectGroup
-          [items]="items"
-        ></tui-data-list-wrapper>
-      </tui-multi-select>
-      <tui-select
-        formControlName="gender"
-        [tuiTextfieldCleaner]="true"
-        class="search"
-        tuiTextfieldSize="m"
-      >
-        Пол
-        <tui-data-list-wrapper
-          *tuiDataList
-          [items]="gender"
-        ></tui-data-list-wrapper>
-      </tui-select>
-      <tui-input-date
-        class="search"
-        [tuiTextfieldCleaner]="true"
-        tuiTextfieldSize="m"
-        formControlName="birthDate"
-        tuiUnfinishedValidator="Заполните дату"
-      >
-        Дата рождения
-      </tui-input-date>
-      <tui-error
-        formControlName="birthDate"
-        [error]="[] | tuiFieldError | async"
-      ></tui-error>
-      <tui-checkbox-labeled formControlName="isDead">
-        <div class="example">Умершие</div>
-      </tui-checkbox-labeled>
-    </div>
-
+        Фильтры
+        <ng-template tuiAccordionItemContent>
+          <div class="input-filters">
+            <tui-multi-select
+              formControlName="status"
+              class="search"
+              tuiTextfieldSize="m"
+              [tuiTextfieldCleaner]="true"
+              [editable]="false"
+              [expandable]="true"
+              [tuiTextfieldLabelOutside]="true"
+            >
+              Статус
+              <tui-data-list-wrapper
+                *tuiDataList
+                tuiMultiSelectGroup
+                [items]="items"
+              ></tui-data-list-wrapper>
+            </tui-multi-select>
+            <tui-select
+              formControlName="gender"
+              [tuiTextfieldCleaner]="true"
+              class="search"
+              tuiTextfieldSize="m"
+            >
+              Пол
+              <tui-data-list-wrapper
+                *tuiDataList
+                [items]="gender"
+              ></tui-data-list-wrapper>
+            </tui-select>
+            <tui-input-date
+              class="search"
+              [tuiTextfieldCleaner]="true"
+              tuiTextfieldSize="m"
+              formControlName="birthDate"
+              tuiUnfinishedValidator="Заполните дату"
+            >
+              Дата рождения
+            </tui-input-date>
+            <tui-error
+              formControlName="birthDate"
+              [error]="[] | tuiFieldError | async"
+            ></tui-error>
+            <tui-checkbox-labeled formControlName="isDead">
+              <div class="example">Умершие</div>
+            </tui-checkbox-labeled>
+          </div>
+        </ng-template>
+      </tui-accordion-item>
+    </tui-accordion>
   </form>
 </div>
 
@@ -95,7 +103,7 @@
   *ngIf="patients$ | async as patients"
   [columns]="columns"
   size="m"
-  class="patients-table"
+  class="patients-table tui-space_top-3"
 >
   <thead>
   <tr tuiThGroup>
@@ -114,7 +122,7 @@
     <th tuiTh *tuiHead="'birthDate'">
       Дата рождения
     </th>
-    <th tuiTh *tuiHead="'status'">
+    <th tuiTh *tuiHead="'status'" [sorter]="null">
       Статус
     </th>
     <th tuiTh *tuiHead="'action'" [sorter]="null">
@@ -145,8 +153,12 @@
     <td tuiTd *tuiCell="'birthDate'">
       {{patient.birthDate}}
     </td>
-    <td tuiTd *tuiCell="'birthDate'">
-      {{patient.birthDate}}
+    <td tuiTd *tuiCell="'status'">
+      <tui-badge
+        [status]="statusResolver(patient.patientStatus)"
+        [value]="patient.patientStatus.name"
+        class="tui-space_right-2 tui-space_bottom-2"
+      ></tui-badge>
     </td>
     <td tuiTd *tuiCell="'action'">
       <tui-hosted-dropdown
@@ -161,13 +173,6 @@
           type="button"
         ></button>
       </tui-hosted-dropdown>
-    </td>
-    <td tuiTd *tuiCell="'status'">
-      <tui-badge
-        [status]="statusResolver(patient.patientStatus)"
-        [value]="patient.patientStatus.name"
-        class="tui-space_right-2 tui-space_bottom-2"
-      ></tui-badge>
     </td>
     <ng-template #dropdown>
       <tui-data-list>
