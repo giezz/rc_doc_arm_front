@@ -1,24 +1,19 @@
 <ng-container *ngIf="isLoaded; else loading">
   <ng-container *ngIf="hasProgram; else no_rehab">
     <div class="detail-block">
-      <h2>Выписной эпикриз</h2>
-      <div class="detail-island">
-        <span>Выписной эпикриз</span>
-      </div>
-    </div>
-    <div class="detail-block">
-      <h2>Входная анкета</h2>
-      <div class="detail-island">
+      <h2>Входные анкеты</h2>
+      <div class="detail-islandd">
         <div class="forms-block-container">
           <ng-container *ngFor="let startForm of rehabProgram.forms">
             <ng-container *ngIf="startForm.typeId === 1">
-              <app-form-block [form]="startForm"></app-form-block>
+              <app-form-card [form]="startForm.form" class="border-shadow"></app-form-card>
             </ng-container>
           </ng-container>
         </div>
         <button
+          class="tui-space_top-3"
           tuiButton
-          appearance="secondary"
+          appearance="primary"
           size="s"
           (click)="showAddFormDialog('START')"
         >
@@ -28,18 +23,18 @@
     </div>
     <div class="detail-block">
       <h2>Мероприятия медицинской реабилитации</h2>
-      <div class="detail-island">
+      <div class="detail-islandd">
         <div class="modules-wrapper">
           <app-modules-block
             *ngFor="let module of rehabProgram.modules; let i = index"
             [module]="module"
             [index]="i"
-            class="module-island"
+            class="module-island border-shadow"
           ></app-modules-block>
         </div>
         <button
           tuiButton
-          appearance="secondary"
+          appearance="primary"
           size="s"
           (click)="showAddModuleDialog()"
         >
@@ -48,18 +43,19 @@
       </div>
     </div>
     <div class="detail-block">
-      <h2>Выходная анкета</h2>
-      <div class="detail-island">
+      <h2>Выходные анкеты</h2>
+      <div class="detail-islandd">
         <div class="forms-block-container">
           <ng-container *ngFor="let endForm of rehabProgram.forms">
             <ng-container *ngIf="endForm.typeId === 2">
-              <app-form-block [form]="endForm"></app-form-block>
+              <app-form-card [form]="endForm.form" class="border-shadow"></app-form-card>
             </ng-container>
           </ng-container>
         </div>
         <button
+          class="tui-space_top-3"
           tuiButton
-          appearance="secondary"
+          appearance="primary"
           size="s"
           (click)="showAddFormDialog('END')"
         >
@@ -67,13 +63,13 @@
         </button>
       </div>
     </div>
-    <button
-      tuiButton
-      appearance="primary"
-      size="s"
-    >
-      Сохранить
-    </button>
+<!--    <button-->
+<!--      tuiButton-->
+<!--      appearance="primary"-->
+<!--      size="s"-->
+<!--    >-->
+<!--      Сохранить-->
+<!--    </button>-->
   </ng-container>
 </ng-container>
 <ng-template #loading>
