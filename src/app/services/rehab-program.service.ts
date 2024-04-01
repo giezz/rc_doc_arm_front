@@ -15,8 +15,33 @@ export class RehabProgramService {
 
     private http: HttpClient = inject(HttpClient)
 
-    getListByCurrentDoctor() {
-        return this.http.get<RehabProgram[]>("http://localhost:8080/api/v1/rehabs")
+    getListByCurrentDoctor(searchParams: Partial<any>) {
+        let params = new HttpParams();
+
+        if (searchParams.firstName) {
+            params = params.set('patientFirstName', searchParams.firstName);
+        }
+        if (searchParams.middleName) {
+            params = params.set('patientMiddleName', searchParams.middleName);
+        }
+        if (searchParams.lastName) {
+            params = params.set('patientLastName', searchParams.lastName);
+        }
+        if (searchParams.dateRange) {
+            params = params.set('startDate', searchParams.dateRange.from)
+            params = params.set('endDate', searchParams.dateRange.to)
+        }
+        // if (searchParams.startDate) {
+        //     params = params.set('startDate', searchParams.startDate)
+        // }
+        // if (searchParams.endDate) {
+        //     params = params.set('endDate', searchParams.endDate)
+        // }
+
+        return this.http.get<RehabProgram[]>(
+            "http://localhost:8080/api/v1/rehabs",
+            {params}
+        )
     }
 
     getModulesFormsResults(programId: number, excludeIds: number[]): Observable<ModuleFormResult[]> {
