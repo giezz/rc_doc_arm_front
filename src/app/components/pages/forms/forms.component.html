@@ -1,6 +1,6 @@
 <form (ngSubmit)="searchForms()">
-  <div class="t">
-    <tui-input>
+  <div class="input-search-patient-line">
+    <tui-input class="input-search-patient">
       Название анкеты
     </tui-input>
     <button
@@ -10,6 +10,27 @@
       Найти
     </button>
   </div>
+  <button
+    tuiButton
+    type="button"
+    [iconRight]="arrow"
+    (click)="toggle()"
+  >
+  </button>
+  <tui-expand [expanded]="expanded">
+    ef
+    <ng-template tuiExpandContent>
+      <tui-input class="input-search-patient">
+        Название анкеты
+      </tui-input>
+      <tui-input class="input-search-patient">
+        Название анкеты
+      </tui-input>
+      <tui-input class="input-search-patient">
+        Название анкеты
+      </tui-input>
+    </ng-template>
+  </tui-expand>
 </form>
 <div class="forms-container">
   <app-form-card

@@ -7,11 +7,12 @@ import {RehabProgramsListComponent} from './rehab-programs-list/rehab-programs-l
 import {PagesComponent} from './pages.component';
 import {NavigationComponent} from './navigation/navigation.component';
 import {
+    TuiAccordionModule,
     TuiBadgeModule,
     TuiCheckboxLabeledModule,
     TuiDataListWrapperModule,
     TuiFieldErrorPipeModule,
-    TuiInputDateModule,
+    TuiInputDateModule, TuiInputDateRangeModule,
     TuiInputModule,
     TuiMultiSelectModule,
     TuiSelectModule,
@@ -20,7 +21,7 @@ import {
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {
     TuiButtonModule, TuiDataListModule,
-    TuiErrorModule,
+    TuiErrorModule, TuiExpandModule,
     TuiHostedDropdownModule,
     TuiLabelModule,
     TuiTextfieldControllerModule
@@ -65,7 +66,10 @@ import { FormsComponent } from './forms/forms.component';
         TuiHostedDropdownModule,
         TuiDataListModule,
         SharedModule,
-        FormsModule
+        FormsModule,
+        TuiAccordionModule,
+        TuiInputDateRangeModule,
+        TuiExpandModule
     ]
 })
 export class PagesModule { }
