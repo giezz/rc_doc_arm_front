@@ -18,6 +18,7 @@ export class PatientComponent implements OnInit, OnDestroy {
     private patientComponentService: PatientComponentsService = inject(PatientComponentsService);
 
     patient: Patient;
+    isLoaded: boolean = false;
     private patientCode: number;
 
     subscription: Subscription = new Subscription();
@@ -28,6 +29,7 @@ export class PatientComponent implements OnInit, OnDestroy {
             patient => {
                 this.patientComponentService.setPatient(patient);
                 this.patient = patient;
+                this.isLoaded = true;
             }
         )
         this.subscription.add(sub$);

@@ -43,7 +43,7 @@
     </tui-tabs>
   </div>
   <div class="patient-details">
-    <div *ngIf="!!patient">
+    <div *ngIf="isLoaded">
       <h2>{{patient.lastName}} {{patient.firstName}} {{patient.middleName}}</h2>
     </div>
     <router-outlet></router-outlet>
