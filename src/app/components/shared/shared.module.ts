@@ -6,13 +6,15 @@ import {ProgramFormResultCardComponent} from "./program-form-result-card/program
 import { ModuleFormResultCardComponent } from './module-form-result-card/module-form-result-card.component';
 import { ExerciseCardComponent } from './exercise-card/exercise-card.component';
 import {TuiAvatarModule} from "@taiga-ui/kit";
+import { DetailCardComponent } from './detail-card/detail-card.component';
 
 @NgModule({
     declarations: [
         FormCardComponent,
         ProgramFormResultCardComponent,
         ModuleFormResultCardComponent,
-        ExerciseCardComponent
+        ExerciseCardComponent,
+        DetailCardComponent
     ],
     imports: [
         CommonModule,
@@ -25,7 +27,8 @@ import {TuiAvatarModule} from "@taiga-ui/kit";
         FormCardComponent,
         ProgramFormResultCardComponent,
         ModuleFormResultCardComponent,
-        ExerciseCardComponent
+        ExerciseCardComponent,
+        DetailCardComponent
     ]
 })
 export class SharedModule {

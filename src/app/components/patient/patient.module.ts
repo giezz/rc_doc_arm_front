@@ -8,6 +8,7 @@ import {TuiLabelModule} from "@taiga-ui/core";
 import {EmcComponent} from './emc/emc.component';
 import {RehabProgramsHistoryComponent} from './rehab-programs-history/rehab-programs-history.component';
 import {TuiBadgeModule} from "@taiga-ui/kit";
+import {SharedModule} from "../shared/shared.module";
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {TuiBadgeModule} from "@taiga-ui/kit";
         PatientRoutingModule,
         TuiLetModule,
         TuiLabelModule,
-        TuiBadgeModule
+        TuiBadgeModule,
+        SharedModule
     ]
 })
 export class PatientModule {
