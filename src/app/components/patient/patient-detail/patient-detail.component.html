@@ -1,28 +1,57 @@
-<ng-container *ngIf="!!patient; else loading">
+<ng-container *ngIf="isLoaded; else skeleton">
   <app-detail-card heading="Информация">
-    <label tuiLabel="Пол"></label>
+    <label [tuiLabel]="'Пол'">
+      <ng-container *ngIf="patient.gender === 'm'">
+        Мужчина
+      </ng-container>
+      <ng-container *ngIf="patient.gender === 'f'">
+        Женщина
+      </ng-container>
+    </label>
     <div>
-      <label tuiLabel="Дата">{{patient.birthDate}}</label>
-      <label tuiLabel="Возраст"></label>
+      <label [tuiLabel]="'Дата рождения'">{{patient.birthDate}}</label>
+      <label [tuiLabel]="'Возраст'"></label>
     </div>
-    <label tuiLabel="Дата смерти">-</label>
-    <label tuiLabel="Статус">{{patient.patientStatus.name}}</label>
-    <label tuiLabel="Место жительства">{{patient.address}}</label>
-    <label tuiLabel="Данные о работе">{{patient.workPlaceData}}</label>
-    <label tuiLabel="Заметка врача">{{patient.bookmark}}</label>
+    <label [tuiLabel]="'Дата смерти'">-</label>
+    <label [tuiLabel]="'Статус'">{{patient.patientStatus.name}}</label>
+    <label [tuiLabel]="'Место жительства'">{{patient.address}}</label>
+    <label [tuiLabel]="'Данные о работе'">{{patient.workPlaceData}}</label>
+    <label [tuiLabel]="'Заметка врача'">{{patient.bookmark}}</label>
   </app-detail-card>
   <app-detail-card heading="Паспорт">
-    <label tuiLabel="Серия и номер паспорта">{{patient.passport.series + ' ' + patient.passport.number}}</label>
-    <label tuiLabel="Выдан">{{patient.passport.issued}}</label>
-    <label tuiLabel="Дата выдачи">{{patient.passport.issuedDate}}</label>
+    <label [tuiLabel]="'Серия и номер паспорта'">{{patient.passport.series + ' ' + patient.passport.number}}</label>
+    <label [tuiLabel]="'Выдан'">{{patient.passport.issued}}</label>
+    <label [tuiLabel]="'Дата выдачи'">{{patient.passport.issuedDate}}</label>
   </app-detail-card>
   <app-detail-card heading="СНИЛС">
-    <label tuiLabel="Номер">{{patient.snils}}</label>
+    <label [tuiLabel]="'Номер'">{{patient.snils}}</label>
   </app-detail-card>
   <app-detail-card heading="Полис">
-    <label tuiLabel="Номер">{{patient.polis}}</label>
+    <label [tuiLabel]="'Номер'">{{patient.polis}}</label>
   </app-detail-card>
 </ng-container>
-<ng-template #loading>
-  Z
+<ng-template #skeleton>
+  <app-detail-card heading="Информация" [class.tui-skeleton]="true" [style.--tui-skeleton-radius.px]="12">
+    <label [tuiLabel]="'Пол'"></label>
+    <div>
+      <label [tuiLabel]="'Дата рождения'"></label>
+      <label [tuiLabel]="'Возраст'"></label>
+    </div>
+    <label [tuiLabel]="'Дата смерти'">-</label>
+    <label [tuiLabel]="'Статус'">}</label>
+    <label [tuiLabel]="'Место жительства'"></label>
+    <label [tuiLabel]="'Данные о работе'"></label>
+    <label [tuiLabel]="'Заметка врача'"></label>
+  </app-detail-card>
+  <app-detail-card heading="Паспорт" [class.tui-skeleton]="true" [style.--tui-skeleton-radius.px]="12">
+    <label [tuiLabel]="'Серия и номер паспорта'"></label>
+    <label [tuiLabel]="'Выдан'"></label>
+    <label [tuiLabel]="'Дата выдачи'"></label>
+  </app-detail-card>
+  <app-detail-card heading="СНИЛС" [class.tui-skeleton]="true" [style.--tui-skeleton-radius.px]="12">
+    <label [tuiLabel]="'Номер'"></label>
+  </app-detail-card>
+  <app-detail-card heading="Полис" [class.tui-skeleton]="true" [style.--tui-skeleton-radius.px]="12">
+    <label [tuiLabel]="'Номер'"></label>
+  </app-detail-card>
 </ng-template>

@@ -4,7 +4,6 @@ import {Module} from "../../models/module";
 import {Observable, Subscription} from "rxjs";
 import {POLYMORPHEUS_CONTEXT, PolymorpheusComponent} from "@tinkoff/ng-polymorpheus";
 import {TuiDialogContext, TuiDialogService} from "@taiga-ui/core";
-import {AddModuleDialogComponent} from "../add-module-dialog/add-module-dialog.component";
 import {FormPreviewDialogComponent} from "../form-preview-dialog/form-preview-dialog.component";
 import {FormResultsDialogComponent} from "../form-results-dialog/form-results-dialog.component";
 import {ModuleForm} from "../../models/module-form";

@@ -1,8 +1,11 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+}
 
 .dialog-form-frames-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px 10px
+  gap: 10px
 }
 
 .dialog-form-detail-bottom-row {

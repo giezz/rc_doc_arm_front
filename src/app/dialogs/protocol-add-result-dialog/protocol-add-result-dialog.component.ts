@@ -1,5 +1,4 @@
 import {Component, Inject, inject, OnDestroy, OnInit} from '@angular/core';
-import {FormService} from "../../services/form.service";
 import {Subscription} from "rxjs";
 import {RehabProgramService} from "../../services/rehab-program.service";
 import {RehabProgramComponentsService} from "../../services/components/rehab-program-components.service";

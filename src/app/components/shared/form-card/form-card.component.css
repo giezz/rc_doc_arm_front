@@ -1,11 +1,14 @@
 :host {
-  width: 256px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 10px;
   border-radius: 12px;
   border: 1px solid #EDEDED;
+}
+
+.form-card-container {
+  padding: 10px;
 }
 
 .form-card-row-container {

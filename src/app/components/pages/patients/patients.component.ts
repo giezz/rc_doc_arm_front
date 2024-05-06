@@ -1,21 +1,25 @@
-import {Component, inject, OnDestroy, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {PatientService} from "../../../services/patient.service";
-import {Patient} from "../../../models/patient";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Observable} from "rxjs";
 import {TuiStatus} from "@taiga-ui/kit";
 import {Status} from "../../../models/status";
+import {TUI_TABLE_PAGINATION_OPTIONS, TuiTablePagination} from "@taiga-ui/addon-table";
+import {PageablePatients} from "../../../models/pageable-patients";
 
 @Component({
     selector: 'app-patients',
     templateUrl: './patients.component.html',
     styleUrls: ['./patients.component.css', '../pages.component.css']
 })
-export class PatientsComponent implements OnInit, OnDestroy {
+export class PatientsComponent implements OnInit {
 
     patientService: PatientService = inject(PatientService)
 
-    patients$: Observable<Patient[]>;
+    data$: Observable<PageablePatients> = new Observable<PageablePatients>();
+    pageSizes: number[] = [10, 15, 25, 50, 100];
+    page: number = 0;
+    size: number = this.pageSizes[0];
 
     readonly columns: string[] = ['lastName', 'firstName', 'middleName', 'gender', 'birthDate', 'status', 'action']
 
@@ -23,11 +27,9 @@ export class PatientsComponent implements OnInit, OnDestroy {
     readonly gender = ['Мужской', 'Женский']
 
     ngOnInit(): void {
-        this.onSubmit()
+        this.onSubmit();
     }
 
-    ngOnDestroy() {
-    }
 
     searchPatients = new FormGroup({
         firstName: new FormControl(),
@@ -39,8 +41,15 @@ export class PatientsComponent implements OnInit, OnDestroy {
         isDead: new FormControl(false)
     })
 
+    paginationChange(pagination: TuiTablePagination) {
+        this.data$ = this.getData(pagination.page, pagination.size);
+        this.page = pagination.page;
+        this.size = pagination.size
+    }
+
     onSubmit() {
-        this.patients$ = this.patientService.getAll(this.searchPatients.value)
+        this.page = 0;
+        this.data$ = this.getData(this.page, this.size);
     }
 
     statusResolver(status: Status): TuiStatus {
@@ -58,6 +67,10 @@ export class PatientsComponent implements OnInit, OnDestroy {
                 return "error";
             }
         }
+    }
+
+    getData(page: number, size: number) {
+        return this.patientService.getAll(page, size, this.searchPatients.value)
     }
 
 }

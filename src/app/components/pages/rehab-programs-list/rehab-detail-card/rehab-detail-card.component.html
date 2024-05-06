@@ -1,45 +1,52 @@
-<div class="tui-text_body-m">Программа реабилитации от {{rehabProgram.startDate | date}}</div>
 <label [tuiLabel]="'Пациент'">
   {{rehabProgram.patient.lastName}}
   {{rehabProgram.patient.firstName}}
   {{rehabProgram.patient.middleName}}
 </label>
+<label [tuiLabel]="'Статус'">
+  <tui-badge
+    [status]="status"
+    class="tui-space_right-2 tui-space_bottom-2"
+    [value]="value"
+  ></tui-badge>
+</label>
 <div class="detail-card-bottom-row">
-  <label [tuiLabel]="'Статус'">
-    <tui-badge
-      [status]="statusResolver(rehabProgram).status"
-      class="tui-space_right-2 tui-space_bottom-2"
-      [value]="statusResolver(rehabProgram).value"
-    ></tui-badge>
+  <label [tuiLabel]="'Дата начала'">{{rehabProgram.startDate | date}}</label>
+  <label
+    *ngIf="rehabProgram.endDate != null"
+    [tuiLabel]="'Дата окончания'">
+    {{rehabProgram.endDate | date}}
   </label>
-  <tui-hosted-dropdown
-    [content]="dropdown"
-  >
-    <button
-      tuiIconButton
-      appearance="flat"
-      [icon]="'tuiIconMoreVertical'"
-      size="s"
-      shape="rounded"
-      type="button"
-    ></button>
-  </tui-hosted-dropdown>
+  <div>
+    <tui-hosted-dropdown
+      [content]="dropdown"
+    >
+      <button
+        tuiIconButton
+        appearance="flat"
+        [icon]="'tuiIconMoreVertical'"
+        size="s"
+        shape="rounded"
+        type="button"
+      ></button>
+    </tui-hosted-dropdown>
+  </div>
 </div>
 <ng-template #dropdown>
   <tui-data-list>
     <tui-opt-group>
-      <button
+      <a
         tuiOption
         [routerLink]="['/patient', rehabProgram.patient.patientCode]"
       >
         Перейти к пациенту
-      </button>
-      <button
+      </a>
+      <a
         tuiOption
-        [routerLink]="['/patient', rehabProgram.patient.patientCode, 'rehab-program']"
+        [routerLink]="['/patient', rehabProgram.patient.patientCode, 'rehab-program', rehabProgram.id]"
       >
         Перейти к программе реабилитации
-      </button>
+      </a>
     </tui-opt-group>
   </tui-data-list>
 </ng-template>

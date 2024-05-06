@@ -8,15 +8,20 @@ import {
     TuiButtonModule,
     TuiLabelModule,
     TuiLinkModule,
-    TuiLoaderModule, TuiNotificationModule,
+    TuiLoaderModule,
+    TuiNotificationModule,
     TuiTextfieldControllerModule
 } from "@taiga-ui/core";
-import {AddFormDialogComponent} from "../../dialogs/add-form-dialog/add-form-dialog.component";
-import {AddModuleDialogComponent} from "../../dialogs/add-module-dialog/add-module-dialog.component";
-import {TuiInputDateRangeModule, TuiInputModule, TuiTextareaModule} from "@taiga-ui/kit";
+import {
+    TuiAccordionModule,
+    TuiBadgeModule,
+    TuiInputDateRangeModule,
+    TuiInputModule,
+    TuiTextareaModule
+} from "@taiga-ui/kit";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FormBlockComponent} from './rehab-program-detail/form-block/form-block.component';
-import {ModulesBlockComponent} from './rehab-program-detail/modules-block/modules-block.component';
+import {ModuleBlockComponent} from './rehab-program-detail/module-block/module-block.component';
 import {RehabProgramResultsComponent} from './rehab-program-results/rehab-program-results.component';
 import {ProtocolComponent} from './protocol/protocol.component';
 import {TuiAxesModule, TuiLineChartModule, TuiLineDaysChartModule} from "@taiga-ui/addon-charts";
@@ -26,12 +31,13 @@ import {SharedModule} from "../shared/shared.module";
 @NgModule({
     declarations: [
         RehabProgramDetailComponent,
-        AddFormDialogComponent,
-        AddModuleDialogComponent,
         FormBlockComponent,
-        ModulesBlockComponent,
+        ModuleBlockComponent,
         RehabProgramResultsComponent,
         ProtocolComponent
+    ],
+    exports: [
+        RehabProgramDetailComponent
     ],
     imports: [
         CommonModule,
@@ -52,7 +58,9 @@ import {SharedModule} from "../shared/shared.module";
         TuiTextareaModule,
         ReactiveFormsModule,
         SharedModule,
-        TuiNotificationModule
+        TuiNotificationModule,
+        TuiAccordionModule,
+        TuiBadgeModule
     ]
 })
 export class RehabProgramModule {

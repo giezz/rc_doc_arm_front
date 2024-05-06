@@ -1,13 +1,13 @@
 <div class="patient-content">
-  <div class="left-nav">
-    <button
-      appearance="icon"
-      tuiIconButton
-      icon="tuiIconChevronLeft"
-      type="button"
-      class="tui-space_right-3 tui-space_bottom-3"
-      (click)="navigateToPatient()"
-    ></button>
+  <div class="left-nav tui-space_top-3">
+    <a
+      tuiLink
+      icon="tuiIconChevronLeftLarge"
+      iconAlign="left"
+      [routerLink]="['/patient', patientCode]"
+    >
+      На страницу пациента
+    </a>
     <tui-tabs
       vertical="left"
       class="left"
@@ -36,10 +36,20 @@
     </tui-tabs>
   </div>
   <div class="patient-details">
-    <div *ngIf="patient$ | async as patient">
-      <h2>{{patient.lastName}} {{patient.firstName}} {{patient.middleName}}</h2>
+    <div *ngIf="isLoaded">
+      <h4 class="tui-space_top-3 tui-space_bottom-6"><label [tuiLabel]="'Пациент'">{{patient.lastName}} {{patient.firstName}} {{patient.middleName}}</label></h4>
     </div>
-    <router-outlet></router-outlet>
+    <div *ngIf="!isLoaded" style="display: flex">
+      <h2 class="tui-space_top-3 tui-space_bottom-6">
+        <label
+          [tuiLabel]="'Пациент'" [class.tui-skeleton]="true"
+          [style.--tui-skeleton-radius.px]="12">
+          ЗАГРУЗКА ПАЦИЕНТА
+        </label>
+      </h2>
+    </div>
+    <hr/>
+    <router-outlet class="tui-space_top-3"></router-outlet>
   </div>
 </div>
 

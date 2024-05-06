@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, ReplaySubject, shareReplay} from "rxjs";
+import {ReplaySubject} from "rxjs";
 import {Patient} from "../../models/patient";
 
 @Injectable({

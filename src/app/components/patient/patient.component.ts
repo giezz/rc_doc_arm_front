@@ -1,6 +1,6 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {Patient} from "../../models/patient";
-import {Observable, Subscription} from "rxjs";
+import {Subscription} from "rxjs";
 import {PatientService} from "../../services/patient.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PatientComponentsService} from "../../services/components/patient-components.service";
@@ -25,21 +25,23 @@ export class PatientComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.patientCode = Number(this.activeRoute.snapshot.params['patientCode']);
-        const sub$ = this.patientService.getByCode(this.patientCode).subscribe(
-            patient => {
-                this.patientComponentService.setPatient(patient);
-                this.patient = patient;
-                this.isLoaded = true;
-            }
+        this.subscription.add(this.patientService.getByCode(this.patientCode).subscribe(
+                {
+                    next: patient => {
+                        this.patientComponentService.setPatient(patient);
+                        this.patient = patient;
+                        this.isLoaded = true;
+                    },
+                    error: err => {
+                        this.router.navigate(['/**']).then()
+                    }
+                }
+            )
         )
-        this.subscription.add(sub$);
     }
 
     ngOnDestroy(): void {
         this.subscription.unsubscribe();
     }
 
-    navigateToPages() {
-        this.router.navigate(["/patients"]).then()
-    }
 }

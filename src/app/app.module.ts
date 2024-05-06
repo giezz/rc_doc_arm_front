@@ -1,10 +1,12 @@
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {RouterModule} from "@angular/router";
 import {
     TuiButtonModule,
-    TuiDialogModule, TuiLabelModule, TuiLinkModule,
+    TuiDialogModule,
+    TuiLabelModule,
+    TuiLinkModule,
     TuiLoaderModule,
     TuiRootModule,
     TuiTextfieldControllerModule
@@ -24,7 +26,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {PatientComponent} from './components/patient/patient.component';
 import {PatientModule} from "./components/patient/patient.module";
 import {RehabProgramComponent} from './components/rehab-program/rehab-program.component';
-import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ModuleEditDialogComponent} from './dialogs/module-edit-dialog/module-edit-dialog.component';
 import {AddExerciseDialogComponent} from './dialogs/add-exercise-dialog/add-exercise-dialog.component';
 import {TuiAutoFocusModule, TuiLetModule} from "@taiga-ui/cdk";
@@ -33,10 +35,18 @@ import {FormPreviewDialogComponent} from './dialogs/form-preview-dialog/form-pre
 import {FormResultsDialogComponent} from './dialogs/form-results-dialog/form-results-dialog.component';
 import {SharedModule} from "./components/shared/shared.module";
 import {ProtocolAddResultDialog} from "./dialogs/protocol-add-result-dialog/protocol-add-result-dialog.component";
+import {AddFormDialogComponent} from "./dialogs/add-form-dialog/add-form-dialog.component";
+import {AddModuleDialogComponent} from "./dialogs/add-module-dialog/add-module-dialog.component";
+import {NotfoundComponent} from './components/notfound/notfound.component';
+import {TuiBlockStatusModule} from "@taiga-ui/layout";
+import {registerLocaleData} from "@angular/common";
+import localeRu from '@angular/common/locales/ru';
 
 export function tokenGetter() {
     return localStorage.getItem("token");
 }
+
+registerLocaleData(localeRu);
 
 @NgModule({
     declarations: [
@@ -48,10 +58,13 @@ export function tokenGetter() {
         RehabProgramComponent,
         ModuleEditDialogComponent,
         AddExerciseDialogComponent,
+        AddFormDialogComponent,
+        AddModuleDialogComponent,
         ModulePreviewDialogComponent,
         FormPreviewDialogComponent,
         FormResultsDialogComponent,
-        ProtocolAddResultDialog
+        ProtocolAddResultDialog,
+        NotfoundComponent
     ],
     imports: [
         BrowserModule,
@@ -78,7 +91,8 @@ export function tokenGetter() {
         TuiLinkModule,
         FormsModule,
         TuiLabelModule,
-        SharedModule
+        SharedModule,
+        TuiBlockStatusModule
     ],
     exports: [RouterModule],
     providers: [
@@ -86,6 +100,9 @@ export function tokenGetter() {
         {
             provide: TUI_LANGUAGE,
             useValue: of(TUI_RUSSIAN_LANGUAGE),
+        },
+        {
+            provide: LOCALE_ID, useValue: "ru"
         }
     ],
     bootstrap: [AppComponent]

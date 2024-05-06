@@ -1,0 +1,18 @@
+:host {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--tui-base-03);
+  border-radius: 12px;
+  padding: 0.5rem;
+}
+
+.rehab-program-detail-dates {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.rehab-program-detail-info {
+  display: flex;
+  gap: 1.5rem;
+}

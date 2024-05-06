@@ -1,9 +1,9 @@
 <ng-container *ngIf="isLoaded">
-  <ng-container *ngIf="rehabProgram">
+  <ng-container *ngIf="rehabProgram && rehabProgram.isCurrent">
     <!--    {{protocolForm.value | json}}-->
     <form [formGroup]="protocolForm" (ngSubmit)="openConfirmProtocolCreationDialog(confirm_protocol_creation_dialog)">
+      <h5 class="tui-space_top-3 tui-space_bottom-2">Результаты входных и выходных анкет</h5>
       <div *ngIf="programScales.controls.length > 0" formArrayName="programScales" class="protocol-scales-container">
-        <h3>Результаты входных и выходных анкет</h3>
         <div
           *ngFor="let control of programScales.controls; let i = index"
           class="protocol-scale-container">
@@ -27,8 +27,8 @@
           </button>
         </div>
       </div>
+      <h5 class="tui-space_top-5 tui-space_bottom-2">Результаты анкет модулей</h5>
       <div *ngIf="modulesScales.controls.length > 0" formArrayName="modulesScales" class="protocol-scales-container">
-        <h3>Результаты анкет модулей</h3>
         <div
           *ngFor="let control of modulesScales.controls; let i = index"
           class="protocol-scale-container">
@@ -62,21 +62,21 @@
         Добавить результат
       </button>
       <div class="detail-block">
-        <h3>Результат реабилитации</h3>
+        <h5 class="tui-space_top-5 tui-space_bottom-2">Результат реабилитации</h5>
         <tui-textarea
           formControlName="result"
           [expandable]="true"
         ></tui-textarea>
       </div>
       <div class="detail-block">
-        <h3>Реабилитационный диагноз</h3>
+        <h5 class="tui-space_top-5 tui-space_bottom-2">Реабилитационный диагноз</h5>
         <tui-textarea
           formControlName="diagnosis"
           [expandable]="true"
         ></tui-textarea>
       </div>
       <div class="detail-block">
-        <h3>Рекомендации</h3>
+        <h5 class="tui-space_top-5 tui-space_bottom-2">Рекомендации</h5>
         <tui-textarea
           formControlName="recommendations"
           [expandable]="true"

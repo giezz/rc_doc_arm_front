@@ -7,17 +7,20 @@ import {Observable, Subscription} from "rxjs";
 import {ModulePreviewDialogComponent} from "../../../../dialogs/module-preview-dialog/module-preview-dialog.component";
 
 @Component({
-    selector: 'app-modules-block',
-    templateUrl: './modules-block.component.html',
-    styleUrls: ['./modules-block.component.css']
+    selector: 'app-module-block',
+    templateUrl: './module-block.component.html',
+    styleUrls: ['./module-block.component.css']
 })
-export class ModulesBlockComponent implements OnInit, OnDestroy {
+export class ModuleBlockComponent implements OnInit, OnDestroy {
 
     @Input("module")
     module: Module;
 
     @Input("index")
     index: number;
+
+    @Input()
+    editable: boolean = true;
 
     private dialogService = inject(TuiDialogService);
     private injector: Injector = inject(Injector);

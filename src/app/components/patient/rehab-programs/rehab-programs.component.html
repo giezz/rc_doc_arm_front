@@ -1,0 +1,75 @@
+<h6 class="tui-space_top-3 tui-space_bottom-3">Текущая программа реабилитации</h6>
+<ng-container *ngIf="isCurrentLoaded; else skeleton">
+  <ng-container *ngIf="hasCurrent; else no_current">
+    <app-rehab-program-detail [rehabProgram]="currentProgram"></app-rehab-program-detail>
+  </ng-container>
+  <ng-template #no_current>
+    <tui-notification
+      style="width: 400px"
+      size="l"
+      status="warning"
+    >
+      Действующая программа реабилитации отсутсвует
+      <div
+        class="buttons tui-space_top-3"
+      >
+        <button
+          appearance="outline"
+          size="s"
+          tuiButton
+          class="tui-space_right-5"
+          (click)="showProgramCreationDialog(confirm_rehab_creation_dialog)"
+        >
+          Создать
+        </button>
+      </div>
+    </tui-notification>
+  </ng-template>
+</ng-container>
+<h6 class="tui-space_top-3 tui-space_bottom-3">История реабилитаций пациента</h6>
+<ng-container *ngIf="isLoaded; else skeleton">
+  <ng-container *ngIf="rehabPrograms.length > 0; else no_history">
+    <div *ngFor="let program of rehabPrograms" class="tui-space_bottom-3">
+      <ng-container *ngIf="!program.isCurrent">
+        <app-rehab-program-detail [rehabProgram]="program"></app-rehab-program-detail>
+      </ng-container>
+    </div>
+  </ng-container>
+</ng-container>
+<ng-template #skeleton>
+  <app-detail-card
+    [class.tui-skeleton]="true"
+    [style.--tui-skeleton-radius.px]="12">
+    <br/>
+    <br/>
+  </app-detail-card>
+</ng-template>
+<ng-template #no_history>
+  <h6>Не проходил реабилитации ранее</h6>
+</ng-template>
+<ng-template
+  #confirm_rehab_creation_dialog
+  let-observer
+>
+  <h2>Подтвердите дейтсвие</h2>
+  <p>Начать программу реабилитации?</p>
+  <button
+    tuiButton
+    size="m"
+    appearance="primary"
+    type="button"
+    class="tui-space_right-3"
+    (click)="observer.complete(); createRehabProgram()"
+  >
+    Начать
+  </button>
+  <button
+    tuiButton
+    size="m"
+    appearance="secondary"
+    type="button"
+    (click)="observer.complete()"
+  >
+    Отмена
+  </button>
+</ng-template>

@@ -2,55 +2,47 @@
   <form [formGroup]="searchPatients" (ngSubmit)="onSubmit()">
     {{searchPatients.value | json}}
     <div class="input-search-patient-line">
-      <tui-input
-        class="input-search-patient"
-        tuiTextfieldSize="m"
-        formControlName="lastName"
-        [tuiTextfieldCleaner]="true"
-        [tuiTextfieldLabelOutside]="true"
-      >
-        Фамилия
-        <input tuiTextfield/>
-      </tui-input>
-      <tui-input
-        class="input-search-patient"
-        tuiTextfieldSize="m"
-        formControlName="firstName"
-        [tuiTextfieldCleaner]="true"
-        [tuiTextfieldLabelOutside]="true"
-      >
-        Имя
-        <input tuiTextfield/>
-      </tui-input>
-      <tui-input
-        class="input-search-patient"
-        tuiTextfieldSize="m"
-        formControlName="middleName"
-        [tuiTextfieldCleaner]="true"
-        [tuiTextfieldLabelOutside]="true"
-      >
-        Отчество
-        <input tuiTextfield/>
-      </tui-input>
+      <div class="input-search-patient" tuiGroup>
+        <tui-input
+          formControlName="lastName"
+          [tuiTextfieldCleaner]="true"
+          [tuiTextfieldLabelOutside]="true"
+        >
+          Фамилия
+          <input tuiTextfield/>
+        </tui-input>
+        <tui-input
+          formControlName="firstName"
+          [tuiTextfieldCleaner]="true"
+          [tuiTextfieldLabelOutside]="true"
+        >
+          Имя
+          <input tuiTextfield/>
+        </tui-input>
+        <tui-input
+          formControlName="middleName"
+          [tuiTextfieldCleaner]="true"
+          [tuiTextfieldLabelOutside]="true"
+        >
+          Отчество
+          <input tuiTextfield/>
+        </tui-input>
+      </div>
       <button
         type="submit"
         tuiButton
-        size="m"
       >
         Найти
       </button>
     </div>
     <tui-accordion class="tui-space_top-3">
-      <tui-accordion-item
-        size="s"
-      >
+      <tui-accordion-item>
         Фильтры
         <ng-template tuiAccordionItemContent>
-          <div class="input-filters">
+          <div tuiGroup>
             <tui-multi-select
               formControlName="status"
               class="search"
-              tuiTextfieldSize="m"
               [tuiTextfieldCleaner]="true"
               [editable]="false"
               [expandable]="true"
@@ -67,7 +59,6 @@
               formControlName="gender"
               [tuiTextfieldCleaner]="true"
               class="search"
-              tuiTextfieldSize="m"
             >
               Пол
               <tui-data-list-wrapper
@@ -78,31 +69,27 @@
             <tui-input-date
               class="search"
               [tuiTextfieldCleaner]="true"
-              tuiTextfieldSize="m"
               formControlName="birthDate"
               tuiUnfinishedValidator="Заполните дату"
             >
               Дата рождения
             </tui-input-date>
+          </div>
             <tui-error
               formControlName="birthDate"
               [error]="[] | tuiFieldError | async"
             ></tui-error>
-            <tui-checkbox-labeled formControlName="isDead">
-              <div class="example">Умершие</div>
-            </tui-checkbox-labeled>
-          </div>
         </ng-template>
       </tui-accordion-item>
     </tui-accordion>
   </form>
 </div>
-
+<h5>Список пациентов</h5>
 <table
   tuiTable
-  *ngIf="patients$ | async as patients"
+  *ngIf="data$ | async as request"
   [columns]="columns"
-  size="m"
+  size="l"
   class="patients-table tui-space_top-3"
 >
   <thead>
@@ -130,7 +117,7 @@
   </tr>
   </thead>
   <tbody
-    *tuiLet="patients | tuiTableSort as sortedPatients"
+    *tuiLet="request.content | tuiTableSort as sortedPatients"
     tuiTbody
     [data]="sortedPatients"
   >
@@ -148,13 +135,19 @@
       {{patient.middleName}}
     </td>
     <td tuiTd *tuiCell="'gender'">
-      {{patient.gender}}
+      <ng-container *ngIf="patient.gender === 'm'">
+        М
+      </ng-container>
+      <ng-container *ngIf="patient.gender === 'f'">
+        Ж
+      </ng-container>
     </td>
     <td tuiTd *tuiCell="'birthDate'">
       {{patient.birthDate}}
     </td>
     <td tuiTd *tuiCell="'status'">
       <tui-badge
+        size="l"
         [status]="statusResolver(patient.patientStatus)"
         [value]="patient.patientStatus.name"
         class="tui-space_right-2 tui-space_bottom-2"
@@ -167,8 +160,7 @@
         <button
           tuiIconButton
           appearance="flat"
-          [icon]="'tuiIconMoreVertical'"
-          size="s"
+          [icon]="'tuiIconMoreVerticalLarge'"
           shape="rounded"
           type="button"
         ></button>
@@ -177,16 +169,30 @@
     <ng-template #dropdown>
       <tui-data-list>
         <tui-opt-group>
-          <button
+          <a
             tuiOption
             [routerLink]="['/patient', patient.patientCode]"
           >
             Перейти к пациенту
-          </button>
+          </a>
         </tui-opt-group>
       </tui-data-list>
     </ng-template>
   </tr>
   </tbody>
+  <tfoot>
+  <tr>
+    <td [colSpan]="columns.length">
+      <tui-table-pagination
+        class="tui-space_top-2"
+        [items]="pageSizes"
+        [total]="request.totalElements"
+        (paginationChange)="paginationChange($event)"
+        [page]="page"
+        [size]="size"
+      ></tui-table-pagination>
+    </td>
+  </tr>
+  </tfoot>
 </table>
 

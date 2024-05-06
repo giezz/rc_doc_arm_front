@@ -10,29 +10,26 @@
       Найти
     </button>
   </div>
-  <button
-    tuiButton
-    type="button"
-    [iconRight]="arrow"
-    (click)="toggle()"
-  >
-  </button>
-  <tui-expand [expanded]="expanded">
-    ef
-    <ng-template tuiExpandContent>
-      <tui-input class="input-search-patient">
-        Название анкеты
-      </tui-input>
-      <tui-input class="input-search-patient">
-        Название анкеты
-      </tui-input>
-      <tui-input class="input-search-patient">
-        Название анкеты
-      </tui-input>
-    </ng-template>
-  </tui-expand>
+  <tui-accordion class="tui-space_top-3">
+    <tui-accordion-item>
+      Фильтры
+      <ng-template tuiAccordionItemContent>
+        <div tuiGroup>
+          <tui-input class="input-search-patient">
+            Название анкеты
+          </tui-input>
+          <tui-input class="input-search-patient">
+            Название анкеты
+          </tui-input>
+          <tui-input class="input-search-patient">
+            Название анкеты
+          </tui-input>
+        </div>
+      </ng-template>
+    </tui-accordion-item>
+  </tui-accordion>
 </form>
-<div class="forms-container">
+<div class="forms-container tui-space_top-3">
   <app-form-card
     *ngFor="let form of forms$ | async"
     [form]="form">

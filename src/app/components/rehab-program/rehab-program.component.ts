@@ -3,7 +3,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {PatientService} from "../../services/patient.service";
 import {Patient} from "../../models/patient";
 import {Observable, of, Subscription} from "rxjs";
-import {Location} from "@angular/common";
 import {RehabProgramComponentsService} from "../../services/components/rehab-program-components.service";
 
 @Component({
@@ -17,52 +16,51 @@ export class RehabProgramComponent implements OnInit, OnDestroy {
     private patientService: PatientService = inject(PatientService);
     private rehabProgramComponentsService: RehabProgramComponentsService = inject(RehabProgramComponentsService);
 
-    private patientCode: number;
-    patient$: Observable<Patient>;
+    patientCode: number;
+    private programId: number;
+    patient: Patient;
+    isLoaded: boolean = false;
 
-    subscription: Subscription = new Subscription();
+    private subscription: Subscription = new Subscription();
 
     ngOnInit(): void {
-        console.log('RehabProgramComponent');
         this.patientCode = Number(this.activeRoute.snapshot.params['patientCode']);
         this.getPatient(this.patientCode);
-        this.getPatientCurrentProgram(this.patientCode);
+        this.programId = Number(this.activeRoute.snapshot.params['programId']);
+        this.getRehabProgramByPatient(this.patientCode, this.programId)
+
     }
 
     private getPatient(code: number) {
-        const sub$ = this.patientService.getByCode(code).subscribe(
+        this.subscription.add(this.patientService.getByCode(code).subscribe(
             {
                 next: patient => {
                     this.rehabProgramComponentsService.setPatient(patient);
-                    this.patient$ = of(patient);
+                    this.patient = patient;
+                    this.isLoaded = true;
                 },
                 error: err => {
-                    console.log(err);
-                    this.rehabProgramComponentsService.setPatient(null);
+                    this.router.navigate(['/**']).then()
                 }
             }
-        );
-        this.subscription.add(sub$);
+        ));
     }
-
-    private getPatientCurrentProgram(code: number) {
-        const sub$ = this.patientService.getCurrentRehabProgram(code).subscribe(
-            {
-                next: program => {
-                    this.rehabProgramComponentsService.setProgram(program);
-                },
-                error: err => {
-                    console.log(err);
-                    this.rehabProgramComponentsService.setProgram(null);
+    private getRehabProgramByPatient(code: number, programId: number) {
+        this.subscription.add(this.patientService.getRehabProgram(code, programId).subscribe(
+                {
+                    next: program => {
+                        this.rehabProgramComponentsService.setProgram(program);
+                    },
+                    error: err => {
+                        this.router.navigate(['/**']).then()
+                    }
                 }
-            }
-        );
-        this.subscription.add(sub$);
+            )
+        )
     }
 
     ngOnDestroy(): void {
         this.subscription.unsubscribe();
-        console.log('RehabProgramComponent destroyed');
     }
 
     navigateToPatient(): void {

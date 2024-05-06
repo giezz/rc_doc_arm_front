@@ -1,5 +1,5 @@
-import {ChangeDetectionStrategy, Component, inject, Inject, OnInit, TemplateRef} from '@angular/core';
-import {TuiDialogContext, TuiDialogService} from "@taiga-ui/core";
+import {ChangeDetectionStrategy, Component, inject, Inject, OnInit} from '@angular/core';
+import {TuiDialogContext} from "@taiga-ui/core";
 import {POLYMORPHEUS_CONTEXT} from '@tinkoff/ng-polymorpheus';
 import {Form} from "../../models/form";
 import {FormService} from "../../services/form.service";

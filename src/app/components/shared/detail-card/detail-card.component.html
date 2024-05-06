@@ -1,5 +1,9 @@
-<h3>{{heading}}</h3>
-<div class="content-wrapper">
+<h5 class="tui-space_bottom-3 tui-space_top-5">{{heading}}</h5>
+<div
+  [class.padding]="padding"
+  [class.border]="border"
+  [class.box-shadow]="boxShadow"
+>
   <ng-content/>
 </div>
 

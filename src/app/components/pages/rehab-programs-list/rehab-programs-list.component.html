@@ -1,52 +1,42 @@
 <form [formGroup]="searchProgramForm" (ngSubmit)="searchRehabPrograms()">
   {{searchProgramForm.value | json}}
   <div class="input-search-patient-line">
-    <tui-input
-      class="input-search-patient"
-      formControlName="lastName"
-      tuiTextfieldSize="m"
-      [tuiTextfieldCleaner]="true"
-      [tuiTextfieldLabelOutside]="true"
-    >
-      Фамилия
-    </tui-input>
-    <tui-input
-      class="input-search-patient"
-      formControlName="firstName"
-      tuiTextfieldSize="m"
-      [tuiTextfieldCleaner]="true"
-      [tuiTextfieldLabelOutside]="true"
-    >
-      Имя
-    </tui-input>
-    <tui-input
-      class="input-search-patient"
-      formControlName="middleName"
-      tuiTextfieldSize="m"
-      [tuiTextfieldCleaner]="true"
-      [tuiTextfieldLabelOutside]="true"
-    >
-      Отчество
-    </tui-input>
+    <div class="input-search-patient" tuiGroup>
+      <tui-input
+        formControlName="lastName"
+        [tuiTextfieldCleaner]="true"
+        [tuiTextfieldLabelOutside]="true"
+      >
+        Фамилия
+      </tui-input>
+      <tui-input
+        formControlName="firstName"
+        [tuiTextfieldCleaner]="true"
+        [tuiTextfieldLabelOutside]="true"
+      >
+        Имя
+      </tui-input>
+      <tui-input
+        formControlName="middleName"
+        [tuiTextfieldCleaner]="true"
+        [tuiTextfieldLabelOutside]="true"
+      >
+        Отчество
+      </tui-input>
+    </div>
     <button
       tuiButton
-      size="m"
       type="submit"
     >
       Найти
     </button>
   </div>
-  <tui-accordion class="tui-space_top-3" [rounded]="false">
-    <tui-accordion-item
-      size="s"
-      [borders]="null"
-      [noPadding]="true"
-    >
+  <tui-accordion class="tui-space_top-3">
+    <tui-accordion-item>
       Фильтры
       <ng-template tuiAccordionItemContent>
-        <div class="t">
+        <div tuiGroup>
           <tui-input-date-range
-            tuiTextfieldSize="m"
             formControlName="dateRange"
             tuiUnfinishedValidator="Выберите даты"
             [tuiTextfieldCleaner]="true"
@@ -62,7 +52,6 @@
           <tui-multi-select
             formControlName="status"
             class="search"
-            tuiTextfieldSize="m"
             [tuiTextfieldCleaner]="true"
             [editable]="false"
             [expandable]="true"
@@ -80,6 +69,7 @@
     </tui-accordion-item>
   </tui-accordion>
 </form>
+<h5>Ваши программы реабилитации</h5>
 <div class="rehab-programs-container tui-space_top-3">
   <app-rehab-detail-card
     *ngFor="let program of rehabPrograms"

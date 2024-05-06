@@ -4,6 +4,13 @@
   border-radius: 12px;
 }
 
+.rehab-program-info {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+
 .modules-wrapper {
   display: flex;
   flex-direction: column;
@@ -13,7 +20,7 @@
   position: relative;
 }
 
-.module-island:last-child{
+.module-island:last-child {
   margin-bottom: 1rem;
 }
 

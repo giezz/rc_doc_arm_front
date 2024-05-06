@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, inject, Injector, OnDestroy, OnInit} from '@angular/core';
+import {Component, inject, Injector, OnDestroy, OnInit} from '@angular/core';
 import {RehabProgramComponentsService} from "../../../services/components/rehab-program-components.service";
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {TuiDialogContext, TuiDialogService} from "@taiga-ui/core";

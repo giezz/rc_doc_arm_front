@@ -16,7 +16,6 @@ export class FormsComponent implements OnInit, OnDestroy {
     readonly arrow = TUI_ARROW;
 
     forms$: Observable<Form[]>;
-    expanded: boolean = false;
 
     ngOnInit() {
         this.forms$ = this.formsService.getAll();
@@ -27,10 +26,6 @@ export class FormsComponent implements OnInit, OnDestroy {
 
     searchForms() {
 
-    }
-
-    toggle() {
-        this.expanded = !this.expanded;
     }
 
 }

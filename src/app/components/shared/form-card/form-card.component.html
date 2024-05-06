@@ -1,10 +1,12 @@
-<label [tuiLabel]="'Анкета'">{{form.name}}</label>
-<label [tuiLabel]="'Описание'">{{form.description}}</label>
-<div class="form-card-row-container">
-  <label [tuiLabel]="'Шкала'">{{form.scale}}</label>
-  <a tuiLink [pseudo]="true"
-     (click)="showFormDetailsDialog(form.id)"
-  >Подробнее</a>
+<div class="form-card-container">
+  <label [tuiLabel]="'Анкета'">{{form.name}}</label>
+  <label [tuiLabel]="'Описание'">{{form.description}}</label>
+  <div class="form-card-row-container">
+    <label [tuiLabel]="'Шкала'">{{form.scale}}</label>
+    <a tuiLink [pseudo]="true"
+       (click)="showFormDetailsDialog(form.id)"
+    >Подробнее</a>
+  </div>
 </div>
 
 

@@ -1,7 +1,12 @@
-.content-wrapper {
-  padding: 10px;
+.padding {
+  padding: 0.5rem;
+}
+
+.border {
   border-radius: 12px;
   border: 1px solid #EDEDED;
-  background: #FFF;
+}
+
+.box-shadow {
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.10);
 }

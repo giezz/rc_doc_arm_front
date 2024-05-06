@@ -1,5 +1,6 @@
 .rehab-program-status-info {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   gap: 10px;
 }

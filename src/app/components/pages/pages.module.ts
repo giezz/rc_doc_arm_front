@@ -21,12 +21,12 @@ import {
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {
     TuiButtonModule, TuiDataListModule,
-    TuiErrorModule, TuiExpandModule,
+    TuiErrorModule, TuiExpandModule, TuiGroupModule,
     TuiHostedDropdownModule,
     TuiLabelModule,
     TuiTextfieldControllerModule
 } from "@taiga-ui/core";
-import {TuiTableModule} from "@taiga-ui/addon-table";
+import {TuiTableModule, TuiTablePaginationModule} from "@taiga-ui/addon-table";
 import {TuiLetModule} from "@taiga-ui/cdk";
 import {RehabDetailCardComponent} from './rehab-programs-list/rehab-detail-card/rehab-detail-card.component';
 import { ExercisesComponent } from './execrcises/exercises.component';
@@ -69,7 +69,9 @@ import { FormsComponent } from './forms/forms.component';
         FormsModule,
         TuiAccordionModule,
         TuiInputDateRangeModule,
-        TuiExpandModule
+        TuiExpandModule,
+        TuiGroupModule,
+        TuiTablePaginationModule
     ]
 })
 export class PagesModule { }

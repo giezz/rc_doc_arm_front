@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Patient} from "../models/patient";
 import {delay, Observable} from "rxjs";
 import {RehabProgram} from "../models/rehab-program";
+import {PageablePatients} from "../models/pageable-patients";
 
 @Injectable({
     providedIn: 'root'
@@ -11,9 +12,10 @@ export class PatientService {
 
     private http: HttpClient = inject(HttpClient)
 
-    getAll(searchParams: Partial<any>): Observable<Patient[]> {
+    getAll(pageNumber: number, pageSize: number, searchParams: Partial<any>): Observable<PageablePatients> {
         let params = new HttpParams();
-
+        params = params.set('pageNumber', pageNumber);
+        params = params.set('pageSize', pageSize);
         if (searchParams.firstName) {
             params = params.set('firstName', searchParams.firstName);
         }
@@ -33,8 +35,7 @@ export class PatientService {
             params = params.set('isDead', searchParams.isDead);
         }
 
-        console.log(params);
-        return this.http.get<Patient[]>('http://localhost:8080/api/v1/patients', {params});
+        return this.http.get<PageablePatients>('http://localhost:8080/api/v1/patients', {params});
     }
 
     getByCode(code: number): Observable<Patient> {
@@ -46,15 +47,21 @@ export class PatientService {
 
     getCurrentRehabProgram(code: number): Observable<RehabProgram> {
         return this.http.get<RehabProgram>(
-            `http://localhost:8080/api/v1/patients/${code}/rehab-programs`,
-            {
-                params: {
-                    current: true
-                }
-            }
+            `http://localhost:8080/api/v1/patients/${code}/rehab-programs/current`,
         ).pipe(
             delay(500)
         );
+    }
+
+    getRehabProgram(code: number, programId: number): Observable<RehabProgram> {
+        return this.http.get<RehabProgram>(
+            `http://localhost:8080/api/v1/patients/${code}/rehab-programs`,
+            {
+                params: {
+                    id: programId
+                }
+            }
+        )
     }
 
     getRehabPrograms(code: number): Observable<RehabProgram[]> {
