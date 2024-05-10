@@ -46,7 +46,6 @@ export class ModuleBlockComponent implements OnInit, OnDestroy {
                 data: this.module.id,
                 dismissible: true,
                 closeable: true,
-                size: 'auto'
             }
         )
     }

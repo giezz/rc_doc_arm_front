@@ -20,9 +20,9 @@
       Входные анкеты
       <ng-template tuiAccordionItemContent>
         <div class="forms-block-container">
-        <ng-container *ngFor="let startForm of rehabProgram.forms" style="display:flex;">
+          <ng-container *ngFor="let startForm of rehabProgram.forms" style="display:flex;">
             <app-form-card *ngIf="startForm.typeId === 1" [form]="startForm.form" class="border-shadow"></app-form-card>
-        </ng-container>
+          </ng-container>
         </div>
         <button
           *ngIf="rehabProgram.isCurrent"
@@ -61,9 +61,11 @@
     <tui-accordion-item [open]="true">
       Выходные анкеты
       <ng-template tuiAccordionItemContent>
-        <ng-container *ngFor="let endForm of rehabProgram.forms">
-          <app-form-card *ngIf="endForm.typeId === 2" [form]="endForm.form" class="border-shadow"></app-form-card>
-        </ng-container>
+        <div class="forms-block-container">
+          <ng-container *ngFor="let endForm of rehabProgram.forms">
+            <app-form-card *ngIf="endForm.typeId === 2" [form]="endForm.form" class="border-shadow"></app-form-card>
+          </ng-container>
+        </div>
         <button
           *ngIf="rehabProgram.isCurrent"
           class="tui-space_top-3"
