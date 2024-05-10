@@ -5,7 +5,7 @@ import {TuiLabelModule, TuiLinkModule} from "@taiga-ui/core";
 import {ProgramFormResultCardComponent} from "./program-form-result-card/program-form-result-card.component";
 import { ModuleFormResultCardComponent } from './module-form-result-card/module-form-result-card.component';
 import { ExerciseCardComponent } from './exercise-card/exercise-card.component';
-import {TuiAvatarModule} from "@taiga-ui/kit";
+import {TuiAvatarModule, TuiLineClampModule} from "@taiga-ui/kit";
 import { DetailCardComponent } from './detail-card/detail-card.component';
 
 @NgModule({
@@ -21,7 +21,8 @@ import { DetailCardComponent } from './detail-card/detail-card.component';
         TuiLabelModule,
         TuiLinkModule,
         TuiAvatarModule,
-        NgOptimizedImage
+        NgOptimizedImage,
+        TuiLineClampModule
     ],
     exports: [
         FormCardComponent,
