@@ -1,19 +1,19 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+}
+
 .dialog-form-frame {
   display: flex;
   flex-direction: column;
-  width: 275px;
-  height: 109px;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px;
-  position: relative;
-  border-radius: 12px;
-  border: 1px solid #ededed;
+  gap: 0.5rem;
 }
 
 .dialog-form-frames-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px 10px
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 1.5rem;
 }

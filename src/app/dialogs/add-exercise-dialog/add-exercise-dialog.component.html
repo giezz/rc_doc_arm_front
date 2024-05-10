@@ -1,23 +1,4 @@
-<tui-input
-  tuiAutoFocus
-  tuiTextfieldSize="m"
->
-  Название упражнения
-</tui-input>
-<ng-container *ngIf="isLoaded; else loading">
-  <div class="dialog-form-frames-container">
-    <div *ngFor="let exercise of exercises" class="dialog-form-frame">
-      {{exercise.name}}
-      <button
-        tuiButton
-        size="s"
-        appearance="secondary"
-        (click)="addExercise(exercise.id)"
-      >Добавить
-      </button>
-    </div>
-  </div>
-</ng-container>
-<ng-template #loading>
-  <tui-loader [showLoader]="true" [size]="'xxl'" class="loader"></tui-loader>
-</ng-template>
+<app-exercises
+  [asAddExerciseDialog]="true"
+  (onButtonPressed)="addExercise($event)"
+></app-exercises>

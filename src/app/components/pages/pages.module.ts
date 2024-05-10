@@ -14,7 +14,7 @@ import {
     TuiFieldErrorPipeModule,
     TuiInputDateModule, TuiInputDateRangeModule,
     TuiInputModule,
-    TuiMultiSelectModule,
+    TuiMultiSelectModule, TuiRadioBlockModule,
     TuiSelectModule,
     TuiTabsModule
 } from "@taiga-ui/kit";
@@ -35,15 +35,19 @@ import { FormsComponent } from './forms/forms.component';
 
 
 @NgModule({
-  declarations: [
-    PatientsComponent,
-    RehabProgramsListComponent,
-    PagesComponent,
-    NavigationComponent,
-    RehabDetailCardComponent,
-    ExercisesComponent,
-    FormsComponent
-  ],
+    declarations: [
+        PatientsComponent,
+        RehabProgramsListComponent,
+        PagesComponent,
+        NavigationComponent,
+        RehabDetailCardComponent,
+        ExercisesComponent,
+        FormsComponent
+    ],
+    exports: [
+        ExercisesComponent,
+        FormsComponent
+    ],
     imports: [
         CommonModule,
         PagesRoutingModule,
@@ -71,7 +75,8 @@ import { FormsComponent } from './forms/forms.component';
         TuiInputDateRangeModule,
         TuiExpandModule,
         TuiGroupModule,
-        TuiTablePaginationModule
+        TuiTablePaginationModule,
+        TuiRadioBlockModule
     ]
 })
 export class PagesModule { }

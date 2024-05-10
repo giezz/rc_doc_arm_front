@@ -17,7 +17,7 @@ import {JwtModule} from "@auth0/angular-jwt";
 import {of} from "rxjs";
 import {HomeComponent} from './components/home/home.component';
 import {HeaderComponent} from "./components/header/header.component";
-import {TuiAvatarModule, TuiInputModule, TuiTabsModule} from "@taiga-ui/kit";
+import {TuiAvatarModule, TuiInputModule, TuiIslandModule, TuiTabsModule} from "@taiga-ui/kit";
 import {BrowserModule} from "@angular/platform-browser";
 import {HttpClientModule} from "@angular/common/http";
 import {AppRoutingModule} from "./app-routing.module";
@@ -41,6 +41,7 @@ import {NotfoundComponent} from './components/notfound/notfound.component';
 import {TuiBlockStatusModule} from "@taiga-ui/layout";
 import {registerLocaleData} from "@angular/common";
 import localeRu from '@angular/common/locales/ru';
+import {PagesModule} from "./components/pages/pages.module";
 
 export function tokenGetter() {
     return localStorage.getItem("token");
@@ -92,7 +93,9 @@ registerLocaleData(localeRu);
         FormsModule,
         TuiLabelModule,
         SharedModule,
-        TuiBlockStatusModule
+        TuiBlockStatusModule,
+        TuiIslandModule,
+        PagesModule
     ],
     exports: [RouterModule],
     providers: [

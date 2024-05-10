@@ -1,9 +1,6 @@
-import {ChangeDetectionStrategy, Component, inject, Inject, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject} from '@angular/core';
 import {TuiDialogContext} from "@taiga-ui/core";
 import {POLYMORPHEUS_CONTEXT} from '@tinkoff/ng-polymorpheus';
-import {Form} from "../../models/form";
-import {FormService} from "../../services/form.service";
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-select-form-dialog',
@@ -11,20 +8,12 @@ import {Observable} from "rxjs";
   styleUrls: ['./add-form-dialog.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddFormDialogComponent implements OnInit {
-
-  private readonly formService: FormService = inject(FormService);
-
-  forms$: Observable<Form[]>;
+export class AddFormDialogComponent {
 
   constructor(
     @Inject(POLYMORPHEUS_CONTEXT)
     private readonly context: TuiDialogContext<number, number>,
   ) {
-  }
-
-  ngOnInit(): void {
-    this.forms$ = this.formService.getAll()
   }
 
   addForm(formId: number): void {
