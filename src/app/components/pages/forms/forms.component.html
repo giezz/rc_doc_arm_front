@@ -1,6 +1,9 @@
-<form (ngSubmit)="searchForms()">
+<form [formGroup]="searchForms" (ngSubmit)="onSubmit()">
   <div class="input-search-patient-line">
-    <tui-input class="input-search-patient">
+    <tui-input
+      class="input-search-patient"
+      formControlName="formName"
+    >
       Название анкеты
     </tui-input>
     <button
@@ -29,9 +32,30 @@
     </tui-accordion-item>
   </tui-accordion>
 </form>
-<div class="forms-container tui-space_top-3">
-  <app-form-card
-    *ngFor="let form of forms$ | async"
-    [form]="form">
-  </app-form-card>
-</div>
+<ng-container *ngIf="data$ | async as response">
+  <div class="forms-container tui-space_top-3">
+    <div class="form-container" *ngFor="let form of response.content">
+      <app-form-card
+        [form]="form">
+      </app-form-card>
+      <button
+        *ngIf="asAddFormDialog"
+        tuiButton
+        appearance="secondary"
+        size="m"
+        (click)="buttonPressed(form.id)"
+      >
+        Добавить
+      </button>
+    </div>
+  </div>
+  <tui-table-pagination
+    class="tui-space_top-2"
+    [items]="pageSizes"
+    [total]="response.totalElements"
+    (paginationChange)="paginationChange($event)"
+    [page]="page"
+    [size]="size"
+  >
+  </tui-table-pagination>
+</ng-container>

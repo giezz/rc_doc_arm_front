@@ -7,6 +7,8 @@ import {ProgramForm} from "../models/program-form";
 import {ModuleFormResult} from "../models/module-form-result";
 import {ProgramFormResult} from "../models/program-form-result";
 import {CreateProtocolRequest} from "../models/request/create-protocol-request";
+import {SearchProgramsRequest} from "../models/request/search-programs-request";
+import {PageableResponse} from "../models/pageable-response";
 
 @Injectable({
     providedIn: 'root'
@@ -15,30 +17,32 @@ export class RehabProgramService {
 
     private http: HttpClient = inject(HttpClient)
 
-    getListByCurrentDoctor(searchParams: Partial<any>) {
+    getListByCurrentDoctor(pageNumber: number, pageSize: number, request: SearchProgramsRequest) {
         let params = new HttpParams();
+        params = params.set('pageNumber', pageNumber);
+        params = params.set('pageSize', pageSize);
+        if (request.firstName) {
+            params = params.set('patientFirstName', request.firstName);
+        }
+        if (request.middleName) {
+            params = params.set('patientMiddleName', request.middleName);
+        }
+        if (request.lastName) {
+            params = params.set('patientLastName', request.lastName);
+        }
+        if (request.startDateForm && request.startDateTo) {
+            params = params.set('startDate', request.startDateForm);
+            params = params.set('endDate', request.startDateTo);
+        }
+        if (request.endDateFrom && request.endDateTo) {
+            params = params.set('endDateFrom', request.endDateFrom);
+            params = params.set('endDateTo', request.endDateTo);
+        }
+        if (request.isCurrent) {
+            params = params.set('isCurrent', request.isCurrent);
+        }
 
-        if (searchParams.firstName) {
-            params = params.set('patientFirstName', searchParams.firstName);
-        }
-        if (searchParams.middleName) {
-            params = params.set('patientMiddleName', searchParams.middleName);
-        }
-        if (searchParams.lastName) {
-            params = params.set('patientLastName', searchParams.lastName);
-        }
-        if (searchParams.dateRange) {
-            params = params.set('startDate', searchParams.dateRange.from)
-            params = params.set('endDate', searchParams.dateRange.to)
-        }
-        // if (searchParams.startDate) {
-        //     params = params.set('startDate', searchParams.startDate)
-        // }
-        // if (searchParams.endDate) {
-        //     params = params.set('endDate', searchParams.endDate)
-        // }
-
-        return this.http.get<RehabProgram[]>(
+        return this.http.get<PageableResponse<RehabProgram>>(
             "http://localhost:8080/api/v1/rehabs",
             {params}
         )

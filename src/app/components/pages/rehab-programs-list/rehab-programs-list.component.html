@@ -1,5 +1,4 @@
-<form [formGroup]="searchProgramForm" (ngSubmit)="searchRehabPrograms()">
-  {{searchProgramForm.value | json}}
+<form [formGroup]="searchProgramForm" (ngSubmit)="onSubmit()">
   <div class="input-search-patient-line">
     <div class="input-search-patient" tuiGroup>
       <tui-input
@@ -35,35 +34,58 @@
     <tui-accordion-item>
       Фильтры
       <ng-template tuiAccordionItemContent>
-        <div tuiGroup>
-          <tui-input-date-range
-            formControlName="dateRange"
-            tuiUnfinishedValidator="Выберите даты"
-            [tuiTextfieldCleaner]="true"
-            [max]="max"
-            [min]="min"
+        <div class="input-search-patient-line">
+          <div
+            class="input-search-patient"
+            tuiGroup>
+            <tui-input-date-range
+              formControlName="startDateRange"
+              tuiUnfinishedValidator="Выберите даты"
+              [tuiTextfieldCleaner]="true"
+              [max]="max"
+              [min]="min"
+            >
+              Дата начала программы
+              <input
+                tuiTextfield
+              />
+            </tui-input-date-range>
+            <tui-input-date-range
+              formControlName="endDateRange"
+              tuiUnfinishedValidator="Выберите даты"
+              [tuiTextfieldCleaner]="true"
+              [max]="max"
+              [min]="min"
+            >
+              Дата окончания программы
+              <input
+                tuiTextfield
+              />
+            </tui-input-date-range>
+          </div>
+          <div
+            class="input-search-patient"
+            tuiGroup
           >
-            Выберите даты
-            <input
-              placeholder="From - To"
-              tuiTextfield
-            />
-          </tui-input-date-range>
-          <tui-multi-select
-            formControlName="status"
-            class="search"
-            [tuiTextfieldCleaner]="true"
-            [editable]="false"
-            [expandable]="true"
-            [tuiTextfieldLabelOutside]="true"
-          >
-            Статус
-            <tui-data-list-wrapper
-              *tuiDataList
-              tuiMultiSelectGroup
-              [items]="items"
-            ></tui-data-list-wrapper>
-          </tui-multi-select>
+            <tui-radio-block
+              formControlName="status"
+              item="true"
+            >
+              Текущие
+            </tui-radio-block>
+            <tui-radio-block
+              formControlName="status"
+              item="false"
+            >
+              Завершенные
+            </tui-radio-block>
+            <tui-radio-block
+              formControlName="status"
+              [item]="null"
+            >
+              Все
+            </tui-radio-block>
+          </div>
         </div>
       </ng-template>
     </tui-accordion-item>
@@ -71,8 +93,21 @@
 </form>
 <h5>Ваши программы реабилитации</h5>
 <div class="rehab-programs-container tui-space_top-3">
-  <app-rehab-detail-card
-    *ngFor="let program of rehabPrograms"
-    [rehabProgram]="program"
-  ></app-rehab-detail-card>
+  <ng-container
+    *ngIf="data$ | async as response"
+  >
+    <app-rehab-detail-card
+      *ngFor="let program of response.content"
+      [rehabProgram]="program"
+    ></app-rehab-detail-card>
+    <tui-table-pagination
+      style="width: 100%"
+      class="tui-space_top-2"
+      [items]="pageSizes"
+      [total]="response.totalElements"
+      (paginationChange)="paginationChange($event)"
+      [page]="page"
+      [size]="size"
+    ></tui-table-pagination>
+  </ng-container>
 </div>

@@ -3,7 +3,8 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Patient} from "../models/patient";
 import {delay, Observable} from "rxjs";
 import {RehabProgram} from "../models/rehab-program";
-import {PageablePatients} from "../models/pageable-patients";
+import {SearchPatientsRequest} from "../models/request/search-patients-request";
+import {PageableResponse} from "../models/pageable-response";
 
 @Injectable({
     providedIn: 'root'
@@ -12,30 +13,30 @@ export class PatientService {
 
     private http: HttpClient = inject(HttpClient)
 
-    getAll(pageNumber: number, pageSize: number, searchParams: Partial<any>): Observable<PageablePatients> {
+    getAll(pageNumber: number, pageSize: number, request: SearchPatientsRequest): Observable<PageableResponse<Patient>> {
         let params = new HttpParams();
         params = params.set('pageNumber', pageNumber);
         params = params.set('pageSize', pageSize);
-        if (searchParams.firstName) {
-            params = params.set('firstName', searchParams.firstName);
+        if (request.firstName) {
+            params = params.set('firstName', request.firstName);
         }
-        if (searchParams.middleName) {
-            params = params.set('middleName', searchParams.middleName);
+        if (request.middleName) {
+            params = params.set('middleName', request.middleName);
         }
-        if (searchParams.lastName) {
-            params = params.set('lastName', searchParams.lastName);
+        if (request.lastName) {
+            params = params.set('lastName', request.lastName);
         }
-        // if (searchParams.status != null) {
-        //   params = params.set('status', searchParams.status);
-        // }
-        if (searchParams.birthDate) {
-            params = params.set('birthDate', searchParams.birthDate);
+        if (request.status.length > 0) {
+          params = params.set('status', request.status.join(','))
         }
-        if (searchParams.isDead) {
-            params = params.set('isDead', searchParams.isDead);
+        if (request.gender) {
+            params = params.set('gender', request.gender)
+        }
+        if (request.birthDate) {
+            params = params.set('birthDate', request.birthDate);
         }
 
-        return this.http.get<PageablePatients>('http://localhost:8080/api/v1/patients', {params});
+        return this.http.get<PageableResponse<Patient>>('http://localhost:8080/api/v1/patients', {params});
     }
 
     getByCode(code: number): Observable<Patient> {
