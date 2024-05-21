@@ -13,11 +13,12 @@ import {
     TuiNotificationModule
 } from "@taiga-ui/core";
 import {EmcComponent} from './emc/emc.component';
-import {TuiBadgeModule} from "@taiga-ui/kit";
+import {TuiBadgeModule, TuiTabsModule} from "@taiga-ui/kit";
 import {SharedModule} from "../shared/shared.module";
 import {RehabProgramsComponent} from './rehab-programs/rehab-programs.component';
 import {RehabProgramDetailComponent} from './rehab-programs/rehab-program-detail/rehab-program-detail.component';
 import {TuiBlockStatusModule} from "@taiga-ui/layout";
+import { EpicrisComponent } from './emc/epicris/epicris.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {TuiBlockStatusModule} from "@taiga-ui/layout";
         PatientDetailComponent,
         EmcComponent,
         RehabProgramsComponent,
-        RehabProgramDetailComponent
+        RehabProgramDetailComponent,
+        EpicrisComponent
     ],
     exports: [
         PatientDetailComponent
@@ -42,7 +44,8 @@ import {TuiBlockStatusModule} from "@taiga-ui/layout";
         TuiDataListModule,
         TuiHostedDropdownModule,
         TuiBlockStatusModule,
-        TuiLoaderModule
+        TuiLoaderModule,
+        TuiTabsModule
     ]
 })
 export class PatientModule {

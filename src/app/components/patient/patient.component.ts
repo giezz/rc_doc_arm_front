@@ -1,6 +1,6 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {Patient} from "../../models/patient";
-import {Subscription} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import {PatientService} from "../../services/patient.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PatientComponentsService} from "../../services/components/patient-components.service";
@@ -32,7 +32,7 @@ export class PatientComponent implements OnInit, OnDestroy {
                         this.patient = patient;
                         this.isLoaded = true;
                     },
-                    error: err => {
+                    error: () => {
                         this.router.navigate(['/**']).then()
                     }
                 }
@@ -41,6 +41,7 @@ export class PatientComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
+        this.patientComponentService.setPatient(null);
         this.subscription.unsubscribe();
     }
 
