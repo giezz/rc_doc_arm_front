@@ -1,0 +1,9 @@
+<ng-container *ngIf="epicrisises$ | async as epicrises">
+  <div class="epicrises-container">
+    <app-detail-card *ngFor="let epicris of epicrises">
+      <label [tuiLabel]="'Дата составления'">{{epicris.creationDate}}</label>
+      <label [tuiLabel]="'Код диагноза'">{{epicris.diagnosisCode}}</label>
+      <label [tuiLabel]="'Данные из эпикриза'">{{epicris.epicrisisiData}}</label>
+    </app-detail-card>
+  </div>
+</ng-container>
