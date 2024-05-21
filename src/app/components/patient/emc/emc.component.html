@@ -1,1 +1,54 @@
-<p>emc works!</p>
+<tui-tabs>
+  <button
+    tuiTab
+  >
+    История госпитализаций
+  </button>
+</tui-tabs>
+<ng-container *ngIf="isLoaded">
+  <div class="hosp-history-container tui-space_top-3">
+    <ng-container *ngIf="isAvailable; else not_available">
+      <ng-container *ngFor="let hosp of hospHistory">
+        <div class="hosp-history-info-container">
+          <app-detail-card style="width: 100%">
+            <label [tuiLabel]="'Код медицинского учереждения'">{{hosp.muCode}}</label>
+            <label [tuiLabel]="'Код врача'">{{hosp.doctorCode}}</label>
+            <label [tuiLabel]="'Период госпитализации'">с {{hosp.startDate | date}} по {{hosp.endDate | date}}</label>
+            <label [tuiLabel]="'Данные о госпитализации'">{{hosp.hospData}}</label>
+          </app-detail-card>
+          <tui-hosted-dropdown
+            [content]="dropdown"
+          >
+            <button
+              tuiIconButton
+              appearance="flat"
+              [icon]="'tuiIconMoreVerticalLarge'"
+              shape="rounded"
+              type="button"
+            ></button>
+          </tui-hosted-dropdown>
+          <ng-template #dropdown>
+            <tui-data-list>
+              <tui-opt-group>
+                <button
+                  tuiOption
+                  (click)="openEpicrisisDialog(epicrisis_dialog)"
+                >
+                  Подробнее
+                </button>
+              </tui-opt-group>
+            </tui-data-list>
+          </ng-template>
+          <ng-template #epicrisis_dialog>
+            <app-epicris [hospHistory]="hosp"></app-epicris>
+          </ng-template>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</ng-container>
+<ng-template #not_available>
+  Сервис ЭМК недоступен
+</ng-template>
+
+
