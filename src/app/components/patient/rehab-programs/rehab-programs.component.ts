@@ -1,4 +1,4 @@
-import {Component, inject, Injector, OnDestroy, OnInit} from '@angular/core';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {PatientComponentsService} from "../../../services/components/patient-components.service";
 import {PatientService} from "../../../services/patient.service";
@@ -19,7 +19,6 @@ export class RehabProgramsComponent implements OnInit, OnDestroy {
     private patientService: PatientService = inject(PatientService);
     private rehabProgramService: RehabProgramService = inject(RehabProgramService);
     private dialogService = inject(TuiDialogService);
-    private injector: Injector = inject(Injector);
     private router: Router = inject(Router);
 
     private subscription: Subscription = new Subscription();
