@@ -27,10 +27,8 @@ import {PatientComponent} from './components/patient/patient.component';
 import {PatientModule} from "./components/patient/patient.module";
 import {RehabProgramComponent} from './components/rehab-program/rehab-program.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {ModuleEditDialogComponent} from './dialogs/module-edit-dialog/module-edit-dialog.component';
 import {AddExerciseDialogComponent} from './dialogs/add-exercise-dialog/add-exercise-dialog.component';
 import {TuiAutoFocusModule, TuiLetModule} from "@taiga-ui/cdk";
-import {ModulePreviewDialogComponent} from './dialogs/module-preview-dialog/module-preview-dialog.component';
 import {FormPreviewDialogComponent} from './dialogs/form-preview-dialog/form-preview-dialog.component';
 import {FormResultsDialogComponent} from './dialogs/form-results-dialog/form-results-dialog.component';
 import {SharedModule} from "./components/shared/shared.module";
@@ -57,11 +55,9 @@ registerLocaleData(localeRu);
         HeaderComponent,
         PatientComponent,
         RehabProgramComponent,
-        ModuleEditDialogComponent,
         AddExerciseDialogComponent,
         AddFormDialogComponent,
         AddModuleDialogComponent,
-        ModulePreviewDialogComponent,
         FormPreviewDialogComponent,
         FormResultsDialogComponent,
         ProtocolAddResultDialog,
