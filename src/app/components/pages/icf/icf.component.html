@@ -1,0 +1,75 @@
+<div class="icf-viewer">
+  <tui-tree
+    class="icf-tree"
+    [childrenHandler]="childrenHandler"
+    [content]="content"
+    [map]="map"
+    [tuiTreeController]="false"
+    [value]="service.data$ | async"
+    (toggled)="onToggled($event)"
+  ></tui-tree>
+  <ng-template
+    #content
+    let-item
+  >
+    <tui-loader
+      *ngIf="item === loading; else text"
+    ></tui-loader>
+    <ng-template #text>
+      <div (click)="inspectCategory(item.code, item.name, item.description)">
+        <strong>{{item.code}}</strong>
+        {{item.name}}
+      </div>
+    </ng-template>
+  </ng-template>
+  <div class="icf-category-preview-container">
+    <div *ngIf="category" class="category-info-container">
+      <label [tuiLabel]="'Категория'"><strong>{{category.code}}</strong> {{category.name}}</label>
+      <label [tuiLabel]="'Описание'" *ngIf="category.description!!">{{category.description}}</label>
+      <div *ngIf="asDialog">
+        <form class="add-category-field-container tui-space_top-3" [formGroup]="gradeCategory">
+          <tui-input
+            style="width: 100%;"
+            formControlName="grade"
+          >
+            Оценка
+          </tui-input>
+          <button
+            tuiButton
+            (click)="addCategory(category, gradeCategory.value.grade!)"
+          >
+            Добавить
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="category-search-container">
+      <form [formGroup]="searchCategory" (ngSubmit)="findCategory()">
+        <div class="icf-search-field-container">
+          <tui-input
+            style="width: 100%;"
+            formControlName="category"
+            [tuiTextfieldCleaner]="true"
+          >
+            Категория
+          </tui-input>
+          <button
+            tuiButton
+            type="submit"
+          >
+            Найти
+          </button>
+        </div>
+      </form>
+      <tui-scrollbar class="box tui-space_top-3" *ngIf="categories.length > 0">
+        <div *ngFor="let category of categories" (click)="inspectCategory(category.code, category.name, category.description)">
+          <strong>{{category.code}}</strong>
+          {{category.name}}
+        </div>
+      </tui-scrollbar>
+    </div>
+  </div>
+</div>
+
+
+

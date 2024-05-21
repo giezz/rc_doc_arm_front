@@ -1,0 +1,49 @@
+.icf-viewer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.icf-tree {
+  display: flex;
+  width: 60%;
+}
+
+.icf-category-preview-container {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.icf-category-preview {
+  display: flex;
+  flex-direction: column;
+}
+
+.icf-search-field-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.category-info-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.category-search-container {
+  margin-top: 2rem;
+}
+
+.box {
+  height: 40rem;
+  border: 1px solid var(--tui-base-03);
+  border-radius: 12px;
+  padding: .5rem;
+}
+
+.add-category-field-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
