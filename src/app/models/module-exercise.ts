@@ -1,7 +1,8 @@
+import {Exercise} from "./exercise";
+
 export class ModuleExercise {
   id: number;
-  exerciseId: number;
-  exerciseName: string;
+  exercise: Exercise;
   blockId: number;
   finishedAt: string;
 }
