@@ -1,0 +1,92 @@
+<ng-container *ngIf="isLoaded">
+  <br>
+  <span>
+    Редактирование модуля:
+    {{module.name}}
+    <button
+      *ngIf="!previewMode"
+      tuiIconButton appearance="icon"
+      icon="tuiIconEditLarge"
+      type="button"
+    ></button>
+  </span>
+  <tui-accordion [closeOthers]="false">
+    <tui-accordion-item *ngFor="let blockId of [1, 2, 3]" [open]="true">
+      <strong>{{ blockId === 1 ? 'Разминочный блок' : (blockId === 2 ? 'Основной блок' : 'Заминочный блок') }}</strong>
+      <ng-template tuiAccordionItemContent>
+        <div class="module-items-container">
+          <ng-container *ngFor="let moduleExercise of moduleExercises">
+            <ng-container *ngIf="moduleExercise.blockId === blockId">
+              <div class="module-content-item-container">
+                <app-exercise-card
+                  [exercise]="moduleExercise.exercise">
+                </app-exercise-card>
+                <div class="module-content-actions-container">
+                  <button
+                    *ngIf="!previewMode"
+                    tuiIconButton
+                    appearance="icon"
+                    icon="tuiIconTrash2Large"
+                    type="button"
+                    (click)="deleteExercise(moduleExercise)"
+                  ></button>
+                </div>
+              </div>
+            </ng-container>
+          </ng-container>
+        </div>
+        <button
+          *ngIf="!previewMode"
+          tuiIconButton
+          appearance="secondary"
+          icon="tuiIconPlusLarge"
+          type="button"
+          (click)="openAddExerciseDialog(add_exercise_dialog)"
+        ></button>
+      </ng-template>
+      <ng-template #add_exercise_dialog let-observer>
+        <app-exercises
+          [asAddExerciseDialog]="true"
+          (getExerciseOnButtonPressed)="addExercise($event, blockId); observer.complete()"
+        >
+        </app-exercises>
+      </ng-template>
+    </tui-accordion-item>
+    <tui-accordion-item [open]="true">
+      <strong>Анкеты</strong>
+      <ng-template tuiAccordionItemContent>
+        <div class="module-items-container">
+          <div class="module-content-item-container" *ngFor="let moduleForm of moduleForms">
+            <app-form-card [form]="moduleForm.form"></app-form-card>
+            <div class="module-content-actions-container">
+              <button
+                *ngIf="!previewMode"
+                tuiIconButton
+                appearance="icon"
+                icon="tuiIconTrash2Large"
+                type="button"
+                (click)="deleteForm(moduleForm)"
+              >
+              </button>
+            </div>
+          </div>
+        </div>
+        <button
+          *ngIf="!previewMode"
+          tuiIconButton
+          appearance="secondary"
+          icon="tuiIconPlusLarge"
+          type="button"
+          (click)="openAddFormDialog(add_form_dialog)"
+        ></button>
+      </ng-template>
+    </tui-accordion-item>
+  </tui-accordion>
+  <ng-template #add_form_dialog let-observer>
+    <app-forms
+      [asAddFormDialog]="true"
+      (getFormOnButtonPressed)="addForm($event); observer.complete()"
+    >
+    </app-forms>
+  </ng-template>
+</ng-container>

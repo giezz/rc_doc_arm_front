@@ -1,149 +1,37 @@
 <ng-container *ngIf="isLoaded">
-  <ng-container *ngIf="rehabProgram && rehabProgram.isCurrent">
-    <!--    {{protocolForm.value | json}}-->
-    <form [formGroup]="protocolForm" (ngSubmit)="openConfirmProtocolCreationDialog(confirm_protocol_creation_dialog)">
-      <h5 class="tui-space_top-3 tui-space_bottom-2">Результаты входных и выходных анкет</h5>
-      <div *ngIf="programScales.controls.length > 0" formArrayName="programScales" class="protocol-scales-container">
-        <div
-          *ngFor="let control of programScales.controls; let i = index"
-          class="protocol-scale-container">
-          <tui-textarea
-            style="width: 100%"
-            [tuiTextfieldCleaner]="true"
-            [tuiTextfieldLabelOutside]="true"
-            [formControlName]="i"
-            [readOnly]="true"
-            [expandable]="true"
-          >
-          </tui-textarea>
-          <button
-            tuiButton
-            appearance="icon"
-            [icon]="'tuiIconClose'"
-            tuiIconButton
-            type="button"
-            (click)="removeProgramFormResult(i)"
-          >
-          </button>
+  <ng-container *ngIf="rehabProgram.isCurrent">
+    <button
+      class="tui-space_bottom-3"
+      tuiButton
+      (click)="openProtocolCreationDialog(protocol_creation_dialog)"
+    >
+      Создать новый протокол
+    </button>
+    <hr/>
+  </ng-container>
+  <ng-container *ngIf="protocols$ | async as protocols">
+    <tui-accordion-item
+      class="tui-space_top-3"
+      *ngFor="let protocol of protocols"
+    >
+      <strong>Протокол от {{protocol.creationDate | date}}</strong>
+      <ng-template tuiAccordionItemContent>
+        <div class="completed-protocol-container">
+          <label
+            [tuiLabel]="'Врач'">{{rehabProgram.doctor.lastName}} {{rehabProgram.doctor.firstName}} {{rehabProgram.doctor.middleName}}</label>
+          <label [tuiLabel]="'Результаты реабилитации по шкалам'">{{protocol.scalesResult}}</label>
+          <label [tuiLabel]="'Результат реабилитации'">{{protocol.rehabResult}}</label>
+          <label [tuiLabel]="'Ребилитационный диагноз'">{{protocol.rehabDiagnosis}}</label>
+          <label [tuiLabel]="'Рекомендации'">{{protocol.recommendations}}</label>
         </div>
-      </div>
-      <h5 class="tui-space_top-5 tui-space_bottom-2">Результаты анкет модулей</h5>
-      <div *ngIf="modulesScales.controls.length > 0" formArrayName="modulesScales" class="protocol-scales-container">
-        <div
-          *ngFor="let control of modulesScales.controls; let i = index"
-          class="protocol-scale-container">
-          <tui-textarea
-            style="width: 100%"
-            [tuiTextfieldCleaner]="true"
-            [tuiTextfieldLabelOutside]="true"
-            [formControlName]="i"
-            [readOnly]="true"
-            [expandable]="true"
-          >
-          </tui-textarea>
-          <button
-            tuiButton
-            appearance="icon"
-            [icon]="'tuiIconClose'"
-            tuiIconButton
-            type="button"
-            (click)="removeModuleFormResult(i)"
-          >
-          </button>
-        </div>
-      </div>
-      <button
-        class="tui-space_top-5"
-        tuiButton
-        type="button"
-        size="s"
-        (click)="openAddScalesDialog(scales_dialog)"
-      >
-        Добавить результат
-      </button>
-      <div class="detail-block">
-        <h5 class="tui-space_top-5 tui-space_bottom-2">Результат реабилитации</h5>
-        <tui-textarea
-          formControlName="result"
-          [expandable]="true"
-        ></tui-textarea>
-      </div>
-      <div class="detail-block">
-        <h5 class="tui-space_top-5 tui-space_bottom-2">Реабилитационный диагноз</h5>
-        <tui-textarea
-          formControlName="diagnosis"
-          [expandable]="true"
-        ></tui-textarea>
-      </div>
-      <div class="detail-block">
-        <h5 class="tui-space_top-5 tui-space_bottom-2">Рекомендации</h5>
-        <tui-textarea
-          formControlName="recommendations"
-          [expandable]="true"
-        ></tui-textarea>
-      </div>
-      <button
-        class="tui-space_top-5"
-        tuiButton
-        type="submit"
-        size="s"
-        [disabled]="!protocolForm.valid"
-      >
-        Создать
-      </button>
-    </form>
+      </ng-template>
+    </tui-accordion-item>
   </ng-container>
 </ng-container>
-<ng-template
-  #scales_dialog
-  let-observer
->
-  <h3>Результаты входных и выходных анкет</h3>
-  <div *ngFor="let result of programFormsResults">
-    <app-form-result-card [formResult]="result"></app-form-result-card>
-    <button
-      tuiButton
-      size="s"
-      (click)="addProgramFormResult(result)"
-    >
-      Добавить
-    </button>
-  </div>
-  <hr/>
-  <h3>Результаты анкет модулей</h3>
-  <div *ngFor="let result of modulesFormsResults">
-    <app-module-form-result-card [formResult]="result"></app-module-form-result-card>
-      <button
-        tuiButton
-        size="s"
-        (click)="addModulesFormResult(result)"
-      >Добавить
-      </button>
-    </div>
+<ng-template #protocol_creation_dialog let-observer>
+  <app-create-protocol-dialog
+    [rehabProgram]="rehabProgram"
+    (protocols)="getProtocols($event); observer.complete()">
+  </app-create-protocol-dialog>
 </ng-template>
-<ng-template
-  #confirm_protocol_creation_dialog
-  let-observer
->
-  <h2>Подтвердите дейтсвие</h2>
-  <p>Создать протокол телемедицинской консультации?</p>
-  <button
-    tuiButton
-    size="m"
-    appearance="primary"
-    type="button"
-    class="tui-space_right-3"
-    (click)="createProtocol(); observer.complete() "
-  >
-    Создать
-  </button>
-  <button
-    tuiButton
-    size="m"
-    appearance="secondary"
-    type="button"
-    (click)="observer.complete()"
-  >
-    Отмена
-  </button>
-</ng-template>
+

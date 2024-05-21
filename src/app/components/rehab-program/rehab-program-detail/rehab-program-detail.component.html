@@ -17,11 +17,16 @@
   </div>
   <tui-accordion [closeOthers]="false">
     <tui-accordion-item [open]="true">
-      Входные анкеты
+      <strong>Входные анкеты</strong>
       <ng-template tuiAccordionItemContent>
         <div class="forms-block-container">
           <ng-container *ngFor="let startForm of rehabProgram.forms" style="display:flex;">
-            <app-form-card *ngIf="startForm.typeId === 1" [form]="startForm.form" class="border-shadow"></app-form-card>
+              <app-form-block
+                *ngIf="startForm.typeId === 1"
+                [form]="startForm"
+                [isProgramCompleted]="rehabProgram.isCurrent"
+                (onDeleteButtonPressed)="deleteForm($event)"
+              ></app-form-block>
           </ng-container>
         </div>
         <button
@@ -37,13 +42,14 @@
       </ng-template>
     </tui-accordion-item>
     <tui-accordion-item [open]="true">
-      Модули
+      <strong>Модули</strong>
       <ng-template tuiAccordionItemContent>
         <app-module-block
           *ngFor="let module of rehabProgram.modules; let i = index"
           [module]="module"
           [editable]="rehabProgram.isCurrent"
           [index]="i"
+          (onDeleteButtonPressed)="deleteModule($event)"
           class="module-island border-shadow"
         ></app-module-block>
         <button
@@ -59,11 +65,16 @@
       </ng-template>
     </tui-accordion-item>
     <tui-accordion-item [open]="true">
-      Выходные анкеты
+      <strong>Выходные анкеты</strong>
       <ng-template tuiAccordionItemContent>
         <div class="forms-block-container">
           <ng-container *ngFor="let endForm of rehabProgram.forms">
-            <app-form-card *ngIf="endForm.typeId === 2" [form]="endForm.form" class="border-shadow"></app-form-card>
+            <app-form-block
+              *ngIf="endForm.typeId === 2"
+              [form]="endForm"
+              [isProgramCompleted]="rehabProgram.isCurrent"
+              (onDeleteButtonPressed)="deleteForm($event)"
+            ></app-form-block>
           </ng-container>
         </div>
         <button
@@ -79,83 +90,6 @@
       </ng-template>
     </tui-accordion-item>
   </tui-accordion>
-  <!--  <app-detail-card-->
-  <!--    heading="Входные анкеты"-->
-  <!--    [padding]="false"-->
-  <!--    [border]="false"-->
-  <!--    [boxShadow]="false"-->
-  <!--  >-->
-  <!--    <div class="forms-block-container">-->
-  <!--      <ng-container *ngFor="let startForm of rehabProgram.forms">-->
-  <!--        <app-form-card *ngIf="startForm.typeId === 1" [form]="startForm.form" class="border-shadow"></app-form-card>-->
-  <!--      </ng-container>-->
-  <!--    </div>-->
-  <!--    <button-->
-  <!--      *ngIf="rehabProgram.isCurrent"-->
-  <!--      class="tui-space_top-3"-->
-  <!--      tuiButton-->
-  <!--      appearance="primary"-->
-  <!--      size="s"-->
-  <!--      (click)="showAddFormDialog('START')"-->
-  <!--    >-->
-  <!--      Добавить анкету-->
-  <!--    </button>-->
-  <!--  </app-detail-card>-->
-  <!--  <app-detail-card-->
-  <!--    heading="Модули"-->
-  <!--    [padding]="false"-->
-  <!--    [border]="false"-->
-  <!--    [boxShadow]="false"-->
-  <!--  >-->
-  <!--    <div class="modules-wrapper">-->
-  <!--      <app-module-block-->
-  <!--        *ngFor="let module of rehabProgram.modules; let i = index"-->
-  <!--        [module]="module"-->
-  <!--        [editable]="rehabProgram.isCurrent"-->
-  <!--        [index]="i"-->
-  <!--        class="module-island border-shadow"-->
-  <!--      ></app-module-block>-->
-  <!--    </div>-->
-  <!--    <button-->
-  <!--      *ngIf="rehabProgram.isCurrent"-->
-  <!--      tuiButton-->
-  <!--      appearance="primary"-->
-  <!--      size="s"-->
-  <!--      (click)="showAddModuleDialog()"-->
-  <!--    >-->
-  <!--      Добавить модуль-->
-  <!--    </button>-->
-  <!--  </app-detail-card>-->
-  <!--  <app-detail-card-->
-  <!--    heading="Выходные анкеты"-->
-  <!--    [padding]="false"-->
-  <!--    [border]="false"-->
-  <!--    [boxShadow]="false"-->
-  <!--  >-->
-  <!--    <div class="forms-block-container">-->
-  <!--      <ng-container *ngFor="let endForm of rehabProgram.forms">-->
-  <!--        <app-form-card *ngIf="endForm.typeId === 2" [form]="endForm.form" class="border-shadow"></app-form-card>-->
-  <!--      </ng-container>-->
-  <!--    </div>-->
-  <!--    <button-->
-  <!--      *ngIf="rehabProgram.isCurrent"-->
-  <!--      class="tui-space_top-3"-->
-  <!--      tuiButton-->
-  <!--      appearance="primary"-->
-  <!--      size="s"-->
-  <!--      (click)="showAddFormDialog('END')"-->
-  <!--    >-->
-  <!--      Добавить анкету-->
-  <!--    </button>-->
-  <!--  </app-detail-card>-->
-
-  <!--    <button-->
-  <!--      tuiButton-->
-  <!--      appearance="primary"-->
-  <!--      size="s"-->
-  <!--    >-->
-  <!--      Сохранить-->
-  <!--    </button>-->
 </ng-container>
 <ng-template #loading>
   <tui-loader [showLoader]="true" [size]="'xxl'" class="loader"></tui-loader>

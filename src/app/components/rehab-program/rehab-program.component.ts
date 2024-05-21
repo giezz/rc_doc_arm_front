@@ -31,6 +31,10 @@ export class RehabProgramComponent implements OnInit, OnDestroy {
 
     }
 
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
+    }
+
     private getPatient(code: number) {
         this.subscription.add(this.patientService.getByCode(code).subscribe(
             {
@@ -39,7 +43,7 @@ export class RehabProgramComponent implements OnInit, OnDestroy {
                     this.patient = patient;
                     this.isLoaded = true;
                 },
-                error: err => {
+                error: () => {
                     this.router.navigate(['/**']).then()
                 }
             }
@@ -51,7 +55,7 @@ export class RehabProgramComponent implements OnInit, OnDestroy {
                     next: program => {
                         this.rehabProgramComponentsService.setProgram(program);
                     },
-                    error: err => {
+                    error: () => {
                         this.router.navigate(['/**']).then()
                     }
                 }
@@ -59,11 +63,4 @@ export class RehabProgramComponent implements OnInit, OnDestroy {
         )
     }
 
-    ngOnDestroy(): void {
-        this.subscription.unsubscribe();
-    }
-
-    navigateToPatient(): void {
-        this.router.navigate(["/patient", this.patientCode]).then()
-    }
 }

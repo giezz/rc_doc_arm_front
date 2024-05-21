@@ -1,0 +1,184 @@
+{{protocolForm.value | json}}
+{{protocolForm.valid}}
+<form [formGroup]="protocolForm" (ngSubmit)="openConfirmProtocolCreationDialog(confirm_protocol_creation_dialog)">
+  <h5 class="tui-space_top-3 tui-space_bottom-2">Результаты прохождения входных и выходных анкет</h5>
+  <div *ngIf="programScales.controls.length > 0; else no_results" formArrayName="programScales"
+       class="protocol-scales-container">
+    <div
+      *ngFor="let control of programScales.controls; let i = index"
+      class="protocol-scale-container">
+      <tui-textarea
+        style="width: 100%"
+        [tuiTextfieldCleaner]="true"
+        [tuiTextfieldLabelOutside]="true"
+        [formControlName]="i"
+        [readOnly]="true"
+        [expandable]="true"
+      >
+      </tui-textarea>
+      <button
+        tuiButton
+        appearance="icon"
+        [icon]="'tuiIconClose'"
+        tuiIconButton
+        type="button"
+        (click)="removeProgramFormResult(i)"
+      >
+      </button>
+    </div>
+  </div>
+  <ng-template #no_results>
+    Результаты не добавлены
+  </ng-template>
+  <h5 class="tui-space_top-5 tui-space_bottom-2">Результаты прохождения анкет модулей</h5>
+  <div *ngIf="modulesScales.controls.length > 0; else no_module_results" formArrayName="modulesScales"
+       class="protocol-scales-container">
+    <div
+      *ngFor="let control of modulesScales.controls; let i = index"
+      class="protocol-scale-container">
+      <tui-textarea
+        style="width: 100%"
+        [tuiTextfieldCleaner]="true"
+        [tuiTextfieldLabelOutside]="true"
+        [formControlName]="i"
+        [readOnly]="true"
+        [expandable]="true"
+      >
+      </tui-textarea>
+      <button
+        tuiButton
+        appearance="icon"
+        [icon]="'tuiIconClose'"
+        tuiIconButton
+        type="button"
+        (click)="removeModuleFormResult(i)"
+      >
+      </button>
+    </div>
+  </div>
+  <ng-template #no_module_results>
+    Результаты не добавлены
+  </ng-template>
+  <br/>
+  <div class="protocol-button-container">
+    <button
+      class="tui-space_top-5"
+      tuiButton
+      appearance="secondary"
+      type="button"
+      (click)="openAddScalesDialog(scales_dialog)"
+    >
+      Добавить результат
+    </button>
+  </div>
+  <app-detail-card heading="Результат реабилитации" [border]="false" [boxShadow]="false" [padding]="false">
+    <tui-select formControlName="result">
+      Результат
+      <tui-data-list-wrapper
+        *tuiDataList
+        [items]="rehabResultItems"
+      >
+      </tui-data-list-wrapper>
+    </tui-select>
+  </app-detail-card>
+  <app-detail-card heading="Реабилитационный диагноз" [border]="false" [boxShadow]="false" [padding]="false">
+    <div class="icf-category-grade-container" *ngFor="let code of protocolForm.value.diagnosis">
+      <label [tuiLabel]="'Код'">{{code}}</label>
+      <button tuiIconButton [icon]="'tuiIconX'" appearance="icon"></button>
+    </div>
+    <div class="protocol-button-container">
+      <button
+        class="tui-space_top-3"
+        tuiButton
+        appearance="secondary"
+        type="button"
+        (click)="openAddIcfCategoryDialog(add_icf_category_dialog)"
+      >
+        Добавить код МКФ
+      </button>
+    </div>
+  </app-detail-card>
+  <app-detail-card heading="Рекомендации" [border]="false" [boxShadow]="false" [padding]="false">
+    <tui-textarea
+      formControlName="recommendations"
+      [expandable]="true"
+    ></tui-textarea>
+  </app-detail-card>
+  <div class="protocol-checkbox-container">
+    <h5>Заключительный протокол</h5>
+    <tui-checkbox
+      formControlName="isFinal"
+      size="l"
+    >
+    </tui-checkbox>
+  </div>
+
+  <div class="protocol-button-container">
+    <button
+      class="tui-space_top-5"
+      tuiButton
+      type="submit"
+      [disabled]="!protocolForm.valid"
+    >
+      Создать
+    </button>
+  </div>
+</form>
+<ng-template
+  #scales_dialog
+>
+  <h3>Результаты входных и выходных анкет</h3>
+  <div *ngFor="let result of programFormsResults">
+    <app-form-result-card [formResult]="result"></app-form-result-card>
+    <button
+      tuiButton
+      size="s"
+      (click)="addProgramFormResult(result)"
+    >
+      Добавить
+    </button>
+  </div>
+  <hr/>
+  <h3>Результаты анкет модулей</h3>
+  <div *ngFor="let result of modulesFormsResults">
+    <app-module-form-result-card [formResult]="result"></app-module-form-result-card>
+    <button
+      tuiButton
+      size="s"
+      (click)="addModulesFormResult(result)"
+    >Добавить
+    </button>
+  </div>
+</ng-template>
+<ng-template
+  #confirm_protocol_creation_dialog
+  let-observer
+>
+  <h2>Подтвердите действие</h2>
+  <p>Создать протокол телемедицинской консультации?</p>
+  <button
+    tuiButton
+    appearance="primary"
+    type="button"
+    class="tui-space_right-3"
+    (click)="onCreateProtocolButtonPressed(); observer.complete() "
+  >
+    Создать
+  </button>
+  <button
+    tuiButton
+    appearance="secondary"
+    type="button"
+    (click)="observer.complete()"
+  >
+    Отмена
+  </button>
+</ng-template>
+<ng-template #add_icf_category_dialog>
+  <app-icf
+    style="display:block; width: var(--dialog-with-m); min-height: 800px"
+    [asDialog]="true"
+    (onAddCategoryButtonPressed)="addCategoryResult($event)"
+  >
+  </app-icf>
+</ng-template>

@@ -54,6 +54,26 @@ export class RehabProgramDetailComponent implements OnInit, OnDestroy {
         this.subscription.unsubscribe();
     }
 
+    deleteForm(formId: number) {
+        this.subscription.add(this.rehabProgramService.deleteForm(this.rehabProgram.id, formId).subscribe(
+                program => {
+                    this.rehabProgram = program;
+                    this.rehabProgramComponentsService.setProgram(program);
+                }
+            )
+        );
+    }
+
+    deleteModule(moduleId: number) {
+        this.subscription.add(this.rehabProgramService.deleteModule(this.rehabProgram.id, moduleId).subscribe(
+                program => {
+                    this.rehabProgram = program;
+                    this.rehabProgramComponentsService.setProgram(program);
+                }
+            )
+        );
+    }
+
     getRehabProgram() {
         this.subscription.add(this.rehabProgramComponentsService.program$.subscribe(
                 {
@@ -78,13 +98,13 @@ export class RehabProgramDetailComponent implements OnInit, OnDestroy {
     showAddModuleDialog() {
         this.subscription.add(this.addModuleDialog.subscribe({
                     next: name => {
-                        const programSub$ = this.rehabProgramService.addModule(name, this.rehabProgram.id).subscribe(
-                            program => {
-                                this.rehabProgram = program;
-                                this.rehabProgramComponentsService.setProgram(program);
-                            }
-                        )
-                        this.subscription.add(programSub$);
+                        this.subscription.add(this.rehabProgramService.addModule(name, this.rehabProgram.id).subscribe(
+                                program => {
+                                    this.rehabProgram = program;
+                                    this.rehabProgramComponentsService.setProgram(program);
+                                }
+                            )
+                        );
                     },
                     complete: () => {
                         console.info('Dialog closed');
@@ -95,10 +115,9 @@ export class RehabProgramDetailComponent implements OnInit, OnDestroy {
     }
 
     showAddFormDialog(formType: string) {
-        this.subscription.add(this.formSelectionDialog.subscribe({
-                    next: formId => {
-                        console.info(`form id = ${formId}`);
-                        const rehabSub$ = this.rehabProgramService.addForm(
+        this.subscription.add(this.formSelectionDialog.subscribe(
+                formId => {
+                    this.subscription.add(this.rehabProgramService.addForm(
                             this.rehabProgram.id,
                             formId,
                             formType
@@ -108,11 +127,7 @@ export class RehabProgramDetailComponent implements OnInit, OnDestroy {
                                 this.rehabProgramComponentsService.setProgram(program);
                             }
                         )
-                        this.subscription.add(rehabSub$);
-                    },
-                    complete: () => {
-                        console.info('Dialog closed');
-                    },
+                    );
                 }
             )
         );

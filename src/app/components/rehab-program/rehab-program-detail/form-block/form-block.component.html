@@ -1,5 +1,37 @@
-<app-form-card [form]="programForm.form"></app-form-card>
-<a *ngIf="programForm.finishedAt"
-   (click)="showFormResultsDialog(programForm)"
-   tuiLink [pseudo]="true"
->Посмотреть результаты</a>
+<div class="form-block-container">
+  <app-form-card [form]="programForm.form"></app-form-card>
+  <tui-hosted-dropdown
+    *ngIf="isProgramCompleted"
+    [content]="dropdown"
+  >
+    <button
+      tuiIconButton
+      appearance="flat"
+      [icon]="'tuiIconMoreVerticalLarge'"
+      shape="rounded"
+      type="button"
+    ></button>
+  </tui-hosted-dropdown>
+  <ng-template #dropdown>
+    <tui-data-list>
+      <tui-opt-group>
+        <button
+          tuiOption
+          [disabled]="!!programForm.finishedAt"
+          (click)="deleteButtonPressed(programForm.id)"
+        >
+          Удалить
+        </button>
+      </tui-opt-group>
+    </tui-data-list>
+  </ng-template>
+</div>
+<a
+  class="tui-space_top-2"
+  style="padding-left: 10px"
+  *ngIf="programForm.finishedAt"
+  (click)="showFormResultsDialog(programForm)"
+  tuiLink
+>
+  Посмотреть результаты
+</a>

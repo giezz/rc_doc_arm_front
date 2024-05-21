@@ -19,7 +19,7 @@ const routes: Routes = [
         component: RehabProgramResultsComponent
       },
       {
-        path: 'protocol',
+        path: 'protocols',
         component: ProtocolComponent
       }
     ]

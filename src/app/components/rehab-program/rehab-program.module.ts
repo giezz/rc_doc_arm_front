@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 
 import {RehabProgramRoutingModule} from './rehab-program-routing.module';
 import {RehabProgramDetailComponent} from './rehab-program-detail/rehab-program-detail.component';
 import {TuiAutoFocusModule, TuiLetModule} from "@taiga-ui/cdk";
 import {
-    TuiButtonModule,
+    TuiButtonModule, TuiDataListModule, TuiHostedDropdownModule,
     TuiLabelModule,
     TuiLinkModule,
     TuiLoaderModule,
@@ -13,10 +13,10 @@ import {
     TuiTextfieldControllerModule
 } from "@taiga-ui/core";
 import {
-    TuiAccordionModule,
-    TuiBadgeModule,
+    TuiAccordionModule, TuiAvatarModule,
+    TuiBadgeModule, TuiCheckboxModule, TuiDataListWrapperModule,
     TuiInputDateRangeModule,
-    TuiInputModule,
+    TuiInputModule, TuiSelectModule,
     TuiTextareaModule
 } from "@taiga-ui/kit";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -26,6 +26,9 @@ import {RehabProgramResultsComponent} from './rehab-program-results/rehab-progra
 import {ProtocolComponent} from './protocol/protocol.component';
 import {TuiAxesModule, TuiLineChartModule, TuiLineDaysChartModule} from "@taiga-ui/addon-charts";
 import {SharedModule} from "../shared/shared.module";
+import { ModuleEditComponent } from './rehab-program-detail/module-block/module-edit/module-edit.component';
+import {PagesModule} from "../pages/pages.module";
+import { CreateProtocolDialogComponent } from './protocol/create-protocol-dialog/create-protocol-dialog.component';
 
 
 @NgModule({
@@ -34,7 +37,9 @@ import {SharedModule} from "../shared/shared.module";
         FormBlockComponent,
         ModuleBlockComponent,
         RehabProgramResultsComponent,
-        ProtocolComponent
+        ProtocolComponent,
+        ModuleEditComponent,
+        CreateProtocolDialogComponent
     ],
     exports: [
         RehabProgramDetailComponent
@@ -60,7 +65,17 @@ import {SharedModule} from "../shared/shared.module";
         SharedModule,
         TuiNotificationModule,
         TuiAccordionModule,
-        TuiBadgeModule
+        TuiBadgeModule,
+        TuiHostedDropdownModule,
+        TuiDataListModule,
+        TuiAvatarModule,
+        PagesModule,
+        TuiSelectModule,
+        TuiDataListWrapperModule,
+        TuiCheckboxModule
+    ],
+    providers: [
+        DatePipe
     ]
 })
 export class RehabProgramModule {

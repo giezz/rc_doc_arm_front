@@ -1,0 +1,29 @@
+.protocol-scales-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.protocol-scale-container {
+  display: flex;
+  align-items: center;
+}
+
+.protocol-button-container {
+  display: flex;
+  justify-content: flex-end
+}
+
+.protocol-checkbox-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+}
+
+.icf-category-grade-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
