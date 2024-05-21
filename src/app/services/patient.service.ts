@@ -5,6 +5,8 @@ import {delay, Observable} from "rxjs";
 import {RehabProgram} from "../models/rehab-program";
 import {SearchPatientsRequest} from "../models/request/search-patients-request";
 import {PageableResponse} from "../models/pageable-response";
+import {HospitalizationHistory} from "../models/HospitalizationHistory";
+import {Epicris} from "../models/epicris";
 
 @Injectable({
     providedIn: 'root'
@@ -56,12 +58,7 @@ export class PatientService {
 
     getRehabProgram(code: number, programId: number): Observable<RehabProgram> {
         return this.http.get<RehabProgram>(
-            `http://localhost:8080/api/v1/patients/${code}/rehab-programs`,
-            {
-                params: {
-                    id: programId
-                }
-            }
+            `http://localhost:8080/api/v1/patients/${code}/rehab-programs/${programId}`,
         )
     }
 
@@ -76,6 +73,14 @@ export class PatientService {
         ).pipe(
             delay(500)
         );
+    }
+
+    getHospitalizationHistory(patientCode: number): Observable<HospitalizationHistory[]> {
+        return this.http.get<HospitalizationHistory[]>(`http://localhost:8080/api/v1/patients/${patientCode}/hosp-history`)
+    }
+
+    getEpicrisises(patientCode: number, hospHistoryId: number): Observable<Epicris[]> {
+        return this.http.get<Epicris[]>(`http://localhost:8080/api/v1/patients/${patientCode}/hosp-history/${hospHistoryId}/epicrisises`)
     }
 
 }
