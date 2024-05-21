@@ -13,7 +13,7 @@
       Найти
     </button>
   </div>
-  <tui-accordion class="tui-space_top-3">
+  <tui-accordion class="tui-space_top-3" *ngIf="false">
     <tui-accordion-item>
       Фильтры
       <ng-template tuiAccordionItemContent>
@@ -43,7 +43,7 @@
         tuiButton
         appearance="secondary"
         size="m"
-        (click)="buttonPressed(form.id)"
+        (click)="buttonPressed(form.id); formOnButtonPressed(form)"
       >
         Добавить
       </button>

@@ -24,6 +24,12 @@ export class FormsComponent implements OnInit {
         this.onButtonPressed.emit(formId)
     }
 
+    @Output()
+    getFormOnButtonPressed = new EventEmitter<Form>()
+    formOnButtonPressed(form: Form) {
+        this.getFormOnButtonPressed.emit(form)
+    }
+
     private formsService: FormService = inject(FormService);
 
     data$: Observable<PageableResponse<Form>> = new Observable<PageableResponse<Form>>();
