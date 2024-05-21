@@ -25,7 +25,7 @@
         tuiButton
         appearance="secondary"
         size="m"
-        (click)="buttonPressed(exercise.id)"
+        (click)="buttonPressed(exercise.id); exerciseOnButtonPressed(exercise)"
       >
         Добавить
       </button>

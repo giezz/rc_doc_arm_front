@@ -5,6 +5,7 @@ import {Exercise} from "../../../models/exercise";
 import {FormControl, FormGroup} from "@angular/forms";
 import {PageableResponse} from "../../../models/pageable-response";
 import {TuiTablePagination} from "@taiga-ui/addon-table";
+import {Form} from "../../../models/form";
 
 @Component({
   selector: 'app-exercises',
@@ -20,6 +21,12 @@ export class ExercisesComponent implements OnInit {
     onButtonPressed = new EventEmitter<number>()
     buttonPressed(exerciseId: number) {
         this.onButtonPressed.emit(exerciseId)
+    }
+
+    @Output()
+    getExerciseOnButtonPressed = new EventEmitter<Exercise>()
+    exerciseOnButtonPressed(exercise: Exercise) {
+        this.getExerciseOnButtonPressed.emit(exercise)
     }
 
     private exercisesService: ExerciseService = inject(ExerciseService);
