@@ -1,7 +1,7 @@
 :host {
   display: flex;
   flex-direction: column;
-  width: var(--dialog-with-m);
+  width: var(--dialog-width-m);
 }
 
 .epicrises-container {
