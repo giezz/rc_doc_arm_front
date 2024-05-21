@@ -6,7 +6,7 @@
     <button
       *ngIf="!previewMode"
       tuiIconButton appearance="icon"
-      icon="tuiIconEditLarge"
+      [icon]="'tuiIconEditLarge'"
       type="button"
     ></button>
   </span>
@@ -26,7 +26,7 @@
                     *ngIf="!previewMode"
                     tuiIconButton
                     appearance="icon"
-                    icon="tuiIconTrash2Large"
+                    [icon]="'tuiIconTrash2Large'"
                     type="button"
                     (click)="deleteExercise(moduleExercise)"
                   ></button>
@@ -39,7 +39,7 @@
           *ngIf="!previewMode"
           tuiIconButton
           appearance="secondary"
-          icon="tuiIconPlusLarge"
+          [icon]="'tuiIconPlusLarge'"
           type="button"
           (click)="openAddExerciseDialog(add_exercise_dialog)"
         ></button>
@@ -63,7 +63,7 @@
                 *ngIf="!previewMode"
                 tuiIconButton
                 appearance="icon"
-                icon="tuiIconTrash2Large"
+                [icon]="'tuiIconTrash2Large'"
                 type="button"
                 (click)="deleteForm(moduleForm)"
               >
@@ -75,7 +75,7 @@
           *ngIf="!previewMode"
           tuiIconButton
           appearance="secondary"
-          icon="tuiIconPlusLarge"
+          [icon]="'tuiIconPlusLarge'"
           type="button"
           (click)="openAddFormDialog(add_form_dialog)"
         ></button>

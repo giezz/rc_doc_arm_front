@@ -1,7 +1,5 @@
-import {Component, Inject, inject, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
-import {RehabProgramService} from "../../services/rehab-program.service";
-import {RehabProgramComponentsService} from "../../services/components/rehab-program-components.service";
 import {ProgramForm} from "../../models/program-form";
 import {POLYMORPHEUS_CONTEXT} from "@tinkoff/ng-polymorpheus";
 import {TuiDialogContext} from "@taiga-ui/core";
@@ -12,9 +10,6 @@ import {TuiDialogContext} from "@taiga-ui/core";
     styleUrls: ['./protocol-add-result-dialog.component.css']
 })
 export class ProtocolAddResultDialog implements OnInit, OnDestroy {
-
-    private rehabProgramService: RehabProgramService = inject(RehabProgramService);
-    private rehabProgramComponentsService: RehabProgramComponentsService = inject(RehabProgramComponentsService);
 
     constructor(
         @Inject(POLYMORPHEUS_CONTEXT) private readonly context: TuiDialogContext<ProgramForm, ProgramForm[]>,

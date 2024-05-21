@@ -60,7 +60,7 @@ export class RehabProgramResultsComponent implements OnInit, OnDestroy {
                         this.isModulesResultsLoaded = true;
                     }
                 },
-                error: err => {
+                error: () => {
                     this.hasModulesResults = false;
                     this.isModulesResultsLoaded = true;
                 }
@@ -82,7 +82,7 @@ export class RehabProgramResultsComponent implements OnInit, OnDestroy {
                         this.isProgramResultsLoaded = true;
                     }
                 },
-                error: err => {
+                error: () => {
                     this.hasProgramResults = false;
                     this.isProgramResultsLoaded = true;
                 }

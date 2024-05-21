@@ -68,7 +68,7 @@ export class RehabProgramsComponent implements OnInit, OnDestroy {
                         this.isCurrentLoaded = true;
                         this.hasCurrent = true;
                     },
-                    error: err => {
+                    error: () => {
                         this.isCurrentLoaded = true;
                         this.hasCurrent = false;
                     }
