@@ -5,6 +5,7 @@ import {RehabProgramsListComponent} from "./rehab-programs-list/rehab-programs-l
 import {PagesComponent} from "./pages.component";
 import {ExercisesComponent} from "./execrcises/exercises.component";
 import {FormsComponent} from "./forms/forms.component";
+import {IcfComponent} from "./icf/icf.component";
 
 const routes: Routes = [
     {
@@ -26,6 +27,10 @@ const routes: Routes = [
             {
                 path: 'forms',
                 component: FormsComponent
+            },
+            {
+                path: 'icf',
+                component: IcfComponent
             }
         ]
     }

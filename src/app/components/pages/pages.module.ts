@@ -16,14 +16,14 @@ import {
     TuiInputModule,
     TuiMultiSelectModule, TuiRadioBlockModule,
     TuiSelectModule,
-    TuiTabsModule
+    TuiTabsModule, TuiTreeModule
 } from "@taiga-ui/kit";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {
     TuiButtonModule, TuiDataListModule,
     TuiErrorModule, TuiExpandModule, TuiGroupModule,
     TuiHostedDropdownModule,
-    TuiLabelModule,
+    TuiLabelModule, TuiLoaderModule, TuiScrollbarModule,
     TuiTextfieldControllerModule
 } from "@taiga-ui/core";
 import {TuiTableModule, TuiTablePaginationModule} from "@taiga-ui/addon-table";
@@ -32,6 +32,7 @@ import {RehabDetailCardComponent} from './rehab-programs-list/rehab-detail-card/
 import { ExercisesComponent } from './execrcises/exercises.component';
 import {SharedModule} from "../shared/shared.module";
 import { FormsComponent } from './forms/forms.component';
+import { IcfComponent } from './icf/icf.component';
 
 
 @NgModule({
@@ -42,11 +43,13 @@ import { FormsComponent } from './forms/forms.component';
         NavigationComponent,
         RehabDetailCardComponent,
         ExercisesComponent,
-        FormsComponent
+        FormsComponent,
+        IcfComponent
     ],
     exports: [
         ExercisesComponent,
-        FormsComponent
+        FormsComponent,
+        IcfComponent
     ],
     imports: [
         CommonModule,
@@ -76,7 +79,10 @@ import { FormsComponent } from './forms/forms.component';
         TuiExpandModule,
         TuiGroupModule,
         TuiTablePaginationModule,
-        TuiRadioBlockModule
+        TuiRadioBlockModule,
+        TuiTreeModule,
+        TuiLoaderModule,
+        TuiScrollbarModule
     ]
 })
 export class PagesModule { }
