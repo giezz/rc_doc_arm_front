@@ -9,10 +9,8 @@
       </ng-container>
     </label>
     <div>
-      <label [tuiLabel]="'Дата рождения'">{{patient.birthDate}}</label>
-      <label [tuiLabel]="'Возраст'"></label>
+      <label [tuiLabel]="'Дата рождения'">{{patient.birthDate | date}}</label>
     </div>
-    <label [tuiLabel]="'Дата смерти'">-</label>
     <label [tuiLabel]="'Статус'">{{patient.patientStatus.name}}</label>
     <label [tuiLabel]="'Место жительства'">{{patient.address}}</label>
     <label [tuiLabel]="'Данные о работе'">{{patient.workPlaceData}}</label>
