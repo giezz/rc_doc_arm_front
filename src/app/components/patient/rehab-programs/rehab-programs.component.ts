@@ -84,7 +84,7 @@ export class RehabProgramsComponent implements OnInit, OnDestroy {
     createRehabProgram() {
         this.subscription.add(this.rehabProgramService.create(this.patient.id).subscribe(
                 program => {
-                    this.router.navigate(["/patient",this.patient.patientCode, "rehab-program", program.id]).then()
+                    this.router.navigate(["/patient", this.patient.patientCode, "rehab-program", program.id]).then()
                 }
             )
         )

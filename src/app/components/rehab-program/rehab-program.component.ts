@@ -2,7 +2,7 @@ import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {PatientService} from "../../services/patient.service";
 import {Patient} from "../../models/patient";
-import {Observable, of, Subscription} from "rxjs";
+import {Subscription} from "rxjs";
 import {RehabProgramComponentsService} from "../../services/components/rehab-program-components.service";
 
 @Component({
@@ -49,6 +49,7 @@ export class RehabProgramComponent implements OnInit, OnDestroy {
             }
         ));
     }
+
     private getRehabProgramByPatient(code: number, programId: number) {
         this.subscription.add(this.patientService.getRehabProgram(code, programId).subscribe(
                 {

@@ -18,7 +18,7 @@ import {SharedModule} from "../shared/shared.module";
 import {RehabProgramsComponent} from './rehab-programs/rehab-programs.component';
 import {RehabProgramDetailComponent} from './rehab-programs/rehab-program-detail/rehab-program-detail.component';
 import {TuiBlockStatusModule} from "@taiga-ui/layout";
-import { EpicrisComponent } from './emc/epicris/epicris.component';
+import {EpicrisComponent} from './emc/epicris/epicris.component';
 
 
 @NgModule({

@@ -29,7 +29,8 @@ export class IcfComponent implements OnInit, OnDestroy {
     asDialog: boolean = false;
 
     @Output()
-    onAddCategoryButtonPressed = new EventEmitter<{category: IcfCategory, grade: string}>();
+    onAddCategoryButtonPressed = new EventEmitter<{ category: IcfCategory, grade: string }>();
+
     addCategory(category: IcfCategory, grade: string) {
         this.onAddCategoryButtonPressed.emit({category, grade});
         this.gradeCategory.controls.grade.setValue('');

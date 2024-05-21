@@ -1,8 +1,8 @@
 <ng-container *ngIf="isLoaded">
   <div *ngFor="let programForm of programForms" class="protocol-dialog-result-container">
     <label [tuiLabel]="'Анкета'">{{programForm.form.name}}</label>
-<!--    <label [tuiLabel]="'Количество баллов'">{{programForm.score}}</label>-->
-<!--    <label [tuiLabel]="'Интерпретация'">{{programForm.interpretation}}</label>-->
+    <!--    <label [tuiLabel]="'Количество баллов'">{{programForm.score}}</label>-->
+    <!--    <label [tuiLabel]="'Интерпретация'">{{programForm.interpretation}}</label>-->
     <div class="protocol-dialog-last-row">
       <label [tuiLabel]="'Дата прохождения'">{{programForm.finishedAt | date}}</label>
       <button

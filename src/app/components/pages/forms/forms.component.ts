@@ -1,10 +1,8 @@
-import {Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Input, OnInit, Output} from '@angular/core';
 import {Observable} from "rxjs";
 import {FormService} from "../../../services/form.service";
 import {Form} from "../../../models/form";
-import {TUI_ARROW} from "@taiga-ui/kit";
 import {PageableResponse} from "../../../models/pageable-response";
-import {Exercise} from "../../../models/exercise";
 import {FormControl, FormGroup} from "@angular/forms";
 import {TuiTablePagination} from "@taiga-ui/addon-table";
 
@@ -20,12 +18,14 @@ export class FormsComponent implements OnInit {
 
     @Output()
     onButtonPressed = new EventEmitter<number>()
+
     buttonPressed(formId: number) {
         this.onButtonPressed.emit(formId)
     }
 
     @Output()
     getFormOnButtonPressed = new EventEmitter<Form>()
+
     formOnButtonPressed(form: Form) {
         this.getFormOnButtonPressed.emit(form)
     }

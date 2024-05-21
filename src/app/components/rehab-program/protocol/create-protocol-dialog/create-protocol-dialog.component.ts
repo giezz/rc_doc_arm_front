@@ -1,7 +1,7 @@
 import {Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {ProgramFormResult} from "../../../../models/program-form-result";
 import {ModuleFormResult} from "../../../../models/module-form-result";
-import {Observable, Subscription} from "rxjs";
+import {Subscription} from "rxjs";
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {PolymorpheusContent} from "@tinkoff/ng-polymorpheus";
 import {TuiDialogContext, TuiDialogService} from "@taiga-ui/core";
@@ -10,14 +10,11 @@ import {CreateProtocolRequest} from "../../../../models/request/create-protocol-
 import {RehabProgramService} from "../../../../services/rehab-program.service";
 import {DatePipe} from "@angular/common";
 import {RehabProgram} from "../../../../models/rehab-program";
-import {Protocol} from "../../../../models/protocol";
-import {PatientService} from "../../../../services/patient.service";
-import {RehabProgramComponentsService} from "../../../../services/components/rehab-program-components.service";
 
 @Component({
-  selector: 'app-create-protocol-dialog',
-  templateUrl: './create-protocol-dialog.component.html',
-  styleUrls: ['./create-protocol-dialog.component.css']
+    selector: 'app-create-protocol-dialog',
+    templateUrl: './create-protocol-dialog.component.html',
+    styleUrls: ['./create-protocol-dialog.component.css']
 })
 export class CreateProtocolDialogComponent implements OnInit, OnDestroy {
 
@@ -26,6 +23,7 @@ export class CreateProtocolDialogComponent implements OnInit, OnDestroy {
 
     @Output()
     protocols = new EventEmitter<CreateProtocolRequest>();
+
     onCreateProtocolButtonPressed() {
         let request = new CreateProtocolRequest(
             this.modulesScales.value.join("\n"),

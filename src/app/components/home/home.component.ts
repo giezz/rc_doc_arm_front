@@ -1,20 +1,13 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {menuItems} from "../../data/pages";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit , OnDestroy {
+export class HomeComponent {
 
-  protected readonly menuItems = menuItems;
+    protected readonly menuItems = menuItems;
 
-  ngOnInit() {
-    console.log('HomeComponent');
-  }
-
-  ngOnDestroy() {
-    console.log('HomeComponent destroyed');
-  }
 }

@@ -5,12 +5,11 @@ import {Exercise} from "../../../models/exercise";
 import {FormControl, FormGroup} from "@angular/forms";
 import {PageableResponse} from "../../../models/pageable-response";
 import {TuiTablePagination} from "@taiga-ui/addon-table";
-import {Form} from "../../../models/form";
 
 @Component({
-  selector: 'app-exercises',
-  templateUrl: './exercises.component.html',
-  styleUrls: ['./exercises.component.css', '../pages.component.css']
+    selector: 'app-exercises',
+    templateUrl: './exercises.component.html',
+    styleUrls: ['./exercises.component.css', '../pages.component.css']
 })
 export class ExercisesComponent implements OnInit {
 
@@ -19,12 +18,14 @@ export class ExercisesComponent implements OnInit {
 
     @Output()
     onButtonPressed = new EventEmitter<number>()
+
     buttonPressed(exerciseId: number) {
         this.onButtonPressed.emit(exerciseId)
     }
 
     @Output()
     getExerciseOnButtonPressed = new EventEmitter<Exercise>()
+
     exerciseOnButtonPressed(exercise: Exercise) {
         this.getExerciseOnButtonPressed.emit(exercise)
     }

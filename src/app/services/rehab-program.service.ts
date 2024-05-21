@@ -2,8 +2,6 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {RehabProgram} from "../models/rehab-program";
 import {Observable} from "rxjs";
-import {ModuleForm} from "../models/module-form";
-import {ProgramForm} from "../models/program-form";
 import {ModuleFormResult} from "../models/module-form-result";
 import {ProgramFormResult} from "../models/program-form-result";
 import {CreateProtocolRequest} from "../models/request/create-protocol-request";

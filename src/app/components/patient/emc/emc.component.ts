@@ -1,7 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {PatientService} from "../../../services/patient.service";
-import {PatientComponentsService} from "../../../services/components/patient-components.service";
-import {Observable, Subscription} from "rxjs";
+import {Subscription} from "rxjs";
 import {HospitalizationHistory} from "../../../models/HospitalizationHistory";
 import {ActivatedRoute} from "@angular/router";
 import {TuiDialogContext, TuiDialogService} from "@taiga-ui/core";

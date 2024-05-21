@@ -1,7 +1,6 @@
 import {Component, inject, Injector, Input} from '@angular/core';
 import {TuiDialogService} from "@taiga-ui/core";
 import {Subscription} from "rxjs";
-import {ProgramFormResult} from "../../../models/program-form-result";
 import {PolymorpheusComponent} from "@tinkoff/ng-polymorpheus";
 import {FormResultsDialogComponent} from "../../../dialogs/form-results-dialog/form-results-dialog.component";
 import {ModuleFormResult} from "../../../models/module-form-result";

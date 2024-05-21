@@ -29,7 +29,7 @@ export class PatientService {
             params = params.set('lastName', request.lastName);
         }
         if (request.status.length > 0) {
-          params = params.set('status', request.status.join(','))
+            params = params.set('status', request.status.join(','))
         }
         if (request.gender) {
             params = params.set('gender', request.gender)

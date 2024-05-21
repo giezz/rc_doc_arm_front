@@ -5,7 +5,9 @@ import {RehabProgramRoutingModule} from './rehab-program-routing.module';
 import {RehabProgramDetailComponent} from './rehab-program-detail/rehab-program-detail.component';
 import {TuiAutoFocusModule, TuiLetModule} from "@taiga-ui/cdk";
 import {
-    TuiButtonModule, TuiDataListModule, TuiHostedDropdownModule,
+    TuiButtonModule,
+    TuiDataListModule,
+    TuiHostedDropdownModule,
     TuiLabelModule,
     TuiLinkModule,
     TuiLoaderModule,
@@ -13,10 +15,14 @@ import {
     TuiTextfieldControllerModule
 } from "@taiga-ui/core";
 import {
-    TuiAccordionModule, TuiAvatarModule,
-    TuiBadgeModule, TuiCheckboxModule, TuiDataListWrapperModule,
+    TuiAccordionModule,
+    TuiAvatarModule,
+    TuiBadgeModule,
+    TuiCheckboxModule,
+    TuiDataListWrapperModule,
     TuiInputDateRangeModule,
-    TuiInputModule, TuiSelectModule,
+    TuiInputModule,
+    TuiSelectModule,
     TuiTextareaModule
 } from "@taiga-ui/kit";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -26,9 +32,9 @@ import {RehabProgramResultsComponent} from './rehab-program-results/rehab-progra
 import {ProtocolComponent} from './protocol/protocol.component';
 import {TuiAxesModule, TuiLineChartModule, TuiLineDaysChartModule} from "@taiga-ui/addon-charts";
 import {SharedModule} from "../shared/shared.module";
-import { ModuleEditComponent } from './rehab-program-detail/module-block/module-edit/module-edit.component';
+import {ModuleEditComponent} from './rehab-program-detail/module-block/module-edit/module-edit.component';
 import {PagesModule} from "../pages/pages.module";
-import { CreateProtocolDialogComponent } from './protocol/create-protocol-dialog/create-protocol-dialog.component';
+import {CreateProtocolDialogComponent} from './protocol/create-protocol-dialog/create-protocol-dialog.component';
 
 
 @NgModule({

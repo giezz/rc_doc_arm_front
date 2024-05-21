@@ -10,9 +10,9 @@ import {ModuleForm} from "../../../../../models/module-form";
 import {Exercise} from "../../../../../models/exercise";
 
 @Component({
-  selector: 'app-module-edit',
-  templateUrl: './module-edit.component.html',
-  styleUrls: ['./module-edit.component.css']
+    selector: 'app-module-edit',
+    templateUrl: './module-edit.component.html',
+    styleUrls: ['./module-edit.component.css']
 })
 export class ModuleEditComponent implements OnInit, OnDestroy {
 

@@ -20,6 +20,7 @@ export class FormBlockComponent implements OnDestroy {
 
     @Output()
     onDeleteButtonPressed = new EventEmitter<number>();
+
     deleteButtonPressed(programFormId: number) {
         this.onDeleteButtonPressed.emit(programFormId);
     }

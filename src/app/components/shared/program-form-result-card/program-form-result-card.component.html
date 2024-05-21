@@ -4,7 +4,8 @@
 <div class="form-result-interpretation-container">
   <label [tuiLabel]="'Дата прохождения'">{{formResult.finishedAt | date}}</label>
   <label [tuiLabel]="'Количество баллов'">{{formResult.score}}</label>
-  <a tuiLink [pseudo]="true" (click)="showProgramFormResult(formResult.id, formResult.form.id)">Посмотреть результаты</a>
+  <a tuiLink [pseudo]="true" (click)="showProgramFormResult(formResult.id, formResult.form.id)">Посмотреть
+    результаты</a>
 </div>
 <div class="form-result-container">
   <label [tuiLabel]="'Интерпретация'">{{formResult.interpretation}}</label>

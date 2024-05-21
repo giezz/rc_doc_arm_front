@@ -6,9 +6,9 @@ import {ActivatedRoute} from "@angular/router";
 import {HospitalizationHistory} from "../../../../models/HospitalizationHistory";
 
 @Component({
-  selector: 'app-epicris',
-  templateUrl: './epicris.component.html',
-  styleUrls: ['./epicris.component.css']
+    selector: 'app-epicris',
+    templateUrl: './epicris.component.html',
+    styleUrls: ['./epicris.component.css']
 })
 export class EpicrisComponent implements OnInit, OnDestroy {
 

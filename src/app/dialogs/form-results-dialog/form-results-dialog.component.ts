@@ -16,7 +16,11 @@ export class FormResultsDialogComponent implements OnInit, OnDestroy {
     private formService: FormService = inject(FormService);
 
     constructor(
-        @Inject(POLYMORPHEUS_CONTEXT) private readonly context: TuiDialogContext<null, {id: number, formId: number, isProgramForm: boolean}>,
+        @Inject(POLYMORPHEUS_CONTEXT) private readonly context: TuiDialogContext<null, {
+            id: number,
+            formId: number,
+            isProgramForm: boolean
+        }>,
     ) {
     }
 

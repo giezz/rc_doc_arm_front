@@ -12,27 +12,35 @@ import {
     TuiCheckboxLabeledModule,
     TuiDataListWrapperModule,
     TuiFieldErrorPipeModule,
-    TuiInputDateModule, TuiInputDateRangeModule,
+    TuiInputDateModule,
+    TuiInputDateRangeModule,
     TuiInputModule,
-    TuiMultiSelectModule, TuiRadioBlockModule,
+    TuiMultiSelectModule,
+    TuiRadioBlockModule,
     TuiSelectModule,
-    TuiTabsModule, TuiTreeModule
+    TuiTabsModule,
+    TuiTreeModule
 } from "@taiga-ui/kit";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {
-    TuiButtonModule, TuiDataListModule,
-    TuiErrorModule, TuiExpandModule, TuiGroupModule,
+    TuiButtonModule,
+    TuiDataListModule,
+    TuiErrorModule,
+    TuiExpandModule,
+    TuiGroupModule,
     TuiHostedDropdownModule,
-    TuiLabelModule, TuiLoaderModule, TuiScrollbarModule,
+    TuiLabelModule,
+    TuiLoaderModule,
+    TuiScrollbarModule,
     TuiTextfieldControllerModule
 } from "@taiga-ui/core";
 import {TuiTableModule, TuiTablePaginationModule} from "@taiga-ui/addon-table";
 import {TuiLetModule} from "@taiga-ui/cdk";
 import {RehabDetailCardComponent} from './rehab-programs-list/rehab-detail-card/rehab-detail-card.component';
-import { ExercisesComponent } from './execrcises/exercises.component';
+import {ExercisesComponent} from './execrcises/exercises.component';
 import {SharedModule} from "../shared/shared.module";
-import { FormsComponent } from './forms/forms.component';
-import { IcfComponent } from './icf/icf.component';
+import {FormsComponent} from './forms/forms.component';
+import {IcfComponent} from './icf/icf.component';
 
 
 @NgModule({
@@ -85,4 +93,5 @@ import { IcfComponent } from './icf/icf.component';
         TuiScrollbarModule
     ]
 })
-export class PagesModule { }
+export class PagesModule {
+}

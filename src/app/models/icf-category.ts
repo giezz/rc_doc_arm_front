@@ -2,7 +2,7 @@ export class IcfCategory {
     code: string;
     name: string;
     description: string;
-    hasChildren : boolean | null;
+    hasChildren: boolean | null;
 
     constructor(code: string, name: string, description: string, hasChildren: boolean | null) {
         this.code = code;

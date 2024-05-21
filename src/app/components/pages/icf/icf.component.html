@@ -62,7 +62,9 @@
         </div>
       </form>
       <tui-scrollbar class="box tui-space_top-3" *ngIf="categories.length > 0">
-        <div *ngFor="let category of categories" (click)="inspectCategory(category.code, category.name, category.description)">
+        <div
+          *ngFor="let category of categories"
+          (click)="inspectCategory(category.code, category.name, category.description)">
           <strong>{{category.code}}</strong>
           {{category.name}}
         </div>

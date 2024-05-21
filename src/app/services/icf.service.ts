@@ -4,7 +4,7 @@ import {IcfCategory} from "../models/icf-category";
 import {Observable} from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class IcfService {
 

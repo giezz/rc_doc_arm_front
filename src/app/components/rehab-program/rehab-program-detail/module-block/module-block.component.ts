@@ -22,6 +22,7 @@ export class ModuleBlockComponent implements OnInit, OnDestroy {
 
     @Output()
     onDeleteButtonPressed = new EventEmitter<number>();
+
     deleteButtonPressed(moduleId: number) {
         this.onDeleteButtonPressed.emit(moduleId);
     }

@@ -5,26 +5,26 @@ import {TokenDoctor} from "../models/token-doctor";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class DoctorService {
 
-  private jwtHelper: JwtHelperService = inject(JwtHelperService)
-  private tokenStorageService: TokenStorageService = inject(TokenStorageService)
-  private http: HttpClient = inject(HttpClient)
+    private jwtHelper: JwtHelperService = inject(JwtHelperService)
+    private tokenStorageService: TokenStorageService = inject(TokenStorageService)
+    private http: HttpClient = inject(HttpClient)
 
-  private token = this.jwtHelper.decodeToken<TokenDoctor>(this.tokenStorageService.getToken()!)!
+    private token = this.jwtHelper.decodeToken<TokenDoctor>(this.tokenStorageService.getToken()!)!
 
-  getDoctorFullName() {
-    return this.token?.doctorFullName
-  }
+    getDoctorFullName() {
+        return this.token?.doctorFullName
+    }
 
-  getDoctorId() {
-    return this.token?.doctorId
-  }
+    getDoctorId() {
+        return this.token?.doctorId
+    }
 }

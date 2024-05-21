@@ -18,7 +18,8 @@ export class ProtocolAddResultDialog implements OnInit, OnDestroy {
 
     constructor(
         @Inject(POLYMORPHEUS_CONTEXT) private readonly context: TuiDialogContext<ProgramForm, ProgramForm[]>,
-    ) {}
+    ) {
+    }
 
     programForms: ProgramForm[] = [];
 

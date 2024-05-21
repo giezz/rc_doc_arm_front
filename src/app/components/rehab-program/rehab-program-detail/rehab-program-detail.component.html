@@ -21,12 +21,12 @@
       <ng-template tuiAccordionItemContent>
         <div class="forms-block-container">
           <ng-container *ngFor="let startForm of rehabProgram.forms" style="display:flex;">
-              <app-form-block
-                *ngIf="startForm.typeId === 1"
-                [form]="startForm"
-                [isProgramCompleted]="rehabProgram.isCurrent"
-                (onDeleteButtonPressed)="deleteForm($event)"
-              ></app-form-block>
+            <app-form-block
+              *ngIf="startForm.typeId === 1"
+              [form]="startForm"
+              [isProgramCompleted]="rehabProgram.isCurrent"
+              (onDeleteButtonPressed)="deleteForm($event)"
+            ></app-form-block>
           </ng-container>
         </div>
         <button

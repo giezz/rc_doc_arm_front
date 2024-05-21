@@ -1,6 +1,6 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {Patient} from "../../models/patient";
-import {Observable, Subscription} from "rxjs";
+import {Subscription} from "rxjs";
 import {PatientService} from "../../services/patient.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PatientComponentsService} from "../../services/components/patient-components.service";

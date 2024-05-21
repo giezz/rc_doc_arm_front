@@ -1,7 +1,7 @@
 export class JwtResponse {
-  token: string;
+    token: string;
 
-  constructor(token: string) {
-    this.token = token;
-  }
+    constructor(token: string) {
+        this.token = token;
+    }
 }
