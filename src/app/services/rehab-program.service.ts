@@ -9,6 +9,7 @@ import {ProgramFormResult} from "../models/program-form-result";
 import {CreateProtocolRequest} from "../models/request/create-protocol-request";
 import {SearchProgramsRequest} from "../models/request/search-programs-request";
 import {PageableResponse} from "../models/pageable-response";
+import {Protocol} from "../models/protocol";
 
 @Injectable({
     providedIn: 'root'
@@ -70,30 +71,43 @@ export class RehabProgramService {
         );
     }
 
-    create(patientId: number) {
+    create(patientId: number): Observable<RehabProgram> {
         return this.http.post<RehabProgram>(
             'http://localhost:8080/api/v1/rehabs',
             {patientId: patientId})
     }
 
-    createProtocol(programId: number, req: CreateProtocolRequest) {
-        return this.http.post<void>(
+    createProtocol(programId: number, req: CreateProtocolRequest): Observable<Protocol[]> {
+        return this.http.post<Protocol[]>(
             `http://localhost:8080/api/v1/rehabs/${programId}/protocol`,
             req
-        )
+        );
     }
 
-    addForm(programId: number, formId: number, formType: string) {
+    getProtocols(programId: number): Observable<Protocol[]> {
+        return this.http.get<Protocol[]>(`http://localhost:8080/api/v1/rehabs/${programId}/protocols`);
+    }
+
+    addForm(programId: number, formId: number, formType: string): Observable<RehabProgram> {
         return this.http.put<RehabProgram>(
             `http://localhost:8080/api/v1/rehabs/${programId}/form`,
-            {formId: formId, formType: formType})
+            {formId: formId, formType: formType}
+        );
     }
 
-    addModule(name: string, programId: number) {
+    deleteForm(programId: number, formId: number): Observable<RehabProgram> {
+        return this.http.delete<RehabProgram>(`http://localhost:8080/api/v1/rehabs/${programId}/form/${formId}`);
+    }
+
+    addModule(name: string, programId: number): Observable<RehabProgram> {
         return this.http.put<RehabProgram>(
             `http://localhost:8080/api/v1/rehabs/${programId}/module`,
             {name: name}
-        )
+        );
+    }
+
+    deleteModule(programId: number, moduleId: number): Observable<RehabProgram> {
+        return this.http.delete<RehabProgram>(`http://localhost:8080/api/v1/rehabs/${programId}/module/${moduleId}`);
     }
 
 }
