@@ -25,11 +25,9 @@ export class PatientDetailComponent implements OnInit, OnDestroy {
                 }
             )
         );
-        console.log('PatientDetailComponent');
     }
 
     ngOnDestroy(): void {
-        console.log('PatientDetailComponent destroyed');
         this.subscription.unsubscribe();
     }
 }
