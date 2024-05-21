@@ -1,5 +1,10 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
 .padding {
-  padding: 0.5rem;
+  padding: var(--tui-padding-m)
 }
 
 .border {
@@ -9,4 +14,10 @@
 
 .box-shadow {
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.10);
+}
+
+.content-container {
+  display: inherit;
+  flex-direction: inherit;
+  gap: 0.3rem;
 }

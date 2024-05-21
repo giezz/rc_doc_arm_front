@@ -1,4 +1,4 @@
-import {Component, inject, Injector, Input} from '@angular/core';
+import {Component, inject, Injector, Input, OnDestroy} from '@angular/core';
 import {ProgramFormResult} from "../../../models/program-form-result";
 import {PolymorpheusComponent} from "@tinkoff/ng-polymorpheus";
 import {FormResultsDialogComponent} from "../../../dialogs/form-results-dialog/form-results-dialog.component";
@@ -10,7 +10,7 @@ import {Subscription} from "rxjs";
     templateUrl: './program-form-result-card.component.html',
     styleUrls: ['./program-form-result-card.component.css']
 })
-export class ProgramFormResultCardComponent {
+export class ProgramFormResultCardComponent implements OnDestroy {
 
     private dialogService = inject(TuiDialogService);
     private injector: Injector = inject(Injector);
@@ -33,5 +33,9 @@ export class ProgramFormResultCardComponent {
                 size: 'auto'
             }
         ).subscribe())
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
     }
 }

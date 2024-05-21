@@ -1,5 +1,6 @@
-<h5 class="tui-space_bottom-3 tui-space_top-5">{{heading}}</h5>
+<h5 *ngIf="heading!!" class="tui-space_bottom-3 tui-space_top-5">{{heading}}</h5>
 <div
+  class="content-container"
   [class.padding]="padding"
   [class.border]="border"
   [class.box-shadow]="boxShadow"

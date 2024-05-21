@@ -1,8 +1,12 @@
 <label [tuiLabel]="'Тип анкеты'">{{formResult.typeId === 1 ? "Входная анкета" : "Выходная акнета"}}</label>
-<app-form-card [form]="formResult.form"></app-form-card>
-<div style="display: flex;">
+<label [tuiLabel]="'Анкета'">{{formResult.form.name}}</label>
+<label [tuiLabel]="'Шкала'">{{formResult.form.scale}}</label>
+<div class="form-result-interpretation-container">
   <label [tuiLabel]="'Дата прохождения'">{{formResult.finishedAt | date}}</label>
   <label [tuiLabel]="'Количество баллов'">{{formResult.score}}</label>
   <a tuiLink [pseudo]="true" (click)="showProgramFormResult(formResult.id, formResult.form.id)">Посмотреть результаты</a>
 </div>
-<label [tuiLabel]="'Интерпретация'">{{formResult.interpretation}}</label>
+<div class="form-result-container">
+  <label [tuiLabel]="'Интерпретация'">{{formResult.interpretation}}</label>
+</div>
+

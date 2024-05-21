@@ -1,7 +1,15 @@
 :host {
   display: flex;
   flex-direction: column;
+  gap: 10px;
   padding: 10px;
   border-radius: 12px;
   border: 1px solid #ededed;
+}
+
+.form-result-interpretation-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
 }
