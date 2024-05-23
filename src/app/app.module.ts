@@ -3,6 +3,7 @@ import {LOCALE_ID, NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {RouterModule} from "@angular/router";
 import {
+    TuiAlertModule,
     TuiButtonModule,
     TuiDialogModule,
     TuiLabelModule,
@@ -91,7 +92,8 @@ registerLocaleData(localeRu);
         SharedModule,
         TuiBlockStatusModule,
         TuiIslandModule,
-        PagesModule
+        PagesModule,
+        TuiAlertModule
     ],
     exports: [RouterModule],
     providers: [
