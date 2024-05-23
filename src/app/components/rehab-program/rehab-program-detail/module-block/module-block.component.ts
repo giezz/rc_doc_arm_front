@@ -55,4 +55,5 @@ export class ModuleBlockComponent implements OnInit, OnDestroy {
             }
         ).subscribe());
     }
+
 }

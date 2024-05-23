@@ -1,16 +1,16 @@
 <ng-container *ngIf="isLoaded">
-  <br>
-  <span>
-    Редактирование модуля:
-    {{module.name}}
+  <div class="module-header-container">
+    <label [tuiLabel]="'Модуль'">{{module.name}}</label>
     <button
       *ngIf="!previewMode"
-      tuiIconButton appearance="icon"
-      [icon]="'tuiIconEditLarge'"
+      tuiButton
+      size="s"
+      appearance="outline"
+      [iconRight]="'tuiIconEdit'"
       type="button"
-    ></button>
-  </span>
-  <tui-accordion [closeOthers]="false">
+    >Переименовать</button>
+  </div>
+  <tui-accordion [closeOthers]="false" class="tui-space_top-3">
     <tui-accordion-item *ngFor="let blockId of [1, 2, 3]" [open]="true">
       <strong>{{ blockId === 1 ? 'Разминочный блок' : (blockId === 2 ? 'Основной блок' : 'Заминочный блок') }}</strong>
       <ng-template tuiAccordionItemContent>

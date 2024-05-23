@@ -44,14 +44,16 @@
     <tui-accordion-item [open]="true">
       <strong>Модули</strong>
       <ng-template tuiAccordionItemContent>
-        <app-module-block
-          *ngFor="let module of rehabProgram.modules; let i = index"
-          [module]="module"
-          [editable]="rehabProgram.isCurrent"
-          [index]="i"
-          (onDeleteButtonPressed)="deleteModule($event)"
-          class="module-island border-shadow"
-        ></app-module-block>
+        <div class="modules-container">
+          <app-module-block
+            *ngFor="let module of rehabProgram.modules; let i = index"
+            [module]="module"
+            [editable]="rehabProgram.isCurrent && !(!!module.finishedAt)"
+            [index]="i"
+            (onDeleteButtonPressed)="deleteModule($event)"
+            class="module-island border-shadow"
+          ></app-module-block>
+        </div>
         <button
           *ngIf="rehabProgram.isCurrent"
           class="tui-space_top-3"

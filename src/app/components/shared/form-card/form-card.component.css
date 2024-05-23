@@ -5,10 +5,11 @@
   align-items: flex-start;
   border-radius: 12px;
   border: 1px solid #EDEDED;
+  padding: .5rem;
 }
 
 .form-card-container {
-  padding: 10px;
+  width: 100%;
 }
 
 .form-card-row-container {

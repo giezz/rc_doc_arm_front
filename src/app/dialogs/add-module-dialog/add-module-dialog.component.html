@@ -1,15 +1,20 @@
-<tui-input
-  tuiAutoFocus
-  tuiTextfieldSize="m"
-  [(ngModel)]="name"
->
-  Название модуля
-</tui-input>
-<button
-  tuiButton
-  size="s"
-  appearance="secondary"
-  (click)="addModule()"
->
-  Добавить
-</button>
+<form [formGroup]="moduleNameForm"  (ngSubmit)="addModule()" class="add-module-form">
+  <tui-input
+    class="tui-space_top-3"
+    tuiAutoFocus
+    formControlName="name"
+  >
+    Название модуля
+  </tui-input>
+  <div>
+    <button
+      tuiButton
+      appearance="primary"
+      type="submit"
+    >
+      Добавить
+    </button>
+  </div>
+</form>
+
+

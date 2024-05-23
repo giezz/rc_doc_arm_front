@@ -1,7 +1,7 @@
-import {Component, inject, Inject} from '@angular/core';
-import {TuiDialogContext, TuiDialogService} from "@taiga-ui/core";
+import {Component, Inject} from '@angular/core';
+import {TuiDialogContext} from "@taiga-ui/core";
 import {POLYMORPHEUS_CONTEXT} from "@tinkoff/ng-polymorpheus";
-import {RehabProgramService} from "../../services/rehab-program.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
     selector: 'app-add-module-dialog',
@@ -11,17 +11,17 @@ import {RehabProgramService} from "../../services/rehab-program.service";
 export class AddModuleDialogComponent {
 
     constructor(
-        @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
         @Inject(POLYMORPHEUS_CONTEXT)
         private readonly context: TuiDialogContext<string, string>,
     ) {
     }
-
-    rehabProgramService: RehabProgramService = inject(RehabProgramService);
-
-    name: string = "";
+    moduleNameForm = new FormGroup({
+        name: new FormControl('', Validators.required)
+    })
 
     addModule(): void {
-        this.context.completeWith(this.name);
+        if (this.moduleNameForm.valid) {
+            this.context.completeWith(this.moduleNameForm.value.name!);
+        }
     }
 }

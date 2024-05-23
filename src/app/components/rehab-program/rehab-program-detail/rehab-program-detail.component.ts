@@ -105,10 +105,7 @@ export class RehabProgramDetailComponent implements OnInit, OnDestroy {
                                 }
                             )
                         );
-                    },
-                    complete: () => {
-                        console.info('Dialog closed');
-                    },
+                    }
                 }
             )
         );

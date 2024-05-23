@@ -1,11 +1,11 @@
 <ng-container *ngIf="isLoaded">
   <div *tuiLet="formDetails.form as form">
-    <h2>{{form.name}}</h2>
+    <h2 class="">{{form.name}}</h2>
     <p>{{form.description}}</p>
   </div>
   <div>
     <div *ngFor="let question of formDetails.questions; let i = index">
-      <h1>{{i + 1}}. {{question.content}}</h1>
+      <h5 class="tui-space_top-3 tui-space_bottom-3">{{i + 1}}. {{question.content}}</h5>
       <div *ngFor="let variant of question.variants">
         <ng-container *tuiLet="isAnswered(variant) as answered">
           <div class="variant-container" [ngClass]="{'answered-variant': answered}">

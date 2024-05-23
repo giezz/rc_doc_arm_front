@@ -1,4 +1,11 @@
-<div><label tuiLabel="Модуль №{{index + 1}}">{{module.name}}</label></div>
+<div class="module-details-container">
+  <label tuiLabel="Модуль №{{index + 1}}">{{module.name}}</label>
+  <tui-badge
+    *ngIf="module.finishedAt"
+    [value]="'Завершен'"
+  >
+  </tui-badge>
+</div>
 <div class="module-buttons">
   <button
     tuiButton
@@ -43,7 +50,6 @@
     </tui-data-list>
   </ng-template>
 </div>
-<p *ngIf="module.finishedAt">Завершен</p>
 <ng-template #module_edit>
   <app-module-edit [module]="module"></app-module-edit>
 </ng-template>

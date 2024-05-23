@@ -23,3 +23,9 @@
   flex-wrap: wrap;
   gap: 2rem;
 }
+
+.module-header-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem
+}

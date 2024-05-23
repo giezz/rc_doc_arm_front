@@ -10,6 +10,11 @@
   gap: 2rem;
 }
 
+.modules-container {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
 
 .modules-wrapper {
   display: flex;
