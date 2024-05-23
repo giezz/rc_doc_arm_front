@@ -2,5 +2,12 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  gap: 10px;
+  gap: 2rem;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+  gap: 1rem;
 }

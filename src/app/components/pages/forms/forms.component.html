@@ -38,15 +38,17 @@
       <app-form-card
         [form]="form">
       </app-form-card>
-      <button
-        *ngIf="asAddFormDialog"
-        tuiButton
-        appearance="secondary"
-        size="m"
-        (click)="buttonPressed(form.id); formOnButtonPressed(form)"
-      >
-        Добавить
-      </button>
+      <div>
+        <button
+          *ngIf="asAddFormDialog"
+          tuiButton
+          appearance="secondary"
+          size="m"
+          (click)="buttonPressed(form.id); formOnButtonPressed(form)"
+        >
+          Добавить
+        </button>
+      </div>
     </div>
   </div>
   <tui-table-pagination
