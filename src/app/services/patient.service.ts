@@ -42,24 +42,17 @@ export class PatientService {
     }
 
     getByCode(code: number): Observable<Patient> {
-        return this.http.get<Patient>('http://localhost:8080/api/v1/patients/' + code)
-            .pipe(
-                delay(500)
-            );
+        return this.http.get<Patient>('http://localhost:8080/api/v1/patients/' + code);
     }
 
     getCurrentRehabProgram(code: number): Observable<RehabProgram> {
-        return this.http.get<RehabProgram>(
-            `http://localhost:8080/api/v1/patients/${code}/rehab-programs/current`,
-        ).pipe(
-            delay(500)
-        );
+        return this.http.get<RehabProgram>(`http://localhost:8080/api/v1/patients/${code}/rehab-programs/current`);
     }
 
     getRehabProgram(code: number, programId: number): Observable<RehabProgram> {
         return this.http.get<RehabProgram>(
             `http://localhost:8080/api/v1/patients/${code}/rehab-programs/${programId}`,
-        )
+        );
     }
 
     getRehabPrograms(code: number): Observable<RehabProgram[]> {
@@ -70,8 +63,6 @@ export class PatientService {
                     current: false
                 }
             }
-        ).pipe(
-            delay(500)
         );
     }
 
