@@ -5,6 +5,7 @@ import {TUI_TREE_LOADER, TUI_TREE_LOADING, TUI_TREE_START, TuiTreeService} from 
 import {TreeLoaderService} from "./tree-loader.service";
 import {IcfService} from "../../../services/icf.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {TuiAlertService} from "@taiga-ui/core";
 
 
 @Component({
@@ -32,6 +33,9 @@ export class IcfComponent implements OnInit, OnDestroy {
     onAddCategoryButtonPressed = new EventEmitter<{ category: IcfCategory, grade: string }>();
 
     addCategory(category: IcfCategory, grade: string) {
+        if (this.searchCategory.valid) {
+            this.showNotification();
+        }
         this.onAddCategoryButtonPressed.emit({category, grade});
         this.gradeCategory.controls.grade.setValue('');
     }
@@ -41,6 +45,7 @@ export class IcfComponent implements OnInit, OnDestroy {
     constructor(
         @Inject(TUI_TREE_LOADING) readonly loading: unknown,
         @Inject(TuiTreeService) readonly service: TuiTreeService<IcfCategory>,
+        @Inject(TuiAlertService) private readonly alerts: TuiAlertService
     ) {
     }
 
@@ -84,6 +89,12 @@ export class IcfComponent implements OnInit, OnDestroy {
         } else {
             this.categories = [];
         }
+    }
+
+    showNotification(): void {
+        this.alerts
+            .open('Категория добавлена')
+            .subscribe();
     }
 
 }
