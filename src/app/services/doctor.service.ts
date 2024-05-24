@@ -17,4 +17,8 @@ export class DoctorService {
         return this.token?.doctorFullName
     }
 
+    getDoctorId() {
+        return this.token.doctorId
+    }
+
 }

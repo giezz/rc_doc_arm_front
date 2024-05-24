@@ -30,7 +30,7 @@
           </ng-container>
         </div>
         <button
-          *ngIf="rehabProgram.isCurrent"
+          *ngIf="canEditRehabProgram(rehabProgram)"
           class="tui-space_top-3"
           tuiButton
           appearance="secondary"
@@ -48,14 +48,14 @@
           <app-module-block
             *ngFor="let module of rehabProgram.modules; let i = index"
             [module]="module"
-            [editable]="rehabProgram.isCurrent && !(!!module.finishedAt)"
+            [editable]="canEditRehabProgram(rehabProgram) && !(!!module.finishedAt)"
             [index]="i"
             (onDeleteButtonPressed)="deleteModule($event)"
             class="module-island border-shadow"
           ></app-module-block>
         </div>
         <button
-          *ngIf="rehabProgram.isCurrent"
+          *ngIf="canEditRehabProgram(rehabProgram)"
           class="tui-space_top-3"
           tuiButton
           appearance="secondary"
@@ -80,7 +80,7 @@
           </ng-container>
         </div>
         <button
-          *ngIf="rehabProgram.isCurrent"
+          *ngIf="canEditRehabProgram(rehabProgram)"
           class="tui-space_top-3"
           tuiButton
           appearance="secondary"

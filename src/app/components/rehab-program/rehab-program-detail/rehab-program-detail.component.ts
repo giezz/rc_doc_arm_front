@@ -8,6 +8,7 @@ import {AddModuleDialogComponent} from "../../../dialogs/add-module-dialog/add-m
 import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus';
 import {RehabProgramComponentsService} from "../../../services/components/rehab-program-components.service";
 import {TuiStatus} from "@taiga-ui/kit";
+import {DoctorService} from "../../../services/doctor.service";
 
 @Component({
     selector: 'app-rehab-program-detail',
@@ -18,6 +19,7 @@ export class RehabProgramDetailComponent implements OnInit, OnDestroy {
 
     private rehabProgramComponentsService: RehabProgramComponentsService = inject(RehabProgramComponentsService);
     private rehabProgramService: RehabProgramService = inject(RehabProgramService);
+    private doctorService: DoctorService = inject(DoctorService);
     private dialogService = inject(TuiDialogService);
     private injector: Injector = inject(Injector);
 
@@ -138,6 +140,10 @@ export class RehabProgramDetailComponent implements OnInit, OnDestroy {
             this.status = "success";
             this.value = "Завершена";
         }
+    }
+
+    canEditRehabProgram(program: RehabProgram) {
+        return program.isCurrent && program.doctor.id === this.doctorService.getDoctorId();
     }
 
 }

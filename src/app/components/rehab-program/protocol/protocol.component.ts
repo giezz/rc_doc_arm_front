@@ -8,6 +8,7 @@ import {RehabProgram} from "../../../models/rehab-program";
 import {Protocol} from "../../../models/protocol";
 import {PatientService} from "../../../services/patient.service";
 import {CreateProtocolRequest} from "../../../models/request/create-protocol-request";
+import {DoctorService} from "../../../services/doctor.service";
 
 @Component({
     selector: 'app-protocol',
@@ -17,6 +18,7 @@ import {CreateProtocolRequest} from "../../../models/request/create-protocol-req
 export class ProtocolComponent implements OnInit, OnDestroy {
 
     private patientService: PatientService = inject(PatientService);
+    private doctorService: DoctorService = inject(DoctorService);
     private rehabProgramComponentsService: RehabProgramComponentsService = inject(RehabProgramComponentsService);
     private rehabProgramService: RehabProgramService = inject(RehabProgramService);
     private dialogService = inject(TuiDialogService);
@@ -62,5 +64,9 @@ export class ProtocolComponent implements OnInit, OnDestroy {
                 ))
             }
         ));
+    }
+
+    canEditRehabProgram(program: RehabProgram) {
+        return program.isCurrent && program.doctor.id === this.doctorService.getDoctorId();
     }
 }
