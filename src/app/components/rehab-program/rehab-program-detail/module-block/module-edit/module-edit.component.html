@@ -1,14 +1,26 @@
 <ng-container *ngIf="isLoaded">
+<!--  {{form.value | json}}-->
   <div class="module-header-container">
     <label [tuiLabel]="'Модуль'">{{module.name}}</label>
+<!--    <button-->
+<!--      *ngIf="!previewMode"-->
+<!--      tuiButton-->
+<!--      size="s"-->
+<!--      appearance="outline"-->
+<!--      [iconRight]="'tuiIconEdit'"-->
+<!--      type="button"-->
+<!--    >-->
+<!--      Переименовать-->
+<!--    </button>-->
+  </div>
+  <div>
     <button
       *ngIf="!previewMode"
       tuiButton
-      size="s"
-      appearance="outline"
-      [iconRight]="'tuiIconEdit'"
-      type="button"
-    >Переименовать</button>
+      (click)="updateModule()"
+    >
+      Сохранить
+    </button>
   </div>
   <tui-accordion [closeOthers]="false" class="tui-space_top-3">
     <tui-accordion-item *ngFor="let blockId of [1, 2, 3]" [open]="true">
@@ -58,6 +70,7 @@
         <div class="module-items-container">
           <div class="module-content-item-container" *ngFor="let moduleForm of moduleForms">
             <app-form-card [form]="moduleForm.form"></app-form-card>
+            <a *ngIf="moduleForm.finishedAt!!" tuiLink [pseudo]="true" (click)="showModuleFormResult(moduleForm.id!, moduleForm.form.id)">Посмотреть результаты</a>
             <div class="module-content-actions-container">
               <button
                 *ngIf="!previewMode"
@@ -82,6 +95,15 @@
       </ng-template>
     </tui-accordion-item>
   </tui-accordion>
+  <div class="tui-space_top-3">
+    <button
+      *ngIf="!previewMode"
+      tuiButton
+      (click)="updateModule()"
+    >
+      Сохранить
+    </button>
+  </div>
   <ng-template #add_form_dialog let-observer>
     <app-forms
       [asAddFormDialog]="true"
