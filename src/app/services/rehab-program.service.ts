@@ -8,6 +8,7 @@ import {CreateProtocolRequest} from "../models/request/create-protocol-request";
 import {SearchProgramsRequest} from "../models/request/search-programs-request";
 import {PageableResponse} from "../models/pageable-response";
 import {Protocol} from "../models/protocol";
+import {environment} from "../../environments/environment";
 
 @Injectable({
     providedIn: 'root'
@@ -15,6 +16,7 @@ import {Protocol} from "../models/protocol";
 export class RehabProgramService {
 
     private http: HttpClient = inject(HttpClient)
+    private api = environment.API_BASE_URL;
 
     getListByCurrentDoctor(pageNumber: number, pageSize: number, request: SearchProgramsRequest) {
         let params = new HttpParams();
@@ -42,7 +44,7 @@ export class RehabProgramService {
         }
 
         return this.http.get<PageableResponse<RehabProgram>>(
-            "http://localhost:8080/api/v1/rehabs",
+            `${this.api}/api/v1/rehabs`,
             {params}
         )
     }
@@ -51,7 +53,7 @@ export class RehabProgramService {
         let params = new HttpParams().set('excludeIds', excludeIds.join(','));
 
         return this.http.get<ModuleFormResult[]>(
-            `http://localhost:8080/api/v1/rehabs/${programId}/modules-forms-results`,
+            `${this.api}/api/v1/rehabs/${programId}/modules-forms-results`,
             {
                 params: params
             }
@@ -62,7 +64,7 @@ export class RehabProgramService {
         let params = new HttpParams().set('excludeIds', excludeIds.join(','));
 
         return this.http.get<ProgramFormResult[]>(
-            `http://localhost:8080/api/v1/rehabs/${programId}/program-forms-results`,
+            `${this.api}/api/v1/rehabs/${programId}/program-forms-results`,
             {
                 params: params
             }
@@ -71,41 +73,41 @@ export class RehabProgramService {
 
     create(patientId: number): Observable<RehabProgram> {
         return this.http.post<RehabProgram>(
-            'http://localhost:8080/api/v1/rehabs',
+            `${this.api}/api/v1/rehabs`,
             {patientId: patientId})
     }
 
     createProtocol(programId: number, req: CreateProtocolRequest): Observable<Protocol[]> {
         return this.http.post<Protocol[]>(
-            `http://localhost:8080/api/v1/rehabs/${programId}/protocol`,
+            `${this.api}/api/v1/rehabs/${programId}/protocol`,
             req
         );
     }
 
     getProtocols(programId: number): Observable<Protocol[]> {
-        return this.http.get<Protocol[]>(`http://localhost:8080/api/v1/rehabs/${programId}/protocols`);
+        return this.http.get<Protocol[]>(`${this.api}/api/v1/rehabs/${programId}/protocols`);
     }
 
     addForm(programId: number, formId: number, formType: string): Observable<RehabProgram> {
         return this.http.put<RehabProgram>(
-            `http://localhost:8080/api/v1/rehabs/${programId}/form`,
+            `${this.api}/api/v1/rehabs/${programId}/form`,
             {formId: formId, formType: formType}
         );
     }
 
     deleteForm(programId: number, formId: number): Observable<RehabProgram> {
-        return this.http.delete<RehabProgram>(`http://localhost:8080/api/v1/rehabs/${programId}/form/${formId}`);
+        return this.http.delete<RehabProgram>(`${this.api}/api/v1/rehabs/${programId}/form/${formId}`);
     }
 
     addModule(name: string, programId: number): Observable<RehabProgram> {
         return this.http.put<RehabProgram>(
-            `http://localhost:8080/api/v1/rehabs/${programId}/module`,
+            `${this.api}/api/v1/rehabs/${programId}/module`,
             {name: name}
         );
     }
 
     deleteModule(programId: number, moduleId: number): Observable<RehabProgram> {
-        return this.http.delete<RehabProgram>(`http://localhost:8080/api/v1/rehabs/${programId}/module/${moduleId}`);
+        return this.http.delete<RehabProgram>(`${this.api}/api/v1/rehabs/${programId}/module/${moduleId}`);
     }
 
 }

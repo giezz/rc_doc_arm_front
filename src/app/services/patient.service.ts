@@ -7,6 +7,7 @@ import {SearchPatientsRequest} from "../models/request/search-patients-request";
 import {PageableResponse} from "../models/pageable-response";
 import {HospitalizationHistory} from "../models/HospitalizationHistory";
 import {Epicris} from "../models/epicris";
+import {environment} from "../../environments/environment";
 
 @Injectable({
     providedIn: 'root'
@@ -14,6 +15,7 @@ import {Epicris} from "../models/epicris";
 export class PatientService {
 
     private http: HttpClient = inject(HttpClient)
+    private api = environment.API_BASE_URL;
 
     getAll(pageNumber: number, pageSize: number, request: SearchPatientsRequest): Observable<PageableResponse<Patient>> {
         let params = new HttpParams();
@@ -38,26 +40,26 @@ export class PatientService {
             params = params.set('birthDate', request.birthDate);
         }
 
-        return this.http.get<PageableResponse<Patient>>('http://localhost:8080/api/v1/patients', {params});
+        return this.http.get<PageableResponse<Patient>>(`${this.api}/api/v1/patients`, {params});
     }
 
     getByCode(code: number): Observable<Patient> {
-        return this.http.get<Patient>('http://localhost:8080/api/v1/patients/' + code);
+        return this.http.get<Patient>(`${this.api}/api/v1/patients/` + code);
     }
 
     getCurrentRehabProgram(code: number): Observable<RehabProgram> {
-        return this.http.get<RehabProgram>(`http://localhost:8080/api/v1/patients/${code}/rehab-programs/current`);
+        return this.http.get<RehabProgram>(`${this.api}/api/v1/patients/${code}/rehab-programs/current`);
     }
 
     getRehabProgram(code: number, programId: number): Observable<RehabProgram> {
         return this.http.get<RehabProgram>(
-            `http://localhost:8080/api/v1/patients/${code}/rehab-programs/${programId}`,
+            `${this.api}/api/v1/patients/${code}/rehab-programs/${programId}`,
         );
     }
 
     getRehabPrograms(code: number): Observable<RehabProgram[]> {
         return this.http.get<RehabProgram[]>(
-            `http://localhost:8080/api/v1/patients/${code}/rehab-programs`,
+            `${this.api}/api/v1/patients/${code}/rehab-programs`,
             {
                 params: {
                     current: false
@@ -67,11 +69,11 @@ export class PatientService {
     }
 
     getHospitalizationHistory(patientCode: number): Observable<HospitalizationHistory[]> {
-        return this.http.get<HospitalizationHistory[]>(`http://localhost:8080/api/v1/patients/${patientCode}/hosp-history`)
+        return this.http.get<HospitalizationHistory[]>(`${this.api}/api/v1/patients/${patientCode}/hosp-history`)
     }
 
     getEpicrisises(patientCode: number, hospHistoryId: number): Observable<Epicris[]> {
-        return this.http.get<Epicris[]>(`http://localhost:8080/api/v1/patients/${patientCode}/hosp-history/${hospHistoryId}/epicrisises`)
+        return this.http.get<Epicris[]>(`${this.api}/api/v1/patients/${patientCode}/hosp-history/${hospHistoryId}/epicrisises`)
     }
 
 }

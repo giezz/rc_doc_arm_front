@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {JwtResponse} from "./jwt-response";
 import {TokenStorageService} from "../services/token-storage.service";
 import {JwtHelperService} from "@auth0/angular-jwt";
+import {environment} from "../../environments/environment";
 
 const httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -22,8 +23,10 @@ export class AuthService {
     ) {
     }
 
+    private api = environment.API_BASE_URL;
+
     login(authRequest: AuthRequest): Observable<JwtResponse> {
-        return this.http.post<JwtResponse>("http://localhost:8080/auth", authRequest, httpOptions)
+        return this.http.post<JwtResponse>(`${this.api}/auth`, authRequest, httpOptions)
     }
 
     logout() {

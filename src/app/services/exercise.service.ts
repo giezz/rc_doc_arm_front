@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Exercise} from "../models/exercise";
 import {PageableResponse} from "../models/pageable-response";
+import {environment} from "../../environments/environment";
 
 @Injectable({
     providedIn: 'root'
@@ -10,6 +11,7 @@ import {PageableResponse} from "../models/pageable-response";
 export class ExerciseService {
 
     private http: HttpClient = inject(HttpClient);
+    private api = environment.API_BASE_URL;
 
     getAll(pageNumber: number, pageSize: number, name: string): Observable<PageableResponse<Exercise>> {
         let params = new HttpParams();
@@ -19,7 +21,7 @@ export class ExerciseService {
             params = params.set('name', name)
         }
         return this.http.get<PageableResponse<Exercise>>(
-            "http://localhost:8080/api/v1/exercises",
+            `${this.api}/api/v1/exercises`,
             {params}
         );
     }

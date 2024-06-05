@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {FormDetails} from "../models/form-details";
 import {Variant} from "../models/variant";
 import {PageableResponse} from "../models/pageable-response";
+import {environment} from "../../environments/environment";
 
 @Injectable({
     providedIn: 'root'
@@ -12,6 +13,7 @@ import {PageableResponse} from "../models/pageable-response";
 export class FormService {
 
     private http: HttpClient = inject(HttpClient);
+    private api = environment.API_BASE_URL;
 
     getAll(pageNumber: number, pageSize: number, name: string): Observable<PageableResponse<Form>> {
         let params = new HttpParams();
@@ -21,20 +23,20 @@ export class FormService {
             params = params.set('name', name)
         }
         return this.http.get<PageableResponse<Form>>(
-            "http://localhost:8080/api/v1/forms",
+            `${this.api}/api/v1/forms`,
             {params}
         );
     }
 
     getDetails(formId: number): Observable<FormDetails> {
-        return this.http.get<FormDetails>(`http://localhost:8080/api/v1/forms/${formId}/details`);
+        return this.http.get<FormDetails>(`${this.api}/api/v1/forms/${formId}/details`);
     }
 
     getModuleFormResults(moduleFormId: number): Observable<Variant[]> {
-        return this.http.get<Variant[]>(`http://localhost:8080/api/v1/forms/module-form/${moduleFormId}/results`);
+        return this.http.get<Variant[]>(`${this.api}/api/v1/forms/module-form/${moduleFormId}/results`);
     }
 
     getProgramFormResults(programFormId: number): Observable<Variant[]> {
-        return this.http.get<Variant[]>(`http://localhost:8080/api/v1/forms/program-form/${programFormId}/results`);
+        return this.http.get<Variant[]>(`${this.api}/api/v1/forms/program-form/${programFormId}/results`);
     }
 }
